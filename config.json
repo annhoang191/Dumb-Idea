@@ -1,4 +1,4 @@
 {
-    "dbpath": "localhost:27017/dump",
+    "dbpath": "mongodb://admin:admin@ds035533.mlab.com:35533/dumpideas",
     "port": "8888"
 }
