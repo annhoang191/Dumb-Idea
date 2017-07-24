@@ -1,0 +1,4 @@
+{
+    "dbpath": "localhost:27017/dump",
+    "port": "8888"
+}
