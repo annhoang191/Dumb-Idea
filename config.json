@@ -1,4 +1,10 @@
 {
-    "dbpath": "mongodb://admin:admin@ds035533.mlab.com:35533/dumpideas",
-    "port": "8888"
+    "production": {
+        "dbpath": "mongodb://admin:admin@ds035533.mlab.com:35533/dumpideas",
+        "port": "8888"
+    },
+    "development": {
+        "dbpath": "localhost:27017/dumpideas",
+        "port": "8888"  
+    }
 }

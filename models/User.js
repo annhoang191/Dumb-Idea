@@ -1,12 +1,133 @@
 const mongoose = require('mongoose');
 
 let userSchema = mongoose.Schema({
-    name: String,
-    address: String,
-    password: String, //TODO encode password
-    email: String,
+    username: {
+        type: String,
+        require: true,
+        unique: true
+    },
+    address: {
+        type: String,
+        require: false
+    },
+    password: {
+        type: String,
+        require: true
+    }, //TODO: encode password
+    email: {
+        type: String,
+        require: false,
+        unique: true
+    },
     createdIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}],
-    followedIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}]
+    followedIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}],
+    whoRated: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    status: {
+        type: String,
+        require: true,
+        default: 'active' //or 'inactive'
+    }
+},
+{
+    timestamps: {}
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+const create = (userInfo) => {
+    return new Promise((resolve, reject) => {
+        User.create(userInfo).then(
+            doc => {
+                console.log(`SUCCESS User ${doc.username} created`);
+                resolve(doc);
+            },
+            err => {
+                console.log('FAILED create user', err);
+                reject(err);
+            }
+        );
+    });
+};
+
+
+//USAGE: get(object); Eg: get({username: 'lad'}); get({_id: '1235'});
+const get = (target) => {
+    return new Promise((resolve, reject) => {
+        User.findOne(target).then(
+            doc => {
+                console.log(`SUCCESS get user ${target}`);
+                let data = doc.toJSON();
+                delete data['password'];
+                resolve(data);
+            },
+            err => {
+                console.log('FAILED get user', err);
+                reject(err);
+            }
+        );
+    });
+};
+
+//Eg: update({username: 'lad'}, {password: '1998'})
+const update = (target, userInfo) => {
+    return new Promise((resolve, reject) => {
+        User.findOneAndUpdate(target, userInfo).then(
+            doc => {
+                console.log(`SUCCESS update user ${target}`);
+                resolve(doc);
+            },
+            err => {
+                console.log(`FAILED update user ${target}`, err);
+                reject(err);
+            }
+        );
+    });
+};
+
+const erase = (target) => {
+    return new Promise((resolve, reject) => {
+        User.findOneAndUpdate(target, {status: 'inactive'}).then(
+            doc => {
+                console.log(`SUCCESS erase user ${target}`);
+                resolve();
+            },
+            err => {
+                console.log(`FAILED erase user ${target}`);
+                reject(err);
+            }
+        );
+    });
+};
+
+const addIdea = (target, ideaId) => {
+    return new Promise((resolve, reject) => {
+        User.findOne(target).then(
+            user => {
+                user.createdIdeas.push(ideaId);
+                return user.save();
+            },
+            err => {
+                console.log(`FAILED find target user to addIdea`);
+                reject(err);
+            }
+        )
+        .then(
+            user => {
+                console.log(`SUCCESS addIdea to user`);
+                resolve(user.createdIdeas[user.createdIdeas.length - 1]);
+            },
+            err => {
+                console.log(`FAILED addIdea to user`, err);
+                reject(err);
+            }
+        );
+    });
+};
+
+module.exports = {
+    create,
+    get,
+    update,
+    erase,
+    addIdea
+};
