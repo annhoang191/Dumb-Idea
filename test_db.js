@@ -13,6 +13,17 @@ let userInfo = {
     password: '1235',
     email: 'anhducle98@gmail.com'
 };
+/*
+UserModel.create(userInfo).then(
+    user => {
+        console.log(`SUCCESS user created`);
+    },
+    err => {
+        console.log(err);
+    }
+);
+*/
+
 
 let userPromise = UserModel.get({username: userInfo.username});
 
@@ -26,7 +37,7 @@ userPromise.then(user => {
     UserModel.erase({username: 'manh'})
 })
 ;
-/*
+
 userPromise.then(
     (user) => {
         return IdeaModel.create({name: 'dumb-idea', owner: user._id});
@@ -41,24 +52,33 @@ userPromise.then(
     }
 );
 
-*/
 
 let ideaPromise = IdeaModel.get({name: 'dumb-idea'});
 
 Promise.all([userPromise, ideaPromise])
 .then(
     docs => {
-        return CommentModel.create({author: docs[0], post: docs[1]});
+        return CommentModel.create({author: docs[0]._id, postId: docs[1]._id, content: 'ahihi'});
     },
     err => {
         console.log(err);
     }
-)
+);
+/*
 .then(
     comment => {
         console.log(`SUCCESS addComment`);
+        return CommentModel.erase();
     },
     err => {
         console.log(`FAILED addComment`, err);
     }
-);
+)
+.then(
+    () => {
+        console.log(`SUCCESS erase comment`);
+    },
+    err => {
+        console.log(`FAILED erase comment`);
+    }
+);*/
