@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const UserModel = require('./User.js');
-const CommentModel = require('./Comment.js');
 
 let ideaSchema = mongoose.Schema({
     name: {
@@ -39,12 +38,21 @@ const create = (ideaInfo) => {
                 reject(err);
             }
         ).then(
-            idea => {
+            ideaId => {
                 console.log(`SUCCESS save idea to user`);
-                resolve(idea);
+                return Idea.findById(ideaId);
             },
             err => {
                 console.log(`FAILED save idea to user`);
+                reject(err);
+            }
+        )
+        .then(
+            idea => {
+                resolve(idea);
+            },
+            err => {
+                console.log(err);
                 reject(err);
             }
         );
@@ -98,6 +106,31 @@ const erase = (target) => {
     });
 };
 
+const addComment = (target, commentId) => {
+    return new Promise((resolve, reject) => {
+        Idea.findOne(target).then(
+            idea => {
+                idea.comments.push(commentId);
+                return idea.save();
+            },
+            err => {
+                console.log(`FAILED get post`, err);
+                reject(err);
+            }
+        )
+        .then(
+            idea => {
+                console.log(`SUCCESS Idea saved`);
+                resolve(commentId);
+            },
+            err => {
+                console.log(`FAILED Idea not saved`);
+                reject(err);
+            }
+        );
+    });
+};
+
 const removeComment = (target, commentId) => {
     return new Promise((resolve, reject) => {
         Idea.findOne(target).then(
@@ -116,7 +149,7 @@ const removeComment = (target, commentId) => {
         .then(
             idea => {
                 console.log(`SUCCESS Idea saved`);
-                resolve(idea);
+                resolve(commentId);
             },
             err => {
                 console.log(`FAILED Idea not saved`);
@@ -125,31 +158,6 @@ const removeComment = (target, commentId) => {
         );
     });
 };
-
-const addComment = (target, commentId) => {
-    return new Promise((resolve, reject) => {
-        Idea.findOne(target).then(
-            idea => {
-                idea.comments.push(commentId);
-                return idea.save();
-            },
-            err => {
-                console.log(`FAILED get post`, err);
-                reject(err);
-            }
-        )
-        .then(
-            idea => {
-                console.log(`SUCCESS Idea saved`);
-                resolve(idea);
-            },
-            err => {
-                console.log(`FAILED Idea not saved`);
-                reject(err);
-            }
-        );
-    });
-}
 
 module.exports = {
     create,

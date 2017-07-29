@@ -114,10 +114,91 @@ const addIdea = (target, ideaId) => {
         .then(
             user => {
                 console.log(`SUCCESS addIdea to user`);
-                resolve(user.createdIdeas[user.createdIdeas.length - 1]);
+                resolve(ideaId);
             },
             err => {
                 console.log(`FAILED addIdea to user`, err);
+                reject(err);
+            }
+        );
+    });
+};
+
+const removeIdea = (target, ideaId) => {
+    return new Promise((resolve, reject) => {
+        User.findOne(target).then(
+            user => {
+                let index = user.createdIdeas.indexOf(ideaId);
+                if (index != -1) {
+                    user.createdIdeas.splice(index, 1);
+                }
+                return user.save();
+            },
+            err => {
+                console.log(`FAILED get post`, err);
+                reject(err);
+            }
+        )
+        .then(
+            user => {
+                console.log(`SUCCESS user saved`);
+                resolve(ideaId);
+            },
+            err => {
+                console.log(`FAILED cannot save user`, err);
+                reject(err);
+            }
+        );
+    });
+};
+
+const followIdea = (target, ideaId) => {
+    return new Promise((resolve, reject) => {
+        User.findOne(target).then(
+            user => {
+                user.followedIdeas.push(ideaId);
+                return user.save();
+            },
+            err => {
+                console.log(`FAILED find target user to addIdea`);
+                reject(err);
+            }
+        )
+        .then(
+            user => {
+                console.log(`SUCCESS addIdea to user`);
+                resolve(ideaId);
+            },
+            err => {
+                console.log(`FAILED addIdea to user`, err);
+                reject(err);
+            }
+        );
+    });
+};
+
+const unfollowIdea = (target, ideaId) => {
+    return new Promise((resolve, reject) => {
+        User.findOne(target).then(
+            user => {
+                let index = user.followedIdeas.indexOf(ideaId);
+                if (index != -1) {
+                    user.followedIdeas.splice(index, 1);
+                }
+                return user.save();
+            },
+            err => {
+                console.log(`FAILED get post`, err);
+                reject(err);
+            }
+        )
+        .then(
+            user => {
+                console.log(`SUCCESS user saved`);
+                resolve(ideaId);
+            },
+            err => {
+                console.log(`FAILED cannot save user`, err);
                 reject(err);
             }
         );
@@ -129,5 +210,8 @@ module.exports = {
     get,
     update,
     erase,
-    addIdea
+    addIdea,
+    removeIdea,
+    followIdea,
+    unfollowIdea
 };
