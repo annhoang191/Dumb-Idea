@@ -20,7 +20,7 @@ const create = (commentInfo) => {
         Comment.create(commentInfo).then(
             doc => {
                 console.log(`SUCCESS comment created`);
-                return IdeaModel.addComment({_id: doc.postId}, doc._id)   ;
+                return IdeaModel.addComment({_id: doc.postId}, doc._id);
             },
             err => {
                 console.log('FAILED comment create', err);

@@ -6,6 +6,9 @@ let userSchema = mongoose.Schema({
         require: true,
         unique: true
     },
+    avatar: {
+        type : String //path
+    }
     address: {
         type: String,
         require: false

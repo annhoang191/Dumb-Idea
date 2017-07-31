@@ -35,8 +35,7 @@ userPromise.then(user => {
 })
 .then(() => {
     UserModel.erase({username: 'manh'})
-})
-;
+});
 
 userPromise.then(
     (user) => {
