@@ -17,6 +17,27 @@ Router.post('/', (req, res) => {
   );
 });
 
+Router.post('/authenticate', (req, res) => {
+  UserModel.authenticate(req.body.username, req.body.password, (err, success, user) => {
+    if (err) {
+      res.status(200);
+      res.send('Authentication failed. User not found.');
+    } else {
+      if (success) {
+        res.status(500);
+        res.send('Login successfully');
+      } else {
+        res.status(200);
+        if (user) {
+          res.send('Password is wrong');
+        } else {
+          res.send('Authentication failed. User not found.');
+        }
+      }
+    }
+  });
+});
+
 // GET: Get user with id
 Router.get('/:id', (req, res) => {
   let userPromise = UserModel.get({_id: req.params.id});
