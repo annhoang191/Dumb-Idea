@@ -1,0 +1,49 @@
+/* CUSTOMIZE Profile page
+-------------------------------------------------- */
+.navbar-fixed-top {
+  background-color: #ffffff;
+  height:70px;
+  box-shadow: 0 2px 2px #d2caca;
+}
+.navbar-fixed-top a, .navbar-fixed-top li a {
+  line-height: 35px;
+  background-color : #ffffff;
+  color: #000000;
+}
+/*Header*/
+.header {
+  margin-top: 70px;
+}
+.contact {
+  list-style: none;
+  margin-left: -40px;
+  font-size: 20px;
+}
+/*Main profile*/
+.nav-tabs {
+  background-color : 	#f7f8f9;
+  border-bottom: 2px solid #e5e8ea;
+}
+.nav-tabs li a {
+  border-right: 1px solid #e5e8ea!important;
+  padding : 20px;
+}
+.tab-content {
+  box-shadow: 0 2px 6px 0px rgba(22,22,22,0.45);
+  padding-right : 10px;
+}
+.created-idea, .following-idea {
+  margin-top : 10px;
+}
+.media-object {
+  max-width: 400px;
+}
+.btn-detail, .load-more {
+  margin-top : 5px;
+  margin-bottom : 15px;
+  border-radius : 17px;
+}
+/*Footer*/
+.footer {
+  margin-top : 20px;
+}
