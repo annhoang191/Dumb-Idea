@@ -39,3 +39,5 @@ Router.put('/:id', (req, res) => {
 Router.delete('/:id', (req, res) => {
 
 });
+
+module.exports = Router;

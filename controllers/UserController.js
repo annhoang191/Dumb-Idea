@@ -60,5 +60,13 @@ Router.put('/:id', (req, res) => {
 
 // DELETE: Delete user with id
 Router.delete('/:id', (req, res) => {
+  let userPromise = UserModel.erase({_id: req.params.id});
 
+  userPromise.then(() => {},
+  err => {
+    res.status(500);
+    res.send('Error delete user');
+  })
 });
+
+module.exports = Router;
