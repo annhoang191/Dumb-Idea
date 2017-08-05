@@ -43,18 +43,24 @@ Router.get('/:id', (req, res) => {
   let userPromise = UserModel.get({_id: req.params.id});
 
   userPromise.then(user => {
-      console.log('got', user);
-      res.send('Get user successfully');
+    res.status(200);
+    res.send(user);
+  },
+  err => {
+    res.status(500);
+    res.send('Error get user');
   })
 });
 
 // PUT: Update user with id
 Router.put('/:id', (req, res) => {
-  let userPromise = UserModel.get({_id: req.params.id});
+  let userPromise = UserModel.update({_id: req.params.id}, req.body);
 
   userPromise.then(() => {
-      let user = UserModel.update(req.body);
       res.send('Update user successfully');
+  },
+  err => {
+      res.send('Error update user');
   })
 });
 
