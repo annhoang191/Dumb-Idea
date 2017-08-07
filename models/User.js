@@ -92,7 +92,7 @@ const erase = (target) => {
         User.findOneAndUpdate(target, {status: 'inactive'}).then(
             doc => {
                 console.log(`SUCCESS erase user ${target}`);
-                resolve();
+                resolve(doc);
             },
             err => {
                 console.log(`FAILED erase user ${target}`);

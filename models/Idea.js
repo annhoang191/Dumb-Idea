@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const UserModel = require('./User.js');
+const UserModel = require('./User');
 
 let ideaSchema = mongoose.Schema({
     name: {

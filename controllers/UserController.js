@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 
-const UserModel = require('../models/User.js');
+const UserModel = require('../models/User');
 
 // POST
 Router.post('/', (req, res) => {
@@ -56,10 +56,9 @@ Router.get('/:id', (req, res) => {
 Router.put('/:id', (req, res) => {
   let userPromise = UserModel.update({_id: req.params.id}, req.body);
 
-  userPromise.then(() => {
+  userPromise.then(user => {
       res.send('Update user successfully');
-  },
-  err => {
+  }, err => {
       res.send('Error update user');
   })
 });
@@ -68,8 +67,9 @@ Router.put('/:id', (req, res) => {
 Router.delete('/:id', (req, res) => {
   let userPromise = UserModel.erase({_id: req.params.id});
 
-  userPromise.then(() => {},
-  err => {
+  userPromise.then(user => {
+    res.send('Delete user successfully');
+  }, err => {
     res.status(500);
     res.send('Error delete user');
   })

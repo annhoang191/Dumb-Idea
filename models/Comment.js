@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
-const IdeaModel = require('./Idea.js');
-
-console.log(IdeaModel);
+const IdeaModel = require('./Idea');
 
 let commentSchema = mongoose.Schema({
-    author: {type: mongoose.Schema.Types.ObjectId, ref: 'Comment', require: true},
+    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true},
     postId: {type: mongoose.Schema.Types.ObjectId, ref: 'Idea', require: true},
     content: {type: String, require: true}
 },

@@ -1,33 +1,24 @@
 const express = require('express');
 const Router = express.Router();
 
-const CommentModel = require('../models/Comment.js');
-const IdeaModel = require('../models/Idea.js');
+const CommentModel = require('../models/Comment');
 
 // POST
 Router.post('/', (req, res) => {
-  Promise.all([userPromise, ideaPromise])
-  .then(
-      docs => {
-          return CommentModel.create({author: docs[0], post: docs[1]});
-      },
-      err => {
-          console.log(err);
-      }
-  )
-  .then(
-      comment => {
-          console.log(`SUCCESS addComment`);
-      },
-      err => {
-          console.log(`FAILED addComment`, err);
-      }
-  );
+  CommentModel.create(req.body).then(comment => {
+    res.send('Created comment');
+  }, err => {
+    res.send('Error create comment');
+  });
 });
 
 // GET: Get comment with id
 Router.get('/:id', (req, res) => {
-
+  CommentModel.get({ _id: req.params.id}).then(comment => {
+    res.send(comment);
+  }, err => {
+    res.send('Error get comment: ', err);
+  });
 });
 
 // PUT: Update comment with id
