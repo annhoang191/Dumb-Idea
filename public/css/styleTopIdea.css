@@ -1,3 +1,5 @@
+/* CUSTOMIZE Top Idea lisst
+-------------------------------------------------- */
 .navbar-fixed-top {
   background-color: #ffffff;
   height:70px;
@@ -8,7 +10,6 @@
   background-color : #ffffff;
   color: #000000;
 }
-
 .top-section {
   margin-top: 70px;
   margin-bottom : 15px;
@@ -20,6 +21,23 @@
   color : #ffffff;
   margin-bottom : 5px;
 }
+/*The most popular idea*/
 .top1-idea {
-  margin-bottom : 10px;
+  margin-bottom : 20px;
+  padding : 10px;
+  border-radius : 5px;
+  box-shadow : 0 2px 6px 0px rgba(22,22,22,0.45);
+}
+.btn-default {
+  border-radius : 17px;
+}
+/*List of other popular idea*/
+.list-idea {
+  padding: 20px 10px 10px 10px;
+  margin-top: 20px;
+  border-radius : 5px;
+  box-shadow : 0 2px 6px 0px rgba(22,22,22,0.45);
+}
+.media-object  {
+  max-width : 500px;
 }
