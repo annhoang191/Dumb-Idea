@@ -92,7 +92,7 @@ const erase = (target) => {
         User.findOneAndUpdate(target, {status: 'inactive'}).then(
             doc => {
                 console.log(`SUCCESS erase user ${target}`);
-                resolve(doc);
+                resolve();
             },
             err => {
                 console.log(`FAILED erase user ${target}`);
@@ -208,27 +208,6 @@ const unfollowIdea = (target, ideaId) => {
     });
 };
 
-const authenticate = function(username, password, callback) {
-  User.findOne({username: username}, (err, user) => {
-    if (err) {
-      // Error
-      callback(err, false);
-    } else {
-      if (!user) {
-        // Authentication failed. User not found.
-        callback(null, false);
-      } else {
-        // Check if password matches
-        if (user.password == password) {
-          callback(null, true, user);
-        } else {
-          callback(null, false, user);
-        }
-      }
-    }
-  });
-}
-
 module.exports = {
     create,
     get,
@@ -237,6 +216,5 @@ module.exports = {
     addIdea,
     removeIdea,
     followIdea,
-    unfollowIdea,
-    authenticate
+    unfollowIdea
 };
