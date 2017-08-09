@@ -14,7 +14,7 @@ Router.post('/', (req, res) => {
 
 // GET: Get comment with id
 Router.get('/:id', (req, res) => {
-  CommentModel.get({ _id: req.params.id}).then(comment => {
+  CommentModel.get({ _id: req.params.id }).then(comment => {
     res.send(comment);
   }, err => {
     res.send('Error get comment: ', err);
@@ -23,12 +23,20 @@ Router.get('/:id', (req, res) => {
 
 // PUT: Update comment with id
 Router.put('/:id', (req, res) => {
-
+  CommentModel.update({ _id: req.params.id }, req.body).then(comment => {
+    res.send('Update idea successfully');
+  }, err => {
+    res.send('Error update idea !!!');
+  });
 });
 
 // DELETE: Delete comment with id
 Router.delete('/:id', (req, res) => {
-
+  CommentModel.erase({ _id: req.params.id }).then(() => {
+    res.send('Delete comment successfully');
+  }, err => {
+    res.send('Error delete comment !!!');
+  })
 });
 
 module.exports = Router;

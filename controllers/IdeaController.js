@@ -12,7 +12,7 @@ Router.post('/', (req, res) => {
 });
 
 Router.get('/:id', (req, res) => {
-  IdeaModel.get(req.params.id).then(idea => {
+  IdeaModel.get({ _id: req.params.id }).then(idea => {
     res.send(idea);
   }, err => {
     res.send('Error get idea !!!');
@@ -20,7 +20,7 @@ Router.get('/:id', (req, res) => {
 });
 
 Router.put('/:id', (req, res) => {
-  IdeaModel.update(req.params.id, req.body).then(idea => {
+  IdeaModel.update({ _id: req.params.id }, req.body).then(idea => {
     res.send('Update idea');
   }, err => {
     res.send('Error update idea !!!');
@@ -28,7 +28,7 @@ Router.put('/:id', (req, res) => {
 });
 
 Router.delete('/:id', (req, res) => {
-  IdeaModel.erase(req.params.id).then(idea => {
+  IdeaModel.erase({ _id: req.params.id }).then(idea => {
     res.send('Delete idea successfully');
   }, err => {
     res.send('Error delete idea !!!');

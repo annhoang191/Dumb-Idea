@@ -87,7 +87,14 @@ const erase = (target) => {
         },
         err => {
             console.log(`FAILED erase comment ${target}`);
-            throw err;
+            reject(err);
+        }
+    ).then(
+        commentId => {
+          resolve();
+        },
+        err => {
+          reject(err);
         }
     );
 };

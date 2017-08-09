@@ -9,8 +9,9 @@ config = config[process.env.NODE_ENV];
 console.log('config =', config);
 
 const apiRouter = require('./api/api.js');
-const userController = require('./controllers/UserController.js');
-const commentController = require('./controllers/CommentController.js');
+const userController = require('./controllers/UserController');
+const commentController = require('./controllers/CommentController');
+const ideaController = require('./controllers/IdeaController');
 
 const app = express();
 
@@ -22,6 +23,7 @@ mongoose.connect(config.dbpath, (err) => {
     }
 });
 
+// Middle ware
 app.use(formidable());
 
 app.use((req, res, next) => {
@@ -38,6 +40,7 @@ app.use('/api', apiRouter);
 // API
 app.use('/api/user', userController);
 app.use('/api/comment', commentController);
+app.use('/api/idea', ideaController);
 
 app.listen(process.env.PORT || config.port, (err) => {
     if (err) {
