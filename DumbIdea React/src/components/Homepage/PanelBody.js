@@ -14,8 +14,9 @@ class PanelBody extends Component {
               <h2><a href="idea.html">Tên ý tưởng</a>
               <span className="text-muted">Lĩnh vực</span></h2>
               <p>Mô tả ngắn gọn Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-              <button type="button" className="btn btn-default">Chi tiết >></button>
-              <br/>
+              <button type="button" className="btn btn-default">Chi tiết</button>
+              <br></br>
+              <br></br>
               <p><span className="glyphicon glyphicon-user"></span> Tác giả: Tên </p>
               <p><span className="glyphicon glyphicon-envelope"></span> Liên hệ: SĐT - Email</p>
             </div>
@@ -25,7 +26,8 @@ class PanelBody extends Component {
               <h2><a href="idea.html">Tên ý tưởng</a>
               <span className="text-muted">Lĩnh vực</span></h2>
               <p>Mô tả ngắn gọn Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-              <button type="button" className="btn btn-default">Chi tiết >></button>
+              <button type="button" className="btn btn-default">Chi tiết</button>
+              <br></br>
               <br></br>
               <p><span className="glyphicon glyphicon-user"></span> Tác giả: Tên </p>
               <p><span className="glyphicon glyphicon-envelope"></span> Liên hệ: SĐT - Email</p>

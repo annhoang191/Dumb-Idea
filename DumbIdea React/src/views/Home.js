@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import Carousel from '../components/Carousel';
-import Showcase from '../components/Showcase';
-import ShowcaseList from '../components/ShowcaseList';
+import Carousel from '../components/Homepage/Carousel';
+import Showcase from '../components/Homepage/Showcase';
+import ShowcaseList from '../components/Homepage/ShowcaseList';
 class Home extends Component {
   render() {
     return (
-      <div classNameName="Home">
+      <div className="Home">
         <Carousel />
         <Showcase />
         <Showcase />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Carousel from '../components/Carousel';
+import Carousel from '../components/Homepage/Carousel';
 
 class About extends Component {
   render() {
@@ -65,9 +65,124 @@ class About extends Component {
           </div>
           {/* team members*/}
           <div className="container">
-            <div className="heading-title text-center">
-                <h2 className="text-uppercase">Meet the team!</h2>
-                <p>Giới thiệu gì đó team rất siêu đại loại vậy</p>
+            <div className="row">
+                 <div className="heading-title text-center">
+                     <h2 className="text-uppercase">Meet the team!</h2>
+                     <p>Giới thiệu gì đó team rất siêu đại loại vậy</p>
+                 </div>
+
+                 <div className="col-md-3 col-sm-3">
+                     <div className="team-member">
+                         <div className="team-img">
+                             <img src="img/member1.jpg" alt="team member" className="img-responsive" />
+                         </div>
+                         <div className="team-hover">
+                             <div className="desk">
+                                 <h4>Angsty weeaboo</h4>
+                                 <p>Giới thiệu gì đó</p>
+                             </div>
+                             <div className="s-link">
+                                 <a href="https://www.facebook.com/annhoang191" target="_blank"><i className="fa fa-facebook"></i></a>
+                                 <a href="#"><i className="fa fa-twitter"></i></a>
+                                 <a href="#"><i className="fa fa-google-plus"></i></a>
+                             </div>
+                         </div>
+                     </div>
+                     <div className="team-title">
+                         <h5>Tên</h5>
+                         <span>Làm cái gì đó cho project</span>
+                     </div>
+                 </div>
+                 <div className="col-md-3 col-sm-3">
+                     <div className="team-member">
+                         <div className="team-img">
+                             <img src="img/member2.jpg" alt="team member" className="img-responsive" />
+                         </div>
+                         <div className="team-hover">
+                             <div className="desk">
+                                 <h4>LAD</h4>
+                                 <p>Giới thiệu gì đó.</p>
+                             </div>
+                             <div className="s-link">
+                                 <a href="https://www.facebook.com/ladpro98" target="_blank"><i className="fa fa-facebook"></i></a>
+                                 <a href="#"><i className="fa fa-twitter"></i></a>
+                                 <a href="#"><i className="fa fa-google-plus"></i></a>
+                             </div>
+                         </div>
+                     </div>
+                     <div className="team-title">
+                         <h5>Tên</h5>
+                         <span>Làm gì đó cho project</span>
+                     </div>
+                 </div>
+                 <div className="col-md-3 col-sm-3">
+                     <div className="team-member">
+                         <div className="team-img">
+                             <img src="img/member3.jpg" alt="team member" className="img-responsive" />
+                         </div>
+                         <div className="team-hover">
+                             <div className="desk">
+                                 <h4>Vinh Nguyễn</h4>
+                                 <p>Giới thiệu gì đó</p>
+                             </div>
+                             <div className="s-link">
+                                 <a href="https://www.facebook.com/vinhxxu" target="_blank"><i className="fa fa-facebook"></i></a>
+                                 <a href="#"><i className="fa fa-twitter"></i></a>
+                                 <a href="#"><i className="fa fa-google-plus"></i></a>
+                             </div>
+                         </div>
+                     </div>
+                     <div className="team-title">
+                         <h5>Tên</h5>
+                         <span>Làm gì đó cho Project</span>
+                     </div>
+                 </div>
+                 <div className="col-md-3 col-sm-3">
+                     <div className="team-member">
+                         <div className="team-img">
+                             <img src="img/member4.jpg" alt="team member" className="img-responsive" />
+                         </div>
+                         <div className="team-hover">
+                             <div className="desk">
+                                 <h4>Nguyễn Thái Dương</h4>
+                                 <p>Giới thiệu gì đó</p>
+                             </div>
+                             <div className="s-link">
+                                 <a href="https://www.facebook.com/Maruusha" target="_blank"><i className="fa fa-facebook"></i></a>
+                                 <a href="#"><i className="fa fa-twitter"></i></a>
+                                 <a href="#"><i className="fa fa-google-plus"></i></a>
+                             </div>
+                         </div>
+                     </div>
+                     <div className="team-title">
+                         <h5>Tên</h5>
+                         <span>Làm gì đó cho Project</span>
+                     </div>
+                 </div>
+             </div>
+          </div>
+          { /*Ending */}
+          <div className="container">
+            <div className="ending">
+              <p>Chúng tôi ủng hộ tất cả những ý tưởng thú vị nhất đến từ mọi chủ đề, kể cả những ý tưởng tưởng chừng bé nhỏ nhất bạn cũng có thể lưu lại và chia sẻ với mọi người.
+              Truyền cảm hứng cho cộng đồng blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah</p>
+            </div>
+            <div className="notice">
+              <h3 className="text-center">Ủng hộ cộng đồng ý tưởng</h3>
+            </div>
+            <div className="row center">
+              <div className="col-md-3 col-sm-3 box-content">
+                <h3 className="text-center">Chúng tôi đánh giá cao những ý tưởng sáng tạo trong mọi lĩnh vực</h3>
+                 <button className="btn btn-lg btn-primary center">Xem tất cả ý tưởng</button>
+              </div>
+              <div className="col-md-3 col-sm-3 box-content">
+                <h3 className="text-center">Đăng tải và theo dõi những ý tưởng thú vị</h3>
+                 <button className="btn btn-lg btn-primary center">Đăng tải ý tưởng</button>
+              </div>
+              <div className="col-md-3 col-sm-3 box-content">
+                <h3 className="text-center">Hợp tác liên hệ với cộng đồng sáng tạo ý tưởng</h3>
+                 <button className="btn btn-lg btn-primary center">Tham gia cộng đồng</button>
+              </div>
             </div>
           </div>
 
