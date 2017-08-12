@@ -43,7 +43,7 @@
   top: 50%;
   transform: translateY(-20%);
   bottom: initial;
-  color : #ffffff;
+  color :#ffffff;
   font-family: "Verdana";
   font-weight: bold;
 }
@@ -68,7 +68,9 @@
   font-size : 25px;
   margin-bottom : 10px;
 }
-
+.img-showcase {
+  max-height: 350px;
+}
 /*ABOUT PAGE */
 .about-intro {
   background-color : #2752FF;

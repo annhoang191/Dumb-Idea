@@ -9,12 +9,17 @@ class PanelBodyList extends Component {
       <div className="PanelBodyList panel-body">
         <div className="row">
             <div className="col-md-4">
-              <img src="img/dump.jpg" />
+              <img className = "img-responsive center-block" src={this.props.photo} />
             </div>
             <div className="col-md-8">
-              <h3>Tên<span className="text-muted"> Lĩnh vực</span></h3>
-              <p>Mô tả ngắn gọn Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-              <button type="button" className="btn btn-default">Chi tiết >></button>
+              <h3>{this.props.name} 
+                <span className="text-muted">{this.props.category}               
+                 <button type="button" className="btn btn-default">Chi tiết</button>
+                </span>
+              </h3>
+              <p>{this.props.briefDescription}</p>
+              <p><span className="glyphicon glyphicon-user"></span> Tác giả: {this.props.owner}</p>
+              <p><span className="glyphicon glyphicon-envelope"></span> Liên hệ: SĐT - Email</p>
             </div>
         </div>
       </div>

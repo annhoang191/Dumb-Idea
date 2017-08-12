@@ -6,7 +6,7 @@ class About extends Component {
   render() {
     return (
       <div className="About">
-        <Carousel />
+        <Carousel headerUrl="img/headertest3.jpg"/>
 
         {/* intro about website. */}
           <div className="container">
