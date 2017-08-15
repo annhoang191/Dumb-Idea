@@ -43,8 +43,9 @@
   top: 50%;
   transform: translateY(-20%);
   bottom: initial;
-  color : #1b1b2d;
+  color :#ffffff;
   font-family: "Verdana";
+  font-weight: bold;
 }
 
 /* Declare heights because of positioning of img element */
@@ -67,7 +68,9 @@
   font-size : 25px;
   margin-bottom : 10px;
 }
-
+.img-showcase {
+  max-height: 350px;
+}
 /*ABOUT PAGE */
 .about-intro {
   background-color : #2752FF;
@@ -83,7 +86,7 @@
   text-align: center;
   border-radius : 3px;
 }
-.about-team {
+.about-team, .ending {
   margin-top: 20px;
   background-color :#2752FF;
   color : #ffffff;
@@ -96,4 +99,159 @@
   padding-right: 20px;
   text-align: center;
   border-radius : 3px;
+}
+/*Styling meet the team section*/
+.heading-title {
+    margin-bottom: 10px;
+}
+.heading-title h2 {
+    margin-bottom: 0;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+.team-member, .team-member .team-img {
+    position: relative;
+}
+.team-member {
+    overflow: hidden;
+}
+.team-member, .team-member .team-img {
+    position: relative;
+}
+.team-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    border: 20px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.90);
+    opacity: 0;
+    -webkit-transition: all 0.3s; /*SAFARI BROWSER*/
+    transition: all 0.5s;
+}
+.team-member:hover .team-hover .desk {
+    top: 50%;
+}
+.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
+    opacity: 1;
+}
+.team-hover .desk {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    opacity: 0;
+    -webkit-transform: translateY(-55%); /* SAFARI */
+    -ms-transform: translateY(-55%); /* IE 9 */
+    transform: translateY(-55%);
+    -webkit-transition: all 0.3s 0.2s; /* SAFARI */
+    transition: all 0.3s 0.2s;
+    padding: 0 20px;
+}
+.desk, .desk h4, .team-hover .s-link a {
+    text-align: center;
+    color: #222;
+}
+.team-member:hover .team-hover .s-link {
+    bottom: 10%;
+}
+.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
+    opacity: 1;
+}
+.team-hover .s-link {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+    text-align: center;
+    -webkit-transform: translateY(45%);
+    -ms-transform: translateY(45%);
+    transform: translateY(45%);
+    -webkit-transition: all 0.3s 0.2s;
+    transition: all 0.3s 0.2s;
+    font-size: 35px;
+}
+.desk, .desk h4, .team-hover .s-link a {
+    text-align: center;
+    color: #222;
+}
+.team-member .s-link a {
+    margin: 0 10px;
+    color: #333;
+    font-size: 16px;
+}
+.team-title {
+    position: static;
+    padding: 20px 0;
+    display: inline-block;
+    letter-spacing: 2px;
+    width: 100%;
+}
+.team-title h5 {
+    margin-bottom: 0px;
+    display: block;
+    text-transform: uppercase;
+}
+.team-title span {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #a5a5a5;
+    letter-spacing: 1px;
+}
+/*Styling ending section*/
+.box-content {
+  margin-top : 20px;
+  background-color : #F7F5F2;
+  width : 300px;
+  height : 300px;
+  padding : 60px 18px;
+  margin-left : 70px;
+  /*margin-left : 80px;*/
+}
+.box-content .center {
+  display : block;
+  padding: 10px 20px;
+  margin : 40px auto;
+  background-color : #2752FF;
+}
+/*TOP Idea PAGE*/
+.top-section {
+  margin-top: 70px;
+  margin-bottom : 15px;
+  height : 200px;
+  background-color: #0061ba;
+}
+.top-header {
+  line-height: 150px;
+  color : #ffffff;
+  margin-bottom : 5px;
+}
+/*The most popular idea*/
+.top1-idea {
+  height : 330px;
+  margin-bottom : 20px;
+  padding : 20px;
+  border-radius : 5px;
+  box-shadow : 0 2px 6px 0px rgba(22,22,22,0.45);
+}
+.btn-default {
+  border-radius : 17px;
+}
+.list-idea {
+  padding: 20px 10px 10px 10px;
+  margin-top: 10px;
+  border-radius : 5px;
+  box-shadow : 0 2px 6px 0px rgba(22,22,22,0.45);
+}
+.media-object  {
+  max-width : 500px;
+}
+/*EXPLORE ALL Idea PAGE*/
+.sidebar {
+  position : fixed;
+  margin-top : 20px;
+  padding : 20px;
+  border: 1px solid 	#dddddd;
+  border-radius : 5px;
 }

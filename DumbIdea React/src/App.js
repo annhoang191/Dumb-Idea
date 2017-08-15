@@ -14,6 +14,8 @@ import Home from './views/Home';
 import Footer from './components/Footer';
 import Page404 from './views/Page404'
 import About from './views/About';
+import TopIdea from './views/TopIdea';
+import All from './views/All';
 
 class App extends Component {
   render() {
@@ -27,6 +29,16 @@ class App extends Component {
         path      : '/about',
         exact     : true,
         component : About
+      },
+      {
+        path      :'/topidea',
+        exact     : true,
+        component : TopIdea
+      },
+      {
+        path      :'/all',
+        exact     : true,
+        component : All
       },
       {
         path      : '*',

@@ -5,12 +5,12 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 
 class PanelHeader extends Component {
   render() {
-      const title = "Ý tưởng nghiêm túc nhất trong tuần";
+  
       
     return (
       <div className="PanelHeader">
           < div className="panel-heading">
-            {title}
+            Ý tưởng được đề cử trong tuần
           </div>
       </div>
     );
