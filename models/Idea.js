@@ -57,8 +57,7 @@ const create = (ideaInfo) => {
             }
         );
     });
-};
-
+}
 
 //Eg: get({name: 'dumb'})
 const get = (target) => {
@@ -74,7 +73,61 @@ const get = (target) => {
             }
         );
     });
-};
+}
+
+const getAllIdea = (maximumIdea) => {
+    return new Promise((resolve, reject) => {
+        Idea.find().limit(maximumIdea).sort({ updatedAt: -1}).exec().then(
+          ideas => {
+            resolve(ideas);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+}
+
+const getAllIdeaWithPage = (page, maximumIdea) => {
+  return new Promise((resolve, reject) => {
+      Idea.find().limit(maximumIdea).sort({ updatedAt: -1}).skip((page-1) * maximumIdea).exec().then(
+        ideas => {
+          resolve(ideas);
+        },
+        err => {
+          reject(err);
+        }
+      );
+  });
+}
+
+const getAllIdeaOldest = (maximumIdea) => {
+    return new Promise((resolve, reject) => {
+        Idea.find().limit(maximumIdea).sort({ createdAt: 1}).exec().then(
+          ideas => {
+            resolve(ideas);
+          },
+          err => {
+            reject(err);
+          }
+        );
+    });
+}
+
+const getAllIdeaRecommendation = (maximumIdea) => {
+  return new Promise((resolve, reject) => {
+      Idea.find().limit(maximumIdea).sort({ rating: -1}).exec().then(
+        ideas => {
+          resolve(ideas);
+        },
+        err => {
+          reject(err);
+        }
+      );
+  });
+}
+
+
 
 const update = (target, ideaInfo) => {
     return new Promise((resolve, reject) => {
@@ -104,7 +157,7 @@ const erase = (target) => {
             }
         );
     });
-};
+}
 
 const addComment = (target, commentId) => {
     return new Promise((resolve, reject) => {
@@ -129,7 +182,7 @@ const addComment = (target, commentId) => {
             }
         );
     });
-};
+}
 
 const removeComment = (target, commentId) => {
     return new Promise((resolve, reject) => {
@@ -157,11 +210,15 @@ const removeComment = (target, commentId) => {
             }
         );
     });
-};
+}
 
 module.exports = {
     create,
     get,
+    getAllIdea,
+    getAllIdeaRecommendation,
+    getAllIdeaWithPage,
+    getAllIdeaOldest,
     update,
     erase,
     addComment,
