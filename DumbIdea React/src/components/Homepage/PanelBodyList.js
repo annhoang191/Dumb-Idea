@@ -9,11 +9,11 @@ class PanelBodyList extends Component {
       <div className="PanelBodyList panel-body">
         <div className="row">
             <div className="col-md-4">
-              <img className = "img-responsive center-block" src={this.props.photo} />
+              <img className = "img-responsive center-block" src={this.props.photo}  alt=""/>
             </div>
             <div className="col-md-8">
-              <h3>{this.props.name} 
-                <span className="text-muted">{this.props.category}               
+              <h3>{this.props.name}
+                <span className="text-muted">{this.props.category}
                  <button type="button" className="btn btn-default">Chi tiết</button>
                 </span>
               </h3>
