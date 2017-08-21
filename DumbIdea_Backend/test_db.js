@@ -7,6 +7,12 @@ let config = require('./config.json');
 config = config[process.env.NODE_ENV];
 
 mongoose.connect(config.dbpath).then(() => {console.log('SUCCESS Database connected');}, err => {console.log('FAILED Database connect');});
+IdeaModel.searchText('smart super').then((docs) => {
+    console.log('SUCCESS');
+    console.log(docs);
+}, err => {
+    console.log('FAILED', err);
+});
 
 let userInfo = {
     username: 'lad',
@@ -24,7 +30,7 @@ UserModel.create(userInfo).then(
 );
 */
 
-
+/*
 let userPromise = UserModel.get({username: userInfo.username});
 
 userPromise.then(user => {
@@ -81,3 +87,4 @@ Promise.all([userPromise, ideaPromise])
         console.log(`FAILED erase comment`);
     }
 );*/
+

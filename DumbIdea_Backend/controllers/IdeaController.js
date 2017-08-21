@@ -10,6 +10,7 @@ const getAllIdea = "getAll";
 const id = ":id";
 const getAllIdeaRecommendation = "getAllRecommendation";
 const getAllIdeaOldest = "getAllOldest";
+const search = "search";
 
 Router.post('/', (req, res) => {
   IdeaModel.create(req.body).then(idea => {
@@ -56,8 +57,18 @@ const funcGetAllIdeaOldest = (req, res) => {
   });
 };
 
+const funcSearch = (req, res) => {
+  IdeaModel.searchText(req.query.text).then(docs => {
+    res.send(docs);
+  })
+  .catch(err => {
+    res.send('Error cannot search');
+  });
+};
+
 Router.get('/:id', (req, res) => {
   let params = req.params.id;
+  console.log('GET', params);
   switch (params) {
     // GET 1 idea with id
     case id:
@@ -81,6 +92,9 @@ Router.get('/:id', (req, res) => {
       funcGetAllIdeaOldest(req, res);
       break;
 
+    case search:
+      funcSearch(req, res);
+      break;
     default:
       break;
   }

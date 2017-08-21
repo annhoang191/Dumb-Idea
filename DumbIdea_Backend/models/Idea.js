@@ -24,6 +24,15 @@ let ideaSchema = mongoose.Schema({
     timestamps: {}
 });
 
+ideaSchema.index({
+    name: 'text',
+    owner: 'text',
+    category: 'text',
+    tags: 'text',
+    briefDescription: 'text',
+    description: 'text'
+});
+
 const Idea = mongoose.model('Idea', ideaSchema);
 
 const create = (ideaInfo) => {
@@ -214,6 +223,27 @@ const removeComment = (target, commentId) => {
     });
 }
 
+const searchText = (text, limit = 20) => {
+    return new Promise((resolve, reject) => {
+        Idea.find({
+            $text: {
+                $search: text
+            },
+            status: 'public'
+        })
+        .limit(limit)
+        .exec((err, docs) => {
+            if (err) {
+                console.log(`FAILED searchText`, err);
+                reject(err);
+            } else {
+                console.log(`SUCCESS searchText`);
+                resolve(docs);  
+            }
+        });
+    });
+}
+
 module.exports = {
     create,
     get,
@@ -224,5 +254,6 @@ module.exports = {
     update,
     erase,
     addComment,
-    removeComment
+    removeComment,
+    searchText
 };
