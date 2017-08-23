@@ -16,6 +16,7 @@ import Page404 from './views/Page404'
 import About from './views/About';
 import TopIdea from './views/TopIdea';
 import All from './views/All';
+import AddNewIdea from './views/AddNewIdea'
 
 class App extends Component {
   render() {
@@ -39,6 +40,11 @@ class App extends Component {
         path      :'/all',
         exact     : true,
         component : All
+      },
+      {
+        path      : '/addnewidea',
+        exact     : true,
+        component : AddNewIdea
       },
       {
         path      : '*',

@@ -40,6 +40,10 @@ class Header extends Component {
         ]
       },
       {
+        name : "Thêm ý tưởng",
+        path : "/addnewidea"
+      },
+      {
         name : "Top ý tưởng trong tuần",
         path : "/topidea"
       },
@@ -59,6 +63,7 @@ class Header extends Component {
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#MainNav_nav" aria-expanded="false">
               <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
