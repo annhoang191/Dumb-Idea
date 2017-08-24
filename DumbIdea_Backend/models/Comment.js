@@ -66,35 +66,54 @@ const get = (target) => {
 //Eg: update({_id: '1235'}, {content: 'ahihi'})
 const update = (target, commentInfo) => {
     return new Promise((resolve, reject) => {
-        Comment.findOneAndUpdate(target, commentInfo).then(
+        Comment.findOne(target).then(
             doc => {
-                console.log(`SUCCESS update comment ${target}`);
-                resolve(doc);
+                if (doc._id != commentInfo.author) {
+                    reject(new Error('Permission denied'));
+                } else {
+                    doc.content = commentInfo.content;
+                    return doc.save();
+                }
             },
             err => {
                 console.log(`FAILED update comment ${target}`, err);
+                reject(err);
+            }
+        )
+        .then(
+            doc => {
+                resolve(doc);
+            },
+            err => {
                 reject(err);
             }
         );
     });
 };
 
-const erase = (target) => {
-    return Comment.findOneAndRemove(target).then(
-        doc => {
-            console.log(`SUCCESS erase comment`);
-            return IdeaModel.removeComment({_id: doc.postId}, doc._id);
+const erase = (target, authorId) => {
+    return Comment.findOne(target).then(
+        doc => {            
+            if (authorId != doc.author) {
+                reject(new Error('Permission denied'));
+            } else {
+                return Promise.all([
+                    IdeaModel.removeComment({_id: doc.postId}, doc._id),
+                    doc.remove()
+                ]);
+            }
         },
         err => {
             console.log(`FAILED erase comment ${target}`);
             reject(err);
         }
     ).then(
-        commentId => {
-          resolve();
+        docs => {
+            console.log(`SUCCESS erase comment`);
+            resolve();
         },
         err => {
-          reject(err);
+            reject(err);
         }
     );
 };

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 let userSchema = mongoose.Schema({
     username: {
@@ -35,10 +37,25 @@ let userSchema = mongoose.Schema({
     timestamps: {}
 });
 
+userSchema.methods.comparePassword = function(password) {
+    console.log(password, this.password);
+    return bcrypt.compareSync(password, this.password);
+};
+
+userSchema.methods.createdIdeasContains = function(ideaId) {
+    return this.createdIdeas.includes(mongoose.Schema.Types.ObjectId(ideaId));
+}
+
+userSchema.methods.followedIdeasContains = function(ideaId) {
+    return this.followedIdeas.includes(mongoose.Schema.Types.ObjectId(ideaId));   
+}
+
 const User = mongoose.model('User', userSchema);
 
 const create = (userInfo) => {
     return new Promise((resolve, reject) => {
+        console.log('userInfo', userInfo);
+        userInfo.password = bcrypt.hashSync(userInfo.password, 10);
         User.create(userInfo).then(
             doc => {
                 console.log(`SUCCESS User ${doc.username} created`);
@@ -52,6 +69,33 @@ const create = (userInfo) => {
     });
 };
 
+const login = (userInfo) => {
+    return new Promise((resolve, reject) => {
+        User.findOne({
+            username: userInfo.username
+        })
+        .then(user => {
+            if (!user) {
+                reject(new Error('User not found'));
+            } else {
+                console.log('user', user);
+                if (!user.comparePassword(userInfo.password)) {
+                    reject(new Error('Wrong password'));
+                } else {
+                    resolve(
+                        jwt.sign({
+                            id: user._id
+                        },
+                        'SECRET')
+                    );
+                }
+            }
+        })
+        .catch(err => {
+            reject(err);
+        });
+    });
+};
 
 //USAGE: get(object); Eg: get({username: 'lad'}); get({_id: '1235'});
 const get = (target) => {
@@ -74,6 +118,14 @@ const get = (target) => {
 //Eg: update({username: 'lad'}, {password: '1998'})
 const update = (target, userInfo) => {
     return new Promise((resolve, reject) => {
+        if (userInfo.username) {
+            delete userInfo.username;
+        }
+        if (userInfo.password) {
+            userInfo.password = bcrypt.hashSync(userInfo.password, 10);
+        }
+        console.log('target', target);
+        console.log('userInfo', userInfo);
         User.findOneAndUpdate(target, userInfo).then(
             doc => {
                 console.log(`SUCCESS update user ${target}`);
@@ -92,7 +144,7 @@ const erase = (target) => {
         User.findOneAndUpdate(target, {status: 'inactive'}).then(
             doc => {
                 console.log(`SUCCESS erase user ${target}`);
-                resolve(doc);
+                resolve();
             },
             err => {
                 console.log(`FAILED erase user ${target}`);
@@ -208,23 +260,6 @@ const unfollowIdea = (target, ideaId) => {
     });
 };
 
-
-const authenticate = (username, password) => {
-    return new Promise((resolve, reject) => {
-        User.findOne({username: username}).then(
-            user => {
-                if (user.password == password) {
-                    resolve(true);
-                } else {
-                    resolve(false);
-                }
-            }, err => {
-                reject(err);
-            }
-        )
-    })
-}
-
 module.exports = {
     create,
     get,
@@ -234,5 +269,5 @@ module.exports = {
     removeIdea,
     followIdea,
     unfollowIdea,
-    authenticate
+    login
 };

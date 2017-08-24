@@ -1,38 +1,31 @@
 const express = require('express');
+const authentication = require('./Authentication');
 const Router = express.Router();
 
 const UserModel = require('../models/User');
 
-// POST
 Router.post('/', (req, res) => {
   UserModel.create(req.body).then(
-      user => {
-          console.log(`SUCCESS user created`);
-          res.send('Created user');
-      },
-      err => {
-          console.log(err);
-          res.send('Error: ' + err);
-      }
+    user => {
+      console.log(`SUCCESS user created`);
+      res.send('Created user');
+    },
+    err => {
+      console.log(err);
+      res.send('Error: cannot create user');
+    }
   );
 });
 
-Router.post('/authenticate', (req, res) => {
-  UserModel.authenticate(req.body.username, req.body.password).then(
-      success => {
-          if (success) {
-              res.status(500);
-              res.send('Login successfully');
-          } else {
-              res.status(200);
-              res.send('Password is wrong');
-          }
-      },
-      err => {
-          res.status(200);
-          res.send('Authentication failed.');
-      }
-  );
+Router.post('/login', (req, res) => {
+  console.log('Login route');
+  UserModel.login(req.body).then(token => {
+    res.status(200).send({token: token});
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(401).send({token: null});
+  });
 });
 
 // GET: Get user with id
@@ -49,26 +42,32 @@ Router.get('/:id', (req, res) => {
   })
 });
 
+Router.use(authentication.verify);
+
+Router.get('/verify', (req, res) => {
+  res.status(200).send({message: 'Valid token'});
+});
+
 // PUT: Update user with id
-Router.put('/:id', (req, res) => {
-  let userPromise = UserModel.update({_id: req.params.id}, req.body);
+Router.put('/', (req, res) => {
+  let userPromise = UserModel.update({_id: req.decoded}, req.body);
 
   userPromise.then(user => {
-      res.send('Update user successfully');
+    res.send({message: 'Update user successfully'});
   }, err => {
-      res.send('Error update user');
+    res.send({error: 'Error update user'});
   })
 });
 
 // DELETE: Delete user with id
-Router.delete('/:id', (req, res) => {
-  let userPromise = UserModel.erase({_id: req.params.id});
+Router.delete('/', (req, res) => {
+  let userPromise = UserModel.erase({_id: req.decoded});
 
   userPromise.then(user => {
-    res.send('Delete user successfully');
+    res.send({message: 'Delete user successfully'});
   }, err => {
     res.status(500);
-    res.send('Error delete user');
+    res.send({error: 'Error delete user'});
   })
 });
 

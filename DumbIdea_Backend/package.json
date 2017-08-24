@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-formidable": "^1.0.0",
+    "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.11.4"
   }
 }

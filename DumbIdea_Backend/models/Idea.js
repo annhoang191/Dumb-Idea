@@ -26,7 +26,6 @@ let ideaSchema = mongoose.Schema({
 
 ideaSchema.index({
     name: 'text',
-    owner: 'text',
     category: 'text',
     tags: 'text',
     briefDescription: 'text',
@@ -142,28 +141,54 @@ const getAllIdeaRecommendation = (maximumIdea) => {
 
 const update = (target, ideaInfo) => {
     return new Promise((resolve, reject) => {
-        Idea.findOneAndUpdate(target, ideaInfo).then(
+        Idea.findOne(target).then(
+            doc => {
+                if (doc.owner != ideaInfo.owner) {
+                    reject(new Error('Permission denied'));
+                } else {
+                    Object.assign(doc, ideaInfo);
+                    return doc.save();
+                }
+            },
+            err => {
+                console.log(`FAILED update Idea ${target}`, err);
+                reject(err);
+            }
+        )
+        .then(
             doc => {
                 console.log(`SUCCESS update Idea ${target}`);
                 resolve(doc);
             },
             err => {
-                console.log(`FAILED update Idea ${target}`, err);
+                console.log(`FAILED saving Idea`);
                 reject(err);
             }
         );
     });
 };
 
-const erase = (target) => {
+const erase = (target, ownerId) => {
     return new Promise((resolve, reject) => {
-        Idea.findOneAndRemove(target).then(
+        Idea.findOne(target).then(
+            doc => {
+                if (doc.owner != ownerId) {
+                    reject(new Error('Permission denied'));
+                } else {
+                    return doc.remove();
+                }
+            },
+            err => {
+                console.log(`FAILED erase Idea ${target}`);
+                reject(err);
+            }
+        )
+        .then(
             doc => {
                 console.log(`SUCCESS erase Idea ${target}`);
                 resolve();
             },
             err => {
-                console.log(`FAILED erase Idea ${target}`);
                 reject(err);
             }
         );
