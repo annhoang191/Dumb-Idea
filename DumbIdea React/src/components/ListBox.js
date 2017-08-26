@@ -81,9 +81,7 @@ class ListBox extends Component {
                   <hr />
                   { childElements }
               </div>
-              <div className="text-center">
-                  <button className="btn btn-md btn-default load-more" id="see-more"><i className="fa fa-refresh">&nbsp;</i><span>Xem thêm</span></button>
-              </div>
+            
             </div>
         </div>
       </div>
