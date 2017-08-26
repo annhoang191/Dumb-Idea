@@ -36,11 +36,13 @@ class ListBox extends Component {
       type : 'get'
     }).done( data => {
       console.log('Data in list box: ' + data);
+      // Update list idea and page number
       this.setState({
         ideasDisplay  : this.state.ideasDisplay.concat(data),
         pageNo        : this.state.pageNo + 1
       })
     }).fail( err => {
+      // Error
       console.log('ERROR in ajax List Box: ' + err);
     }).always( () => {
       // Set Is loading true
