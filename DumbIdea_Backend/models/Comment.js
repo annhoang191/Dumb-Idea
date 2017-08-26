@@ -50,7 +50,7 @@ const create = (commentInfo) => {
 //Eg: get({_id: '1235'})
 const get = (target) => {
     return new Promise((resolve, reject) => {
-        Comment.findOne(target).then(
+        Comment.findOne(target).populate('author').populate('postId').then(
             doc => {
                 console.log(`SUCCESS get comment ${target}`);
                 resolve(doc);
@@ -93,7 +93,7 @@ const update = (target, commentInfo) => {
 
 const erase = (target, authorId) => {
     return Comment.findOne(target).then(
-        doc => {            
+        doc => {
             if (authorId != doc.author) {
                 reject(new Error('Permission denied'));
             } else {

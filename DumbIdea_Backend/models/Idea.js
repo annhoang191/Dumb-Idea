@@ -70,7 +70,7 @@ const create = (ideaInfo) => {
 //Eg: get({name: 'dumb'})
 const get = (target) => {
     return new Promise((resolve, reject) => {
-        Idea.findOne(target).then(
+        Idea.findOne(target).populate('owner').populate('comments').then(
             doc => {
                 console.log(`SUCCESS get Idea ${target}`);
                 resolve(doc);
@@ -98,7 +98,7 @@ const getAllIdea = (maximumIdea) => {
 
 const getAllIdeaWithPage = (page, maximumIdea) => {
   return new Promise((resolve, reject) => {
-      Idea.find().limit(maximumIdea).sort({ updatedAt: -1}).skip((page-1) * maximumIdea).exec().then(
+      Idea.find().limit(maximumIdea).sort({ updatedAt: -1}).skip((page-1) * maximumIdea).populate('owner').populate('comments').exec().then(
         ideas => {
           resolve(ideas);
         },
@@ -111,7 +111,7 @@ const getAllIdeaWithPage = (page, maximumIdea) => {
 
 const getAllIdeaOldest = (maximumIdea) => {
     return new Promise((resolve, reject) => {
-        Idea.find().limit(maximumIdea).sort({ createdAt: 1}).exec().then(
+        Idea.find().limit(maximumIdea).sort({ createdAt: 1}).populate('owner').populate('comments').exec().then(
           ideas => {
             resolve(ideas);
           },
@@ -124,7 +124,7 @@ const getAllIdeaOldest = (maximumIdea) => {
 
 const getAllIdeaRecommendation = (maximumIdea) => {
   return new Promise((resolve, reject) => {
-      Idea.find().limit(maximumIdea).sort({ rating: -1}).exec().then(
+      Idea.find().limit(maximumIdea).sort({ rating: -1}).populate('owner').populate('comments').exec().then(
         ideas => {
           console.log('ideas: ',ideas);
           resolve(ideas);
@@ -141,7 +141,7 @@ const getAllIdeaRecommendation = (maximumIdea) => {
 
 const update = (target, ideaInfo) => {
     return new Promise((resolve, reject) => {
-        Idea.findOne(target).then(
+        Idea.findOne(target).populate('owner').populate('comments').then(
             doc => {
                 if (doc.owner != ideaInfo.owner) {
                     reject(new Error('Permission denied'));
@@ -257,13 +257,14 @@ const searchText = (text, limit = 20) => {
             status: 'public'
         })
         .limit(limit)
+        .populate('owner').populate('comments')
         .exec((err, docs) => {
             if (err) {
                 console.log(`FAILED searchText`, err);
                 reject(err);
             } else {
                 console.log(`SUCCESS searchText`);
-                resolve(docs);  
+                resolve(docs);
             }
         });
     });
