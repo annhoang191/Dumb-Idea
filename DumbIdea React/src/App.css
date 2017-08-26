@@ -1,3 +1,11 @@
+html{
+  background: #dcdcdc;
+}
+
+body{
+  background: transparent;
+}
+
 /*NAVBAR*/
 .navbar-fixed-top {
   background-color: #ffffff;
@@ -256,7 +264,9 @@
   border-radius : 5px;
 }
 
-/*ADD NEW Idea*/
+/**************************************
+- ADD NEW Idea
+**************************************/
 .add-new-idea {
   margin-top: 100px;
   height: 600px;
@@ -290,3 +300,17 @@
   color: #211922;
   background-color: #f2efef;
 }
+
+.arrow-bottom {
+  
+}
+
+/**************************************
+- Panel body
+**************************************/
+/*********
+.panel-body {
+  border-radius: 10px;
+  width: 236px;
+}
+**********/

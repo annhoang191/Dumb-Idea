@@ -7,7 +7,7 @@ class PanelBody extends Component {
     return (
       <div className="PanelBody">
         <div className="panel-body col-md-6">
-              <img className="img-showcase featurette-image img-responsive" src={this.props.photo} alt="demo" />
+              <img className="img-showcase featurette-image img-responsive" src={this.props.photo} alt="Idea Image" />
               <h2><a href="idea.html">{this.props.name}</a>
               <span className="text-muted"> {this.props.category}</span></h2>
               <p>{this.props.briefDescription}</p>

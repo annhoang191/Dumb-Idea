@@ -18,11 +18,22 @@ class AddNewIdea extends Component {
             <div>
               <p className="label-add-idea">Mô tả</p>
               <textarea name="name" id="nameIdea" className="form-control" rows="4" maxlength="200" placeholder="Nội dung của bạn là gì?"></textarea>
-              <hr />
             </div>
+            <hr />
             <div>
               <p className="label-add-idea">Danh mục</p>
-
+              <div>
+                <div className="arrow-bottom glyphicon glyphicon-triangle-bottom"></div>
+                <select>
+                  <option value="">Nó là loại ý tưởng gì?</option>
+                  <option value="technology">Công nghệ</option>
+                  <option value="business">Kinh doanh - Thương mại</option>
+                  <option value="art">Nghệ thuật</option>
+                  <option value="application">Ứng dụng - Đồ chơi</option>
+                  <option value="society">Hoạt động xã hội</option>
+                  <option value="bullshit">Nhảm nhí</option>
+                </select>
+              </div>
             </div>
             <hr />
           </div>
