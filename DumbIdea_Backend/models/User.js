@@ -100,6 +100,7 @@ const login = (userInfo) => {
 //USAGE: get(object); Eg: get({username: 'lad'}); get({_id: '1235'});
 const get = (target) => {
     return new Promise((resolve, reject) => {
+        console.log('getUser', target);
         User.findOne(target).then(
             doc => {
                 console.log(`SUCCESS get user ${target}`);

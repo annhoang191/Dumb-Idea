@@ -8,17 +8,17 @@ Router.post('/', (req, res) => {
   UserModel.create(req.body).then(
     user => {
       console.log(`SUCCESS user created`);
-      res.send('Created user');
+      res.send({message: 'Created user'});
     },
     err => {
       console.log(err);
-      res.send('Error: cannot create user');
+      res.send({error : 'cannot create user'});
     }
   );
 });
 
 Router.post('/login', (req, res) => {
-  console.log('Login route');
+  console.log('Login route', req.body);
   UserModel.login(req.body).then(token => {
     res.status(200).send({token: token});
   })
@@ -38,14 +38,23 @@ Router.get('/:id', (req, res) => {
   },
   err => {
     res.status(500);
-    res.send('Error get user');
+    res.send({error: 'Error get user'});
   })
 });
 
 Router.use(authentication.verify);
 
-Router.get('/verify', (req, res) => {
-  res.status(200).send({message: 'Valid token'});
+Router.get('/', (req, res) => {
+  let userPromise = UserModel.get({_id: req.decoded});
+
+  userPromise.then(user => {
+    res.status(200);
+    res.send(user);
+  },
+  err => {
+    res.status(500);
+    res.send({error: 'Error get user'});
+  })
 });
 
 // PUT: Update user with id
