@@ -25,12 +25,13 @@ mongoose.connect(config.dbpath, (err) => {
 // Middle ware
 // app.use(formidable());
 
+
 app.use((req, res, next) => {
-  console.log(req.fields);
-  req.body = req.fields;
+  res.header("Access-Control-Allow-Origin", "*");
   next();
 });
 
+app.use(bodyParser.json({}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.resolve('./public')));
 
