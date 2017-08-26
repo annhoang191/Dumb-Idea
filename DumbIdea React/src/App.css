@@ -271,14 +271,10 @@
 .add-new-idea-title {
   color: #555555;
   font-size: 23px;
-  line-height: 23px;
+  line-height: 30px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
   text-align: center;
-}
-
-.line-break {
-  color: #efefef;
 }
 
 .label-add-idea {

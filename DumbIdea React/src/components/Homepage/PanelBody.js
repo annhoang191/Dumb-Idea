@@ -14,7 +14,7 @@ class PanelBody extends Component {
               <button type="button" className="btn btn-default">Chi tiết</button>
               <br></br>
               <br></br>
-              <p><span className="glyphicon glyphicon-user"></span> Tác giả: {this.props.owner}</p>
+              <p><span className="glyphicon glyphicon-user"></span> Tác giả: {this.props.owner.username}</p>
               <p><span className="glyphicon glyphicon-envelope"></span> Liên hệ: SĐT - Email</p>
         </div>
       </div>
