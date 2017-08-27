@@ -8,7 +8,7 @@ class AddNewIdea extends Component {
           <p className="add-new-idea-title">Thêm mới ý tưởng</p>
           <hr />
         </div>
-        <form method="post" >
+        <form method="post" enctype='multipart/form-data'>
           <div>
             <div>
               <p className="label-add-idea">Tên</p>
@@ -34,6 +34,11 @@ class AddNewIdea extends Component {
                   <option value="bullshit">Nhảm nhí</option>
                 </select>
               </div>
+            </div>
+            <hr />
+            <div>
+              <p className="label-add-idea">Thêm ảnh</p>
+              Chọn ảnh: <input type="file" />
             </div>
             <hr />
           </div>
