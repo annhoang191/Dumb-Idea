@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+=======
+html{
+  background: #dcdcdc;
+}
+
+body{
+  background: transparent;
+}
+
+>>>>>>> 4c645e047ea8c48dacc3e93ead0efd97c30514dc
 /*NAVBAR*/
 .navbar-fixed-top {
   background-color: #ffffff;
@@ -288,8 +299,34 @@
 }
 
 .AuthForm {
-  margin-top: 100px;
+  background-color: 	#fdfdfd;
+  display:block;
+  margin:100px auto;
+  padding: 20px 70px;
+  text-align:center;
+  border: 6px solid #3BB4D2;
+  border-radius: 10px;
+  width: 408px;
+  padding:30px;
 }
+.AuthForm input {
+  display:block;
+  margin:20px auto;
+  padding: 20px 70px;
+  text-align:center;
+}
+.AuthForm input:focus {
+  border:1px solid #0C63B8;
+}
+.button-login {
+  display:block;
+  margin: 0 auto;
+  margin-top:4px;
+  margin-bottom: 24px;
+  padding:auto;
+  text-align:center;
+}
+
 
 #nameIdea {
   margin-left: 10px;

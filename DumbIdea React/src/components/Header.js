@@ -48,12 +48,21 @@ class Header extends Component {
         path : "/topidea"
       },
       {
+<<<<<<< HEAD
         name : "Top người đóng góp",
         path : "/topcontributor"
       },
       {
         name : "Về chúng tôi",
         path : "/about"
+=======
+        name : "Về chúng tôi",
+        path : "/about"
+      },
+      {
+        name : "Sign In",
+        path :"/login"
+>>>>>>> 4c645e047ea8c48dacc3e93ead0efd97c30514dc
       }
     ];
 
