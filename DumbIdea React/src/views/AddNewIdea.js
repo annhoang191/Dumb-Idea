@@ -8,7 +8,7 @@ class AddNewIdea extends Component {
           <p className="add-new-idea-title">Thêm mới ý tưởng</p>
           <hr />
         </div>
-        <form method="post" enctype='multipart/form-data'>
+        <form method="post" enctype='multipart/form-data' action="http://localhost:8888/api/idea">
           <div>
             <div>
               <p className="label-add-idea">Tên</p>
@@ -41,6 +41,7 @@ class AddNewIdea extends Component {
               Chọn ảnh: <input type="file" />
             </div>
             <hr />
+            <button type="submit" className="btn-add-idea btn btn-primary">Gửi</button>
           </div>
         </form>
       </div>

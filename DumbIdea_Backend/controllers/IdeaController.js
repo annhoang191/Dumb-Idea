@@ -105,6 +105,7 @@ Router.get('/getAll/:id', (req, res) => {
 Router.use(authentication.verify);
 
 Router.post('/', (req, res) => {
+  console.log('CREATE IDEA...');
   let newIdea = req.body;
   newIdea.owner = req.decoded;
   IdeaModel.create(req.body).then(idea => {
