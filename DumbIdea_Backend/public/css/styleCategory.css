@@ -1,0 +1,61 @@
+/*CUSTOMIZE TECH CATEGORY*/
+
+.navbar-fixed-top {
+  background-color: #ffffff;
+  height:70px;
+  box-shadow: 0 2px 2px #d2caca;
+}
+.navbar-fixed-top a, .navbar-fixed-top li a {
+  line-height: 35px;
+  background-color : #ffffff;
+  color: #000000;
+}
+.top-section {
+  margin-top: 70px;
+  margin-bottom : 15px;
+  height : 200px;
+  background-color: #0061ba;
+}
+.top-header {
+  line-height: 100px;
+  color : #ffffff;
+}
+.under-header a, .under-header {
+  color : #ffffff;
+}
+/*Styling section showcase*/
+.box-title {
+  text-transform: uppercase;
+  font-family: "Verdana";
+  letter-spacing: 1px;
+}
+.showcase {
+  padding : 20px;
+}
+
+.article-home {
+  background-color : #ffffff;
+  width : 300px;
+  height: 350px;
+  overflow: auto;
+  margin-left : 20px;
+  margin-right : 50px ;
+  box-shadow:0 2px 6px -2px rgba(22,22,22,0.45);
+}
+.idea-thumb img {
+
+}
+.load-more{
+  border-radius: 17px;
+}
+/*Styling footer*/
+.footer {
+  margin-top : 20px;
+  background-color : #ffffff;
+}
+/*Responsive*/
+@media only screen and (min-width: 300px) and (max-width: 700px) {
+  .top-section {
+    overflow: scroll;
+  }
+}

@@ -1,0 +1,63 @@
+/* CUSTOMIZE Explore page
+-------------------------------------------------- */
+.navbar-fixed-top {
+  background-color: #ffffff;
+  height:70px;
+  box-shadow: 0 2px 2px #d2caca;
+}
+.navbar-fixed-top a, .navbar-fixed-top li a {
+  line-height: 35px;
+  background-color : #ffffff;
+  color: #000000;
+}
+.top-section {
+  margin-top: 70px;
+  margin-bottom : 15px;
+  height : 200px;
+  background-color: #0061ba;
+}
+.top-header {
+  line-height: 100px;
+  color : #ffffff;
+}
+.under-header a, .under-header {
+  color : #ffffff;
+}
+/*Style Idea list*/
+.white-box {
+  margin-top : 20px;
+  padding : 20px;
+  box-shadow: 0 2px 6px 0px rgba(22,22,22,0.45);
+  border-radius : 5px;
+}
+.btn-detail {
+  margin-left : 230px;
+  margin-bottom : 5px;
+}
+.media-object {
+  max-width: 400px;
+}
+.sidebar {
+  position : fixed;
+  margin-top : 20px;
+  padding : 20px;
+  border: 1px solid 	#dddddd;
+  border-radius : 5px;
+}
+.style-3 {
+  margin-bottom : 20px;
+}
+.load-more{
+  border-radius: 17px;
+}
+/*Stylinig footer*/
+.footer {
+  margin-top : 20px;
+  background-color : #ffffff;
+}
+/*Responsive*/
+@media only screen and (min-width: 200px) and (max-width: 700px) {
+  .top-section {
+    overflow: scroll;
+  }
+}

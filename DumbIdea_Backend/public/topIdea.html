@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dump your dumb idea!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <link href="css/styleTopIdea.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!--NAVBAR-->
+    <div class="container-fluid">
+      <nav class="navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="dumbIdea.html">Dumb Ideas</a>
+          </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Khám phá ý tưởng<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="explore.html">Tất cả</a></li>
+                  <li><a href="tech.html">Công nghệ</a></li>
+                  <li><a href="#">Kinh doanh / Thương mại</a></li>
+                  <li><a href="#">Nghệ thuật</a></li>
+                  <li><a href="#">Ứng dụng</a></li>
+                  <li><a href="#">Hoạt động xã hội</a></li>
+                  <li><a href="#">Nhảm nhí đột phá</a></li>
+                </ul></li>
+            <li><a href="topIdea.html">Top ý tưởng trong tuần</a></li>
+            <li><a href="#">Top người đóng góp</a></li>
+            <li><a href="about.html">Về chúng tôi</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"></span> Sign Up</a></li>
+            <li><a href="#"></span> Login</a></li>
+          </ul>
+        </div>
+      </div>
+      </nav>
+    </div>
+    <!--/NAVBAR-->
+
+    <!--HEADER-->
+    <section class="top-section">
+      <div class="container">
+        <h2 class="top-header text-center">Những ý tưởng được đánh giá cao nhất trong tuần</h2>
+      </div>
+    </section>
+    <!--/HEADER-->
+
+    <!--THE MOST POPULAR idea-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row top1-idea">
+            <div class="col-md-6">
+              <img class="img-responsive center-block" src="img/header-bg.jpg">
+            </div>
+            <div class="col-md-6">
+              <h4>Tên ý tưởng
+                <span class="text-muted">Lĩnh vực</span></h4>
+                <p>Mô tả ngắn gọn Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in </p>
+                <button type="button" class="btn btn-default">Chi tiết</button><br></br>
+                <p><span class="glyphicon glyphicon-user"></span> Tác giả: Tên </p>
+                <p><span class="glyphicon glyphicon-envelope"></span> Liên hệ: SĐT - Email</p>
+            </div>
+          </div>
+        </div>
+        <!--/THE MOST POPULAR idea-->
+
+        <!--FILTER BOX-->
+        <div class="col-md-4">
+          <div class="filter panel panel-default">
+            <div class="panel-heading">Chủ đề ý tưởng</div>
+            <div class="panel-body">
+              <div class="filter-box">
+                <header class="clearfix">
+                  <label class="pull-left">Chọn chủ đề</label>
+                  <p class="checkbox pull-right">
+                    <input type="checkbox" class="check-all" id="check-all-action">Tất cả
+                  </p>
+                </header>
+
+                <p class="input-block">
+                  <p class="checkbox">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="check-action check-item" id="1">Công nghệ
+                  </p>
+                </p>
+                <p class="input-block">
+                  <p class="checkbox">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="check-action check-item" id="1">Kinh doanh - Thương mại
+                  </p>
+                </p>
+                <p class="input-block">
+                  <p class="checkbox">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="check-action check-item" id="1">Nghệ thuật
+                  </p>
+                </p>
+                <p class="input-block">
+                  <p class="checkbox">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="check-action check-item" id="1">Ứng dụng
+                  </p>
+                </p>
+                <p class="input-block">
+                  <p class="checkbox">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="check-action check-item" id="1">Hoạt động xã hội
+                  </p>
+                </p>
+                <p class="input-block">
+                  <p class="checkbox">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="check-action check-item" id="1">Nhảm nhí đột phá
+                  </p>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/FILTER BOX-->
+
+      <!--Other popular ideas-->
+      <div class="list-idea">
+        <div class="white-box white-box-waiting-list">
+            <div class="list-post waiting-list">
+                <header class="clearfix">
+                    <h4 class="pull-left">Tất cả ý tưởng</h4>
+                    <div class="pull-right">
+                        <ul class="list-inline">
+                            <li><span>Sắp xếp theo</span></li>
+                            <li>
+                                <select id="orderby" class="form-control font-size-12 border-radius-3">
+                                    <option value="2">Thời gian đăng gần nhất</option>
+                                    <option value="3">Thời gian đăng xa nhất</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <hr>
+                <article class="post style-3">
+                    <div class="media">
+                      <div class="media-left pull-left visible-lg visible-md">
+                        <img class="img-responsive media-object" src="img/dump2.jpg">
+                      </div>
+                      <div class="media-body">
+                        <h6 class="entry-title"><a href="#">Ý tưởng gì đó</a></h6>
+                          <div class="entry-author"><span class="text-muted">Tác giả</span>
+                            <a href="#">Ai đó</a>
+                            <button class="btn btn-sm btn-default btn-detail">Chi tiết</button>
+                          </div>
+                          <p>Mô tả ngắn gọn Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này</p>
+                          <div class="idea-footer">
+                            <div class="rating"><i class="fa fa-star"></i> Độ khả thi (người dùng tự đánh giá): </div>
+                              <div class="rating"><i class="fa fa-star-o"></i> Độ khả thi (tính trung bình): </div>
+                              <div class="follower"><i class="fa fa-user-circle-o"></i> Số người theo dõi:</div>
+                              <div class="likes"><i class="fa fa-comment"></i> Số lượt đánh giá: </div>
+                          </div>
+                      </div>
+                    </div>
+                </article>
+                <hr>
+                <article class="post style-3">
+                  <div class="media">
+                    <div class="media-left pull-left visible-lg visible-md">
+                      <img class="img-responsive media-object" src="img/dump2.jpg">
+                    </div>
+                    <div class="media-body">
+                      <h6 class="entry-title"><a href="#">Ý tưởng gì đó</a></h6>
+                      <div class="entry-author"><span class="text-muted">Tác giả</span>
+                        <a href="#">Ai đó</a>
+                        <button class="btn btn-sm btn-default btn-detail">Chi tiết</button>
+                      </div>
+                      <p>Mô tả ngắn gọn Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này</p>
+                      <div class="idea-footer">
+                        <div class="rating"><i class="fa fa-star"></i> Độ khả thi (người dùng tự đánh giá): </div>
+                        <div class="rating"><i class="fa fa-star-o"></i> Độ khả thi (tính trung bình): </div>
+                        <div class="follower"><i class="fa fa-user-circle-o"></i> Số người theo dõi:</div>
+                        <div class="likes"><i class="fa fa-comment"></i> Số lượt đánh giá: </div>                                </div>
+                    </div>
+                  </div>
+                </article>
+                <hr>
+                <article class="post style-3">
+                  <div class="media">
+                    <div class="media-left pull-left visible-lg visible-md">
+                      <img class="img-responsive media-object" src="img/dump2.jpg">
+                    </div>
+                    <div class="media-body">
+                      <h6 class="entry-title"><a href="#">Ý tưởng gì đó</a></h6>
+                      <div class="entry-author"><span class="text-muted">Tác giả</span>
+                        <a href="#">Ai đó</a>
+                        <button class="btn btn-sm btn-default btn-detail">Chi tiết</button>
+                      </div>
+                      <p>Mô tả ngắn gọn Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này Lorem ipsum đoạn này</p>
+                      <div class="idea-footer">
+                        <div class="rating"><i class="fa fa-star"></i> Độ khả thi (người dùng tự đánh giá): </div>
+                        <div class="rating"><i class="fa fa-star-o"></i> Độ khả thi (tính trung bình): </div>
+                        <div class="follower"><i class="fa fa-user-circle-o"></i> Số người theo dõi:</div>
+                        <div class="likes"><i class="fa fa-comment"></i> Số lượt đánh giá: </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <hr>
+                <!-- end:post -->
+            </div>
+            <div class="text-center">
+                <button class="btn btn-md btn-default load-more" id="see-more"><i class="fa fa-refresh">&nbsp;</i><span>Xem thêm</span></button>
+            </div>
+                            </div>
+        <!-- end:white-box -->
+      </div>
+
+      <!--Footer brief info about website-->
+      <div class="footer">
+        <div class=row>
+          <div class="col-md-5">
+          <img src="img/logotrans.png">
+          <span>&#0169 2017</span>
+        </div>
+       </div>
+      </div>
+      <!--/Footer brief info about website-->
+    </div>
+  </body>
+</html>
