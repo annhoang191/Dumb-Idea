@@ -212,7 +212,9 @@ const followIdea = (target, ideaId) => {
     return new Promise((resolve, reject) => {
         User.findOne(target).then(
             user => {
-                user.followedIdeas.push(ideaId);
+                if (user.followedIdeas.indexOf(ideaId) == -1) {
+                    user.followedIdeas.push(ideaId);
+                }
                 return user.save();
             },
             err => {
