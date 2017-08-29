@@ -1,6 +1,20 @@
 import React, {Component} from 'react'
 
 class AddNewIdea extends Component {
+
+  onImageChange(event) {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (e) => {
+
+        var img = document.getElementById("img-idea");
+        img.src = e.target.result;
+
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
   render() {
     return (
       <div className="container add-new-idea">
@@ -17,7 +31,7 @@ class AddNewIdea extends Component {
             <hr />
             <div>
               <p className="label-add-idea">Mô tả</p>
-              <textarea name="name" id="nameIdea" className="form-control" rows="4" maxlength="200" placeholder="Nội dung của bạn là gì?"></textarea>
+              <textarea name="description" id="nameIdea" className="form-control" rows="4" maxlength="200" placeholder="Nội dung của bạn là gì?"></textarea>
             </div>
             <hr />
             <div>
@@ -38,7 +52,8 @@ class AddNewIdea extends Component {
             <hr />
             <div>
               <p className="label-add-idea">Thêm ảnh</p>
-              Chọn ảnh: <input type="file" />
+              <img id="img-idea" alt="A close up of an idea" />
+              <input type="file" className="select-img-idea" onChange={this.onImageChange} />
             </div>
             <hr />
             <button type="submit" className="btn-add-idea btn btn-primary">Gửi</button>
