@@ -107,7 +107,8 @@ Router.get('/getAll/:id', (req, res) => {
 
 Router.use(authentication.verify);
 
-Router.post('/', upload.single('image'), (req, res) => {
+Router.post('/', (req, res) => {
+  console.log('CREATE IDEA...');
   let newIdea = req.body;
   newIdea.owner = req.decoded;
   IdeaModel.create(req.body).then(idea => {
