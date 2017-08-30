@@ -1,9 +1,28 @@
 const express = require('express');
 const authentication = require('./Authentication.js');
+const path = require('path');
 const Router = express.Router();
 
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var multer  = require('multer');
+var storage = multer.diskStorage({
+  destination: function(req, file, callback) {
+    callback(null, './uploads')
+  },
+  filename: function(req, file, callback) {
+    console.log(file);
+    callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+var upload = multer({
+  storage: storage,
+  fileFilter: function(req, file, callback) {
+    var ext = path.extname(file.originalname);
+    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+      return callback(res.end('Only images are allowed'), null);
+    }
+    callback(null, true);
+  }
+});
 
 const IdeaModel = require('../models/Idea');
 
@@ -107,11 +126,12 @@ Router.get('/getAll/:id', (req, res) => {
 
 Router.use(authentication.verify);
 
-Router.post('/', (req, res) => {
+Router.post('/', upload.single('image'), (req, res) => {
   console.log('CREATE IDEA...');
   let newIdea = req.body;
   newIdea.owner = req.decoded;
-  IdeaModel.create(req.body).then(idea => {
+  newIdea.photo = req.file.path;
+  IdeaModel.create(newIdea).then(idea => {
     res.send({message: 'Created idea'});
   }, err => {
     res.send({error: 'Error create idea !!!'});
