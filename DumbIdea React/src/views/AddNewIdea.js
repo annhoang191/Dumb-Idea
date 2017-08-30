@@ -1,8 +1,14 @@
 import React, {Component} from 'react'
+import $ from 'jquery';
+import Authentication from './Authentication';
 
 class AddNewIdea extends Component {
+  constructor() {
+    super();
+    this.form = null;
+  }
 
-  onImageChange(event) {
+  onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onload = (e) => {
@@ -15,6 +21,29 @@ class AddNewIdea extends Component {
     }
   }
 
+  sendIdea = (event) => {
+    event.preventDefault();
+    let data = new FormData(this.form);
+    $.ajax({
+      url: Authentication.serverUrl + "/idea",
+      method: 'post',
+      data: data,
+      contentType: false,
+      processData: false,
+      headers: {
+        token: localStorage.token
+      }
+    })
+    .then(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log('Cannot AJAX');
+      }
+    );
+  }
+
   render() {
     return (
       <div className="container add-new-idea">
@@ -22,16 +51,16 @@ class AddNewIdea extends Component {
           <p className="add-new-idea-title">Thêm mới ý tưởng</p>
           <hr />
         </div>
-        <form method="post" enctype='multipart/form-data' action="http://localhost:8888/api/idea">
+        <form id="theform" ref={(form) => {this.form = form}} method="post" enctype='multipart/form-data' action="http://localhost:8888/api/idea">
           <div>
             <div>
               <p className="label-add-idea">Tên</p>
-              <textarea name="name" id="nameIdea" className="form-control" rows="2" maxlength="200" placeholder="Như “Nơi nên đi” hoặc “Món ăn nên làm.”"></textarea>
+              <textarea form="theform" name="name" id="nameIdea" className="form-control" rows="2" maxlength="200" placeholder="Như “Nơi nên đi” hoặc “Món ăn nên làm.”"></textarea>
             </div>
             <hr />
             <div>
               <p className="label-add-idea">Mô tả</p>
-              <textarea name="description" id="nameIdea" className="form-control" rows="4" maxlength="200" placeholder="Nội dung của bạn là gì?"></textarea>
+              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4" maxlength="200" placeholder="Nội dung của bạn là gì?"></textarea>
             </div>
             <hr />
             <div>
@@ -53,10 +82,10 @@ class AddNewIdea extends Component {
             <div>
               <p className="label-add-idea">Thêm ảnh</p>
               <img id="img-idea" alt="A close up of an idea" />
-              <input type="file" className="select-img-idea" onChange={this.onImageChange} />
+              <input form="theform" name='image' type="file" className="select-img-idea" onChange={this.onImageChange} />
             </div>
             <hr />
-            <button type="submit" className="btn-add-idea btn btn-primary">Gửi</button>
+            <button type="button" className="btn-add-idea btn btn-primary" onClick={this.sendIdea}>Gửi</button>
           </div>
         </form>
       </div>
