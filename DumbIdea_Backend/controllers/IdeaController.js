@@ -2,6 +2,9 @@ const express = require('express');
 const authentication = require('./Authentication.js');
 const Router = express.Router();
 
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+
 const IdeaModel = require('../models/Idea');
 
 // For GET
@@ -104,7 +107,7 @@ Router.get('/getAll/:id', (req, res) => {
 
 Router.use(authentication.verify);
 
-Router.post('/', (req, res) => {
+Router.post('/', upload.single('image'), (req, res) => {
   let newIdea = req.body;
   newIdea.owner = req.decoded;
   IdeaModel.create(req.body).then(idea => {

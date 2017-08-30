@@ -27,7 +27,13 @@ mongoose.connect(config.dbpath, (err) => {
 
 
 app.use((req, res, next) => {
+
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "token");
+  if (req.method == 'OPTIONS') {
+    res.end();
+    return;
+  }
   next();
 });
 

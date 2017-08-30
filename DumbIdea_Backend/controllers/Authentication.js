@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 const verify = (req, res, next) => {
+  console.log('verify', req.headers);
+  console.log('verify', req.body);
   if (req.headers && req.headers.token) {
     jwt.verify(req.headers.token, 'SECRET', (err, decoded) => {
       if (err) {
