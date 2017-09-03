@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import $ from 'jquery';
-import Authentication from './Authentication';
 
 class AddNewIdea extends Component {
   constructor() {
@@ -25,7 +24,7 @@ class AddNewIdea extends Component {
     event.preventDefault();
     let data = new FormData(this.form);
     $.ajax({
-      url: Authentication.serverUrl + "/idea",
+      url: "/api/idea",
       method: 'post',
       data: data,
       contentType: false,
@@ -51,7 +50,7 @@ class AddNewIdea extends Component {
           <p className="add-new-idea-title">Thêm mới ý tưởng</p>
           <hr />
         </div>
-        <form id="theform" ref={(form) => {this.form = form}} method="post" enctype='multipart/form-data' action="http://localhost:8888/api/idea">
+        <form id="theform" ref={(form) => {this.form = form}} method="post" enctype='multipart/form-data'>
           <div>
             <div>
               <p className="label-add-idea">Tên</p>

@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const serverUrl = 'http://localhost:8888/api';
+const serverUrl = '/api';
 
 const login = (username, password) => {
   console.log('login', username, password);

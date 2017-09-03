@@ -7,7 +7,6 @@ const imageSchema = new Schema({
   imageUrl : {
     type    : String,
     require : true
-    // TODO Phai co dinh fang http://
   },
   posterId : {
     type : ObjectId

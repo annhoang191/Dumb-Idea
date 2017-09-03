@@ -6,7 +6,7 @@ const Router = express.Router();
 var multer  = require('multer');
 var storage = multer.diskStorage({
   destination: function(req, file, callback) {
-    callback(null, './uploads')
+    callback(null, './public/uploads')
   },
   filename: function(req, file, callback) {
     console.log(file);
@@ -54,7 +54,7 @@ const funcGetIdeaWithId = (req, res) => {
 
 const funcGetAllIdeaRecommendation = (req, res) => {
   IdeaModel.getAllIdeaRecommendation(numberIdeaPerPage).then(ideas => {
-    console.log('send idead');
+    console.log('send idea');
     res.send(ideas);
   }).catch(err => {
     res.send({error: 'Error get all idea recommendation!!!'});
