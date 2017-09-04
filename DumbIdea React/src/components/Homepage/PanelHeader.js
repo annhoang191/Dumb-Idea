@@ -9,7 +9,7 @@ class PanelHeader extends Component {
       
     return (
       <div className="PanelHeader">
-          < div className="panel-heading">
+          <div className="panel-heading">
             Ý tưởng được đề cử trong tuần
           </div>
       </div>

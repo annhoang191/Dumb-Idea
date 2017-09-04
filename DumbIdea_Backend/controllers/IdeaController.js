@@ -30,7 +30,7 @@ const IdeaModel = require('../models/Idea');
 const numberIdeaPerPage = 4;
 const maximumIdea = 20;
 const getAllIdea = "getAll";
-const id = ":id";
+const id = "id";
 const getAllIdeaRecommendation = "getAllRecommendation";
 const getAllIdeaOldest = "getAllOldest";
 const search = "search";
@@ -81,12 +81,7 @@ const funcSearch = (req, res) => {
 Router.get('/:id', (req, res) => {
   let params = req.params.id;
   console.log('GET', params);
-  switch (params) {
-    // GET 1 idea with id
-    case id:
-      funcGetIdeaWithId(req, res);
-      break;
-
+  switch (params) {    
     // GET all idea
     case getAllIdea:
       funcGetAllIdea(req, res);
@@ -108,6 +103,7 @@ Router.get('/:id', (req, res) => {
       funcSearch(req, res);
       break;
     default:
+      funcGetIdeaWithId(req, res);
       break;
   }
 });
@@ -130,9 +126,12 @@ Router.post('/', upload.single('image'), (req, res) => {
   console.log('CREATE IDEA...');
   let newIdea = req.body;
   newIdea.owner = req.decoded;
-  newIdea.photo = req.file.path;
+  newIdea.photo = req.file.path.split('/').slice(1).join('/');
   IdeaModel.create(newIdea).then(idea => {
-    res.send({message: 'Created idea'});
+    res.send({
+      message: 'Created idea',
+      id: idea._id
+    });
   }, err => {
     res.send({error: 'Error create idea !!!'});
   });

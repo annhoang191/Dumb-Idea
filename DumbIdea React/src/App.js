@@ -19,6 +19,7 @@ import All from './views/All';
 import AddNewIdea from './views/AddNewIdea';
 import Login from './views/Login';
 import Register from './views/Register';
+import IdeaDetail from './views/IdeaDetail';
 
 class App extends Component {
   render() {
@@ -57,6 +58,11 @@ class App extends Component {
         path      : '/register',
         exact     : true,
         component : Register
+      },
+      {
+        path      : '/idea/:id',
+        exact     : true,
+        component : IdeaDetail
       },
       {
         path      : '*',

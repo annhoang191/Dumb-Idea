@@ -73,6 +73,7 @@ const get = (target) => {
         Idea.findOne(target).populate('owner').populate('comments').then(
             doc => {
                 console.log(`SUCCESS get Idea ${target}`);
+                delete doc.owner.password;
                 resolve(doc);
             },
             err => {
