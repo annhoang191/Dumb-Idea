@@ -27,7 +27,7 @@ var upload = multer({
 const IdeaModel = require('../models/Idea');
 
 // For GET
-const numberIdeaPerPage = 4;
+const numberIdeaPerPage = 12;
 const maximumIdea = 20;
 const getAllIdea = "getAll";
 const id = "id";
