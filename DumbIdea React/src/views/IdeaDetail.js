@@ -3,12 +3,14 @@ import { Link , withRouter } from 'react-router-dom';
 
 import $ from 'jquery';
 import CommentElement from '../components/CommentElement';
+import Rating from '../components/Rating';
 
 class IdeaDetail extends Component {
   constructor() {
       super();
       this.state = {
-        idea: null
+        idea: null,
+        user: null
       };
   }
 
@@ -19,6 +21,18 @@ class IdeaDetail extends Component {
       }).done(data => {
           this.setState({
             idea: data
+          });
+          console.log(data);
+      }).fail(err => {
+          console.error(err);
+      });
+
+      $.ajax({
+          url:'/api/user/' + localStorage.userId,
+          type : 'get'
+      }).done(data => {
+          this.setState({
+            user: data
           });
           console.log(data);
       }).fail(err => {
@@ -57,19 +71,20 @@ class IdeaDetail extends Component {
             token: localStorage.token
         }
     }).done(data => {
-        window.location.reload();
+        
         console.log('success togglefollow');
         console.log(data);
+        window.location.reload();
     }).fail(err => {
         console.log(err);
     });
   }
 
   render() {
-    if (!this.state.idea) return <div>Please wait</div>;
+    if (!this.state.idea || !this.state.user) return <div>Please wait</div>;
 
     let FollowButton = (props) => {
-        if (this.state.idea.owner.followedIdeas.includes(this.state.idea._id)) {
+        if (this.state.user.followedIdeas.includes(this.state.idea._id)) {
             return <button className="btn btn-lg btn-warning" onClick={this.toggleFollow}>Bỏ theo dõi</button>
         } else {
             return <button className="btn btn-lg btn-primary" onClick={this.toggleFollow}>Theo dõi</button>
@@ -131,7 +146,6 @@ class IdeaDetail extends Component {
                             <span>{this.state.idea.estimatedRating}</span>
                         <h4>Đánh giá của các thành viên khác: </h4>
                             <span>{this.state.idea.rating}</span>
-                        <h4>Nhận xét:</h4>
                     </div>
 
                     <div id="multimedia" className="tab-pane fade">
@@ -159,14 +173,9 @@ class IdeaDetail extends Component {
                         </div>
                         </div>
                         <div className="col-md-5"><label>Rating:</label>
-                            <select>
-                                <option value="">Đánh giá</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                            <br />
+                            <Rating />
+
                         </div>
                     </div>
                     <button className="btn btn-lg btn-primary" onClick={this.submitComment}><i className="fa fa-paper-plane"></i> Submit</button>
@@ -176,7 +185,6 @@ class IdeaDetail extends Component {
                         <h3 className="text-center">Liên hệ với tác giả ý tưởng</h3>
                         <h4>Email: {this.state.idea.owner.email}</h4>
                         <h4>Address: {this.state.idea.owner.address} </h4>
-                        <h4>Khác: </h4>
                     </div>
                 </div>
             </div>
