@@ -9,9 +9,9 @@ let ideaSchema = mongoose.Schema({
     owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true},
     photo: {type: String}, //save the path to photo
     category: String,
-    tags: [],
-    briefDescription: String,
-    description: String,
+    tags: {type: String, default:""},
+    briefDescription: {type: String, default: ""},
+    description: {type: String, default: ""},
     estimatedRating: Number, //owner's rating
     rating: Number,
     whoRated: Object,

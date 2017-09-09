@@ -274,9 +274,6 @@ body{
 /**************************************
 - ADD NEW Idea
 **************************************/
-/**************************************
-- ADD NEW Idea
-**************************************/
 .add-new-idea {
   margin-top: 100px;
   height: 1100px;
@@ -297,12 +294,18 @@ body{
   text-align: center;
 }
 
-.label-add-idea {
+.add-idea p {
   color: #555555;
   text-align: left;
   font-weight: 500px;
   font-size: 21px;
   margin-left: 10px;
+}
+
+.add-idea textarea {
+  margin-left: 10px;
+  color: #211922;
+  background-color: #f2efef;
 }
 
 .btn-add-idea {
