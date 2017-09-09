@@ -2,43 +2,51 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import MainNav from './MainNav';
+import Authentication from '../views/Authentication';
 
 class Header extends Component {
+  constructor() {
+    super();
+    this.state = {
+      logedIn: null
+    };
+  }
+
+  updateUserInfo = () => {
+    Authentication.verify()
+    .then(data => {
+      if (data.error) {
+        this.setState({
+          logedIn: false
+        })
+      } else {
+        this.setState({
+          logedIn: true,
+          token: localStorage.token,
+          user: data
+        })
+      }
+    })
+    .catch(
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  componentDidMount() {
+    this.updateUserInfo();
+  }
+
   render() {
+    //if (this.state.logedIn === null) return null;
+    if (this.state.token != localStorage.token) {
+      this.setState({
+        token: localStorage.token
+      });
+      this.updateUserInfo();
+    }
     const menuItems = [
-      {
-        name : "Khám phá ý tưởng",
-        subItems : [
-          {
-            name : "Tất cả",
-            path : "/all"
-          },
-          {
-            name : "Công nghệ",
-            path : "/tech"
-          },
-          {
-            name : "Kinh doanh - Thương mại",
-            path : "/eco"
-          },
-          {
-            name : "Nghệ thuật",
-            path : "/art"
-          },
-          {
-            name : "Ứng dụng - Đồ chơi",
-            path : "/product"
-          },
-          {
-            name : "Hoạt động xã hội",
-            path : "/life"
-          },
-          {
-            name : "Nhảm nhí",
-            path : "/other"
-          }
-        ]
-      },
       {
         name : "Thêm ý tưởng",
         path : "/addnewidea"
@@ -51,11 +59,27 @@ class Header extends Component {
         name : "Về chúng tôi",
         path : "/about"
       },
-      {
-        name : "Sign In",
-        path :"/login"
-      }
     ];
+
+    if (this.state.logedIn) {
+      menuItems.push({
+        name: this.state.user.username,
+        path: "/profile/" + this.state.user._id
+      });
+    } else {
+      menuItems.push({
+        name: "Sign in",        
+        path: "/login"
+      })
+    }
+
+    let OtherButton = (props) => {
+      if (this.state.logedIn) {
+        return <button className="btn btn-primary" onClick={(e) => {localStorage.token=null; window.location.href='/';}}>Sign out</button>
+      } else {
+        return <Link to="/register">Register</Link>
+      }
+    }
 
     return (
       <header className="navbar navbar-default navbar-fixed-top">
@@ -72,6 +96,9 @@ class Header extends Component {
           </div>
           <nav className="collapse navbar-collapse" id="MainNav_nav">
             <MainNav items={menuItems}/>
+            <li>
+              <OtherButton />
+            </li>
           </nav>
         </div>
       </header>

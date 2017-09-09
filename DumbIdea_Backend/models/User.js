@@ -9,7 +9,8 @@ let userSchema = mongoose.Schema({
         unique: true
     },
     avatar: {
-        type : String //path
+        type : String, //path
+        default: '/avatar.png'
     },
     address: {
         type: String,

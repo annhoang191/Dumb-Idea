@@ -10,13 +10,13 @@ var storage = multer.diskStorage({
   },
   filename: function(req, file, callback) {
     console.log(file);
-    callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname).toLowerCase());
   }
 });
 var upload = multer({
   storage: storage,
   fileFilter: function(req, file, callback) {
-    var ext = path.extname(file.originalname);
+    var ext = path.extname(file.originalname).toLowerCase();
     if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
       return callback(res.end('Only images are allowed'), null);
     }

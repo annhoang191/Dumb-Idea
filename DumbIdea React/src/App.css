@@ -362,6 +362,11 @@ body{
 
 
 /*Comment*/
+.reviews {
+    color: #555;    
+    font-weight: bold;
+    margin: 10px auto 20px;
+}
 .media .media-object { max-width: 120px; }
 .media-body { position: relative; }
 .media-date { 
@@ -396,7 +401,38 @@ body{
     border-bottom-left-radius: 4px;
 }
 /*End of Comment*/
-
+/*STYLING PROFILE PAGE*/
+.profile-header {
+  margin-top: 70px;
+}
+.img-thumbnail-profile {
+  max-width:250px;
+  border-radius: 50%;
+}
+.contact {
+  list-style: none;
+  margin-left: -40px;
+  font-size: 20px;
+}
+/*Main profile*/
+.nav-tabs {
+  background-color :  #f7f8f9;
+  border-bottom: 2px solid #e5e8ea;
+}
+.nav-tabs li a {
+  border-right: 1px solid #e5e8ea!important;
+  padding : 20px;
+}
+.tab-content {
+  box-shadow: 0 2px 6px 0px rgba(22,22,22,0.45);
+  padding-right : 10px;
+}
+.created-idea, .following-idea {
+  margin-top : 10px;
+}
+.media-object {
+  max-width: 400px;
+}
 /**************************************
 - Panel body
 **************************************/

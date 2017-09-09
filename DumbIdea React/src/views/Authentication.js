@@ -50,11 +50,8 @@ const verify = (token) => {
     $.ajax({
       url: serverUrl + '/user/',
       type: 'get',
-      data: {
-        token: localStorage.token
-      },
       headers : {
-        'Accept': 'application/json'
+        token: localStorage.token
       }
     }).done((data) => {
       resolve(data);

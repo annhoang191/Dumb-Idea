@@ -12,6 +12,7 @@ import './App.css';
 
 import Header from './components/Header';
 import MainNav from './components/MainNav';
+import Profile from './views/Profile';
 import Home from './views/Home';
 import Footer from './components/Footer';
 import Page404 from './views/Page404'
@@ -60,6 +61,11 @@ class App extends Component {
         path      : '/register',
         exact     : true,
         component : Register
+      },
+      {
+        path      : '/profile/:id',
+        exact     : true,
+        component : Profile
       },
       {
         path      : '/idea/:id',
