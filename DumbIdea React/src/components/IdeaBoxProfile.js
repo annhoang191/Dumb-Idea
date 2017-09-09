@@ -28,8 +28,8 @@ class IdeaBoxProfile extends Component {
     render() {
         if(!this.state.idea) return <div>There's nothing here</div>
         return(
-
-              <article className="IdeaBoxProfile post style-3">
+            <div className="container">
+              <article className="IdeaBoxProfile post style-3 well">
                   <div className="media">
                       <div className="media-left pull-left visible-lg visible-md">
                         <img className="img-responsive media-object" src={this.state.idea.photo} />
@@ -47,7 +47,9 @@ class IdeaBoxProfile extends Component {
                           </div>
                       </div>
                   </div>
-              </article>                
+              </article>    
+              <hr /> 
+            </div>           
         );
     }
 }

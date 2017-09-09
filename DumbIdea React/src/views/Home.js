@@ -10,7 +10,7 @@ class Home extends Component {
       <div className="Home">
         <Carousel headerUrl="img/headertest2.jpg"/>
         <Showcase />
-        <ShowcaseList />
+        {/* <ShowcaseList /> */}
       </div>
     );
   }
