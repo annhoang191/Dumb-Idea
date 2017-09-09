@@ -44,6 +44,17 @@ Router.get('/:id', (req, res) => {
 
 Router.use(authentication.verify);
 
+Router.put('/togglefollow/:id', (req, res) => {
+    UserModel.toggleFollow({_id: req.decoded}, req.params.id).then(ideaId => {
+      console.log(`SUCCESS follow ${ideaId}`);
+      res.status(200).send({'message': 'toggleFollow idea successfully'});
+    })
+    .catch(err => {
+      console.log(`FAILED togglefollow idea`);
+      res.status(500).send({'error': 'Error togglefollow idea'});
+    });
+});
+
 Router.get('/', (req, res) => {
   let userPromise = UserModel.get({_id: req.decoded});
 

@@ -48,8 +48,34 @@ class IdeaDetail extends Component {
     }
   }
 
+  toggleFollow = (e) => {
+    e.preventDefault();
+    $.ajax({
+        url: '/api/user/togglefollow/' + this.state.idea._id,
+        type: 'put',
+        headers: {
+            token: localStorage.token
+        }
+    }).done(data => {
+        window.location.reload();
+        console.log('success togglefollow');
+        console.log(data);
+    }).fail(err => {
+        console.log(err);
+    });
+  }
+
   render() {
-    if (!this.state.idea) return <div>Please wait</div>
+    if (!this.state.idea) return <div>Please wait</div>;
+
+    let FollowButton = (props) => {
+        if (this.state.idea.owner.followedIdeas.includes(this.state.idea._id)) {
+            return <button className="btn btn-lg btn-warning" onClick={this.toggleFollow}>Bỏ theo dõi</button>
+        } else {
+            return <button className="btn btn-lg btn-primary" onClick={this.toggleFollow}>Theo dõi</button>
+        }
+    }
+
     return (
         <div className="IdeaDetail">
             <div className="container">
@@ -69,7 +95,7 @@ class IdeaDetail extends Component {
                                 <h3>{this.state.idea.owner.username}</h3>
                             </div>
                             <div className="col-md-4">
-                                <button className="btn btn-lg btn-default">Theo dõi ý tưởng</button>
+                                <FollowButton />
                             </div>
                     </div>
                     <h3>Lĩnh vực: </h3> <span>{this.state.idea.category}</span>
