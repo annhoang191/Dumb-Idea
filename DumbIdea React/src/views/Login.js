@@ -50,7 +50,7 @@ class Login extends Component {
           <TextField type='password' placeholder='Password' onChange={this.onChangePassword} />
           <Button label='Login' method='post' onClick={this.doLogin} />
           <p>Not register yet? Register now</p>
-          <Link to={'/register'}>Register</Link>
+          <Link to={'/register'} className="btn btn-info" role="button">Register</Link>
         </form>
       </div>
     );
