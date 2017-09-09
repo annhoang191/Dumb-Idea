@@ -83,12 +83,10 @@ const login = (userInfo) => {
                 if (!user.comparePassword(userInfo.password)) {
                     reject(new Error('Wrong password'));
                 } else {
-                    resolve(
-                        jwt.sign({
-                            id: user._id
-                        },
-                        'SECRET')
-                    );
+                    resolve({
+                        token: jwt.sign({id: user._id}, 'SECRET'),
+                        userId: user._id
+                    });
                 }
             }
         })
@@ -119,6 +117,7 @@ const get = (target) => {
 
 //Eg: update({username: 'lad'}, {password: '1998'})
 const update = (target, userInfo) => {
+    console.log('call update user');
     return new Promise((resolve, reject) => {
         if (userInfo.username) {
             delete userInfo.username;

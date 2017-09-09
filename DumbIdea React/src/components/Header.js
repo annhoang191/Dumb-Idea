@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import MainNav from './MainNav';
 import Authentication from '../views/Authentication';
@@ -75,7 +75,7 @@ class Header extends Component {
 
     let OtherButton = (props) => {
       if (this.state.logedIn) {
-        return <button className="btn btn-danger otherbtn" onClick={(e) => {localStorage.token=null; window.location.href='/';}}>Sign out</button>
+        return <button className="btn btn-danger otherbtn" onClick={(e) => {localStorage.token = null; localStorage.userId=null; window.location.href='/';}}>Sign out</button>
       } else {
         return <Link to="/register" className="registerbtn"><button className="btn btn-primary otherbtn">Register</button></Link>
       }
@@ -104,4 +104,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

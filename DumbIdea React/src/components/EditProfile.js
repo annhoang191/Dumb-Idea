@@ -43,7 +43,7 @@ class EditProfile extends Component {
         event.preventDefault();
         let data = new FormData(this.form);
         $.ajax({
-          url: "/api/user/" + this.props.match.params.id,
+          url: "/api/user/",
           method: 'put',
           data: data,
           contentType: false,
@@ -55,7 +55,8 @@ class EditProfile extends Component {
         .then(
           res => {
             console.log(res);
-            this.props.history.push('/user/' + this.state.user._id);
+            //this.props.history.push('/profile/' + this.state.user._id);
+            window.location.reload();
           },
           err => {
             console.log('Cannot AJAX');
@@ -79,9 +80,9 @@ class EditProfile extends Component {
                       <div>
                         <div>
                             <p className="label-update-user">Thông tin liên hệ</p>
-                            <input form="theform" name="email-update" id="updateUserEmail" className="form-control" placeholder="Email" />
+                            <input form="theform" name="email" id="updateUserEmail" className="form-control" placeholder="Email" />
                             <br/>
-                            <input form="theform" name="address-update" id="updateUserPhone" className="form-control" placeholder="Địa chỉ" />
+                            <input form="theform" name="address" id="updateUserPhone" className="form-control" placeholder="Địa chỉ" />
                         </div>
                         <hr />
                         <div>
@@ -92,7 +93,7 @@ class EditProfile extends Component {
                         <div>
                             <p className="label-update-user">Cập nhật ảnh đại diện</p>
                                 <img id="img-user"  />
-                                <input form="theform" name='image' type="file" className="select-img-avatar" onChange={this.onImageChange} />
+                                <input form="theform" name='avatar' type="file" className="select-img-avatar" onChange={this.onImageChange} />
                                 </div>
                                 <hr />
                                 <button type="button" className="btn-add-idea btn btn-primary" onClick={this.sendUser}>Lưu thông tin</button>
