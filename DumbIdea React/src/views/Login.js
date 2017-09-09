@@ -34,10 +34,13 @@ class Login extends Component {
     Authentication.login(this.state.username, this.state.password).then(data => {
       console.log('Data', data);
       if (data.token) {
+        console.log(data);
         localStorage.token = data.token;
+        localStorage.userId = data.userId;
         this.props.history.push('/');
       } else {
         localStorage.token = null;
+        localStorage.userId = null;
       }
     });
   }

@@ -28,7 +28,21 @@ class Profile extends Component {
   }
 
   render() {
-    if(!this.state.user) return <div>Get out!</div>
+    if(!this.state.user) return <div>Get out!</div>;
+
+    let EditProfileButton = () => {
+      if (localStorage.userId == this.state.user._id) {
+        return (
+          <div>
+            <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit Profile</button>
+            <EditProfile />
+          </div>
+        );
+      } else {
+        return <div></div>
+      }
+    }
+
     return (
       <div className="Profile row">
         <div className="clearfix well profile-header">
@@ -46,8 +60,7 @@ class Profile extends Component {
             </ul>
         </div>
           <div className="col-md-2">
-            <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit Profile</button>
-            <EditProfile />
+            <EditProfileButton />
           </div>
          
         </div>
