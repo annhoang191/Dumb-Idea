@@ -63,6 +63,28 @@ class EditIdea extends Component {
     );
   }
 
+  tagChange(event) {
+    let tagString = event.target.value;
+    let endCharecter = tagString[tagString.length-1];
+    if (endCharecter == " " || endCharecter == "\n") {
+      // Split text area by " "
+      var tags = tagString.split(" ");
+      // Reset value text area
+      event.target.value = "";
+      // Update value
+      tags.map(function (val) {
+        if (val.length > 0) {
+          if (val[0] != "#") {
+            event.target.value += "#" + val + " ";
+          } else {
+            event.target.value += val + " ";
+          }
+        }
+      });
+    }
+
+  }
+
   render() {
     if (!this.state.idea) return <div>Please wait</div>;
 
@@ -74,19 +96,23 @@ class EditIdea extends Component {
         </div>
         <form id="theform" ref={(form) => {this.form = form}} method="put">
           <div>
-            <div>
-              <p className="label-add-idea">Tên</p>
-              <textarea form="theform" name="name" id="nameIdea" className="form-control" rows="2" maxLength="200" placeholder="Như “Nơi nên đi” hoặc “Món ăn nên làm.”">{this.state.idea.name}</textarea>
+            <div className="add-idea">
+              <p>Tên</p>
+              <textarea form="theform" name="name" className="form-control" rows="2" maxLength="200" placeholder="Như “Nơi nên đi” hoặc “Món ăn nên làm.”" defaultValue={this.state.idea.name}></textarea>
+              <hr />
             </div>
-            <hr />
-            <div>
-              <p className="label-add-idea">Mô tả</p>
-              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?">{this.state.idea.description}</textarea>
+            <div className="add-idea">
+              <p>Mô tả</p>
+              <textarea form="theform" name="description" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?" defaultValue={this.state.idea.description}></textarea>
+              <hr />
             </div>
-            <hr />
-            <hr />
-            <div>
-              <p className="label-add-idea">Thêm ảnh</p>
+            <div className="add-idea">
+              <p>Thêm thẻ</p>
+              <textarea form="theform" name="tags" className="form-control" rows="2" maxLength="200" placeholder="Điền tags tại đây" onChange={this.tagChange} defaultValue={this.state.idea.tags}></textarea>
+              <hr />
+            </div>
+            <div className="add-idea">
+              <p>Thêm ảnh</p>
               <img id="img-idea" alt="A close up of an idea" src={this.state.idea.photo}/>
               <input form="theform" name='image' type="file" className="select-img-idea" onChange={this.onImageChange} />
             </div>
