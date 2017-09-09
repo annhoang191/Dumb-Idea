@@ -13,7 +13,8 @@ let ideaSchema = mongoose.Schema({
     briefDescription: {type: String, default: ""},
     description: {type: String, default: ""},
     estimatedRating: Number, //owner's rating
-    rating: Number,
+    noUsersRated: {type: Number, default: 0},//number of users rated this idea
+    ratingSum: {type: Number, default: 0},
     whoRated: Object,
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
     status: {
@@ -271,6 +272,36 @@ const searchText = (text, limit = 20) => {
     });
 }
 
+const rateIdea = (target, userId, newRating) => {
+    return new Promise((resolve, reject) => {
+        let count = 0;
+        let value = 0;
+
+        UserModel.rateIdea({_id: userId}, target._id, newRating).then(
+            data => {
+                count = data.count;
+                value = data.value;
+                return Idea.findOne(target);
+            }
+        )
+        .then(idea => {
+            idea.noUsersRated += count;
+            idea.ratingSum += value;
+            return idea.save();
+        }, err => {
+            console.log(err);
+            reject(err);
+        })
+        .then(idea => {
+            console.log(`SUCCESS rateIdea`);
+            resolve(idea);
+        }, err => {
+            console.log(err);
+            reject(err);
+        });
+    });
+};
+
 module.exports = {
     create,
     get,
@@ -282,5 +313,6 @@ module.exports = {
     erase,
     addComment,
     removeComment,
-    searchText
+    searchText,
+    rateIdea
 };

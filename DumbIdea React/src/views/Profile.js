@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 import IdeaBoxProfile from '../components/IdeaBoxProfile';
-
+import EditProfile from '../components/EditProfile';
 
 
 class Profile extends Component {
@@ -32,7 +32,7 @@ class Profile extends Component {
     return (
       <div className="Profile row">
         <div className="clearfix well profile-header">
-          <div className="col-md-4">
+          <div className="col-md-2">
             <img  className="img-thumbnail-profile" src={this.state.user.avatar}/>
           </div>
 
@@ -45,6 +45,11 @@ class Profile extends Component {
               <li><i className="fa fa-envelope"></i> Mail: {this.state.user.email}</li>
             </ul>
         </div>
+          <div className="col-md-2">
+            <button type="button" className="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit Profile</button>
+            <EditProfile />
+          </div>
+         
         </div>
         
         <div className="container">

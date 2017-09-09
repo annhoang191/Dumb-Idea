@@ -122,6 +122,17 @@ Router.get('/getAll/:id', (req, res) => {
 
 Router.use(authentication.verify);
 
+Router.put('/rateidea/:id', (req, res) => {
+  IdeaModel.rateIdea({_id: req.params.id}, req.decoded, +req.query.rating).then(ideaId => {
+    console.log(`SUCCESS rateIdea`, ideaId);
+    res.status(200).send({'message': 'rateIdea successfully'});
+  })
+  .catch(err => {
+    console.log(`FAILED rateIdea`, err);
+    res.status(500).send({'error': 'Error rateIdea'});
+  });
+});
+
 Router.post('/', upload.single('image'), (req, res) => {
   console.log('CREATE IDEA...');
   let newIdea = req.body;

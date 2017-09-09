@@ -27,7 +27,7 @@ let userSchema = mongoose.Schema({
     },
     createdIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}],
     followedIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}],
-    whoRated: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    ratedIdeas: [{type: mongoose.Schema.Types.Mixed, default: {}}],
     status: {
         type: String,
         require: true,
@@ -294,6 +294,50 @@ const toggleFollow = (target, ideaId) => {
     })
 };
 
+const rateIdea = (target, ideaId, newRating) => {
+    return new Promise((resolve, reject) => {
+        let count = 0;
+        let value = 0;
+        User.findOne(target).then(
+            user => {
+                let index = -1;
+                for (let i = 0; i < user.ratedIdeas.length; ++i) if (user.ratedIdeas[i].ideaId == ideaId) {
+                    index = i;
+                    break;
+                }
+
+                if (index == -1) {
+                    count = 1;
+                    value = newRating;
+                    user.ratedIdeas.push({
+                        ideaId: ideaId,
+                        rating: newRating
+                    });
+                } else {
+                    count = 0;
+                    value = newRating - user.ratedIdeas[index].rating;
+                    user.ratedIdeas[index].rating = newRating;
+                }
+
+                return user.save();
+            },
+            err => {
+                console.log(`FAILED get rateIdea`, err);
+                reject(err);
+            }
+        )
+        .then(
+            user => {
+                console.log(`SUCCESS user saved`);
+                resolve({count, value});
+            },
+            err => {
+                console.log(`FAILED cannot save user`, err);
+                reject(err);
+            }
+        );
+    })
+};
 
 module.exports = {
     create,
@@ -305,5 +349,6 @@ module.exports = {
     followIdea,
     unfollowIdea,
     login,
-    toggleFollow
+    toggleFollow,
+    rateIdea
 };

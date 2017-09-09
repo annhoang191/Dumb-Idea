@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import { Link , withRouter } from 'react-router-dom';
 
 import $ from 'jquery';
-import tokenfield from 'bootstrap-tokenfield';
-
 
 class EditIdea extends Component {
   constructor() {
@@ -22,6 +20,7 @@ class EditIdea extends Component {
           this.setState({
             idea: data
           });
+          console.log('IDEA TO UPDATE: ', data);
       }).fail(err => {
           console.error(err);
       });
@@ -56,33 +55,12 @@ class EditIdea extends Component {
     .then(
       res => {
         console.log(res);
-        this.props.history.push('/idea/' + this.props.match.params.id);
+        this.props.history.push('/idea/' + this.state.idea._id);
       },
       err => {
         console.log('Cannot AJAX');
       }
     );
-  }
-
-  tagChange(event) {
-    let tagString = event.target.value;
-    if (tagString[tagString.length-1] == " ") {
-      // Split text area by " "
-      var tags = tagString.split(" ");
-      // Value at end index is nil so i will delete
-      tags.splice(-1,1);
-      // Reset value text area
-      event.target.value = "";
-      // Update value
-      tags.map(function (val) {
-        if (val[0] != "#") {
-          event.target.value += "#" + val + " ";
-        } else {
-          event.target.value += val + " ";
-        }
-      });
-    }
-    
   }
 
   render() {
@@ -94,33 +72,30 @@ class EditIdea extends Component {
           <p className="add-new-idea-title">Chỉnh sửa ý tưởng</p>
           <hr />
         </div>
-        <form id="theform" ref={(form) => {this.form = form}} method="post">
+        <form id="theform" ref={(form) => {this.form = form}} method="put">
           <div>
-            <div className="add-idea">
-              <p>Tên</p>
-              <textarea form="theform" name="name" className="form-control" rows="2" maxLength="200" placeholder="Như “Nơi nên đi” hoặc “Món ăn nên làm.”" defaultValue={this.state.idea.name}></textarea>
-              <hr />
+            <div>
+              <p className="label-add-idea">Tên</p>
+              <textarea form="theform" name="name" id="nameIdea" className="form-control" rows="2" maxLength="200" placeholder="Như “Nơi nên đi” hoặc “Món ăn nên làm.”">{this.state.idea.name}</textarea>
             </div>
-            <div className="add-idea">
-              <p>Mô tả</p>
-              <textarea form="theform" name="description" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?" defaultValue={this.state.idea.description}></textarea>
-              <hr />
+            <hr />
+            <div>
+              <p className="label-add-idea">Mô tả</p>
+              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?">{this.state.idea.description}</textarea>
             </div>
-            <div className="add-idea">
-              <p>Thêm thẻ</p>
-              <textarea form="theform" name="tags" className="form-control" rows="2" maxLength="200" placeholder="Điền tags tại đây" onChange={this.tagChange} defaultValue={this.state.idea.tags}></textarea>
-              <hr />
-            </div>
-            <div className="add-idea">
-              <p>Thêm ảnh</p>
+            <hr />
+            <hr />
+            <div>
+              <p className="label-add-idea">Thêm ảnh</p>
               <img id="img-idea" alt="A close up of an idea" src={this.state.idea.photo}/>
               <input form="theform" name='image' type="file" className="select-img-idea" onChange={this.onImageChange} />
-              <hr />
             </div>
+            <hr />
             <button type="button" className="btn-add-idea btn btn-primary" onClick={this.sendIdea}>Gửi</button>
           </div>
         </form>
       </div>
+
     );
   }
 }
