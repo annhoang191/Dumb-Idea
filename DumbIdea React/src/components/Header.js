@@ -75,9 +75,9 @@ class Header extends Component {
 
     let OtherButton = (props) => {
       if (this.state.logedIn) {
-        return <button className="btn btn-primary" onClick={(e) => {localStorage.token=null; window.location.href='/';}}>Sign out</button>
+        return <button className="btn btn-danger otherbtn" onClick={(e) => {localStorage.token=null; window.location.href='/';}}>Sign out</button>
       } else {
-        return <Link to="/register">Register</Link>
+        return <Link to="/register" className="registerbtn"><button className="btn btn-primary otherbtn">Register</button></Link>
       }
     }
 
