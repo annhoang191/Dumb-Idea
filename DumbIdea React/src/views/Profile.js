@@ -65,14 +65,12 @@ class Profile extends Component {
               </ul>
           </div>
 
-          <div id="following" className="following-idea tab-pane fade in active">
-            <div id="followed" className="followed-idea tab-pane fade in active">
+          <div id="following" className="following-idea tab-pane fade in">
               <ul className="media-list">
                   {this.state.user.followedIdeas.map((id, index) => (
                     <IdeaBoxProfile key={index} id={id} />
                   ))}
                 </ul>              
-            </div>
            </div>
 
         </div>

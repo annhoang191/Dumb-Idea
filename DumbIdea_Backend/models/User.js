@@ -264,6 +264,37 @@ const unfollowIdea = (target, ideaId) => {
     });
 };
 
+const toggleFollow = (target, ideaId) => {
+    return new Promise((resolve, reject) => {
+        User.findOne(target).then(
+            user => {
+                let index = user.followedIdeas.indexOf(ideaId);
+                if (index != -1) {
+                    user.followedIdeas.splice(index, 1);
+                } else {
+                    user.followedIdeas.push(ideaId);
+                }
+                return user.save();
+            },
+            err => {
+                console.log(`FAILED get post`, err);
+                reject(err);
+            }
+        )
+        .then(
+            user => {
+                console.log(`SUCCESS user saved`);
+                resolve(ideaId);
+            },
+            err => {
+                console.log(`FAILED cannot save user`, err);
+                reject(err);
+            }
+        );
+    })
+};
+
+
 module.exports = {
     create,
     get,
@@ -273,5 +304,6 @@ module.exports = {
     removeIdea,
     followIdea,
     unfollowIdea,
-    login
+    login,
+    toggleFollow
 };

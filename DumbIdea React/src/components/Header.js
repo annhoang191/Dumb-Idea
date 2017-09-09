@@ -96,9 +96,7 @@ class Header extends Component {
           </div>
           <nav className="collapse navbar-collapse" id="MainNav_nav">
             <MainNav items={menuItems}/>
-            <li>
-              <OtherButton />
-            </li>
+            <OtherButton />
           </nav>
         </div>
       </header>
