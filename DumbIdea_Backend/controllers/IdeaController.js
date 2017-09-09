@@ -122,11 +122,22 @@ Router.get('/getAll/:id', (req, res) => {
 
 Router.use(authentication.verify);
 
+Router.put('/rateidea/:id', (req, res) => {
+  IdeaModel.rateIdea({_id: req.params.id}, req.decoded, +req.query.rating).then(ideaId => {
+    console.log(`SUCCESS rateIdea`, ideaId);
+    res.status(200).send({'message': 'rateIdea successfully'});
+  })
+  .catch(err => {
+    console.log(`FAILED rateIdea`, err);
+    res.status(500).send({'error': 'Error rateIdea'});
+  });
+});
+
 Router.post('/', upload.single('image'), (req, res) => {
   console.log('CREATE IDEA...');
   let newIdea = req.body;
   newIdea.owner = req.decoded;
-  newIdea.photo = req.file.path.split('/').slice(1).join('/');
+  if (req.file) newIdea.photo = req.file.path.split('/').slice(1).join('/');
   IdeaModel.create(newIdea).then(idea => {
     res.send({
       message: 'Created idea',
@@ -137,9 +148,10 @@ Router.post('/', upload.single('image'), (req, res) => {
   });
 });
 
-Router.put('/:id', (req, res) => {
+Router.put('/:id', upload.single('image'), (req, res) => {
   let newIdea = req.body;
   newIdea.owner = req.decoded;
+  if (req.file) newIdea.photo = req.file.path.split('/').slice(1).join('/');
   IdeaModel.update({ _id: req.params.id }, newIdea).then(
     idea => {
       res.send({message: 'Update idea'});

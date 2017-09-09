@@ -4,6 +4,27 @@ const Router = express.Router();
 
 const UserModel = require('../models/User');
 
+var multer  = require('multer');
+var storage = multer.diskStorage({
+  destination: function(req, file, callback) {
+    callback(null, './public/avatars')
+  },
+  filename: function(req, file, callback) {
+    console.log(file);
+    callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname).toLowerCase());
+  }
+});
+var upload = multer({
+  storage: storage,
+  fileFilter: function(req, file, callback) {
+    var ext = path.extname(file.originalname).toLowerCase();
+    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+      return callback(res.end('Only images are allowed'), null);
+    }
+    callback(null, true);
+  }
+});
+
 Router.post('/', (req, res) => {
   UserModel.create(req.body).then(
     user => {
@@ -69,7 +90,8 @@ Router.get('/', (req, res) => {
 });
 
 // PUT: Update user with id
-Router.put('/', (req, res) => {
+Router.put('/', upload.single('avatar'), (req, res) => {
+  if (req.file) req.body.avatar = req.file.path.split('/').slice(1).join('/');
   let userPromise = UserModel.update({_id: req.decoded}, req.body);
 
   userPromise.then(user => {
