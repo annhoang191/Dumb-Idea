@@ -68,7 +68,6 @@ class AddNewIdea extends Component {
             <div>
               <p className="label-add-idea">Danh mục</p>
               <div>
-                <div className="arrow-bottom glyphicon glyphicon-triangle-bottom"></div>
                 <select>
                   <option value="">Nó là loại ý tưởng gì?</option>
                   <option value="technology">Công nghệ</option>

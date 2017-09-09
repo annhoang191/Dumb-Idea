@@ -297,7 +297,7 @@ body{
   text-align: center;
 }
 
-.label-add-idea {
+.label-add-idea, .label-update-user {
   color: #555555;
   text-align: left;
   font-weight: 500px;
@@ -410,7 +410,7 @@ body{
   margin-top: 70px;
 }
 .img-thumbnail-profile {
-  max-width:250px;
+  max-width:150px;
   border-radius: 50%;
 }
 .contact {
@@ -454,6 +454,23 @@ body{
 }
 .media-object {
   max-width: 400px;
+}
+/*UPDATE USER*/
+
+
+
+#img-user {
+  display: block;
+  margin: 0 auto;
+  max-width: 500px;
+  max-height: 500px;
+  box-shadow: 0 2px 6px 0px rgba(22, 22, 22, 0.35);
+}
+
+.select-img-avatar {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
 }
 /**************************************
 - Panel body
