@@ -267,9 +267,12 @@ body{
 /**************************************
 - ADD NEW Idea
 **************************************/
+/**************************************
+- ADD NEW Idea
+**************************************/
 .add-new-idea {
   margin-top: 100px;
-  height: 600px;
+  height: 1100px;
   max-width: 800px;
   background-color: #ffffff;
   border-radius: 8px;
@@ -294,6 +297,29 @@ body{
   font-size: 21px;
   margin-left: 10px;
 }
+
+.btn-add-idea {
+  display: block;
+  margin: 0 auto;
+  margin-top: 45px;
+}
+
+#img-idea {
+  display: block;
+  margin: 0 auto;
+  max-width: 700px;
+  height: 400px;
+  box-shadow: 0 2px 6px 0px rgba(22, 22, 22, 0.35);
+}
+
+.select-img-idea {
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+
+
 
 /*Login form*/
 .AuthForm {
@@ -335,7 +361,41 @@ body{
 
 
 
+/*Comment*/
+.media .media-object { max-width: 120px; }
+.media-body { position: relative; }
+.media-date { 
+    position: absolute; 
+    right: 25px;
+    top: 25px;
+}
+.media-date li { padding: 0; }
+.media-date li:first-child:before { content: ''; }
+.media-date li:before { 
+    content: '.'; 
+    margin-left: -2px; 
+    margin-right: 2px;
+}
+.media-comment { margin-bottom: 20px; }
+.media-replied { margin: 0 0 20px 50px; }
+.media-replied .media-heading { padding-left: 6px; }
 
+.btn-circle {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 6px 15px;
+    border-radius: 20px;
+}
+.btn-circle span { padding-right: 6px; }
+.embed-responsive { margin-bottom: 20px; }
+.tab-content {
+    padding: 50px 15px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+/*End of Comment*/
 
 /**************************************
 - Panel body

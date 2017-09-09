@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import $ from 'jquery';
+import CommentElement from '../components/CommentElement';
 
 class IdeaDetail extends Component {
   constructor() {
@@ -24,7 +25,27 @@ class IdeaDetail extends Component {
       });
   }
 
-
+  submitComment = (e) => {
+    e.preventDefault();
+    console.log('commentText = ', this.commentText);
+    if (this.commentText && this.commentText.length > 0) {
+        $.ajax({
+            url: '/api/comment/',
+            type: 'post',
+            data: {
+                postId: this.state.idea._id,
+                content: this.commentText
+            },
+            headers: {
+                token: localStorage.token
+            }
+        }).done(data => {
+            window.location.reload();
+        }).fail(err => {
+            console.log(err);
+        });
+    }
+  }
 
   render() {
     if (!this.state.idea) return <div>Please wait</div>
@@ -60,8 +81,9 @@ class IdeaDetail extends Component {
                     <ul className="nav nav-tabs">
                         <li className="active"><a data-toggle="tab" href="#descript"><i className="fa fa-align-left"></i> Mô tả chi tiết</a></li>
                         <li><a data-toggle="tab" href="#rating"><i className="fa fa-thumbs-o-up"></i> Đánh giá</a></li>
+                        <li><a data-toggle="tab" href="#comments"><i className="fa fa-comment-o"></i> Nhận xét</a></li>
                         <li><a data-toggle="tab" href="#multimedia"><i className="fa fa-eye"></i> Hình ảnh - video </a></li>
-                        <li><a data-toggle="tab" href="#comment"><i className="fa fa-comment-o"></i> Gửi đánh giá - nhận xét</a></li>
+                        <li><a data-toggle="tab" href="#addcomment"><i className="fa fa-comment-o"></i> Gửi đánh giá - nhận xét</a></li>
                         <li><a data-toggle="tab" href="#contact"><i className="fa fa-id-card-o"></i> Thông tin liên hệ</a></li>
                     </ul>
 
@@ -78,7 +100,6 @@ class IdeaDetail extends Component {
                         <h4>Đánh giá của các thành viên khác: </h4>
                             <span>{this.state.idea.rating}</span>
                         <h4>Nhận xét:</h4>
-                            <p>{this.state.idea.comments}</p>
                     </div>
 
                     <div id="multimedia" className="tab-pane fade">
@@ -88,14 +109,21 @@ class IdeaDetail extends Component {
                         </figure>
                     </div>
 
+                    <div id="comments" className="tab-pane fade">                
+                        <ul className="media-list">
+                            {this.state.idea.comments.map((cmt,index) =>(
+                                <CommentElement key={index} {...cmt} />
+                            ))}
+                        </ul> 
+                    </div>
 
-                    <div id="comment" className="tab-pane fade">
+                    <div id="addcomment" className="tab-pane fade">
                     <h3 className="text-center">Gửi đánh giá - nhận xét của bạn</h3>
                     <div className="row">
                         <div className="col-md-7">
                         <div className="form-group">
                             <label htmlFor="comment">Comment:</label>
-                            <textarea className="form-control" rows="9" id="comment"></textarea>
+                            <textarea className="form-control" rows="9" onChange={(e) => {this.commentText = e.target.value;}}></textarea>
                         </div>
                         </div>
                         <div className="col-md-5"><label>Rating:</label>
@@ -109,7 +137,7 @@ class IdeaDetail extends Component {
                             </select>
                         </div>
                     </div>
-                    <button className="btn btn-lg btn-primary"><i className="fa fa-paper-plane"></i> Submit</button>
+                    <button className="btn btn-lg btn-primary" onClick={this.submitComment}><i className="fa fa-paper-plane"></i> Submit</button>
                     </div>
 
                     <div id="contact" className="tab-pane fade">

@@ -53,16 +53,16 @@ class AddNewIdea extends Component {
           <p className="add-new-idea-title">Thêm mới ý tưởng</p>
           <hr />
         </div>
-        <form id="theform" ref={(form) => {this.form = form}} method="post" enctype='multipart/form-data'>
+        <form id="theform" ref={(form) => {this.form = form}} method="post">
           <div>
             <div>
               <p className="label-add-idea">Tên</p>
-              <textarea form="theform" name="name" id="nameIdea" className="form-control" rows="2" maxlength="200" placeholder="Như “Nơi nên đi” hoặc “Món ăn nên làm.”"></textarea>
+              <textarea form="theform" name="name" id="nameIdea" className="form-control" rows="2" maxLength="200" placeholder="Như “Nơi nên đi” hoặc “Món ăn nên làm.”"></textarea>
             </div>
             <hr />
             <div>
               <p className="label-add-idea">Mô tả</p>
-              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4" maxlength="200" placeholder="Nội dung của bạn là gì?"></textarea>
+              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?"></textarea>
             </div>
             <hr />
             <div>

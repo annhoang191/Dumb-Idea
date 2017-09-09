@@ -11,9 +11,10 @@ let ideaSchema = mongoose.Schema({
     category: String,
     tags: [],
     briefDescription: String,
-    description: String, //this can be a HTML
+    description: String,
     estimatedRating: Number, //owner's rating
     rating: Number,
+    whoRated: Object,
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
     status: {
         type: String, // private or public ?
