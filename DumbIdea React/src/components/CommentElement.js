@@ -5,10 +5,17 @@ import $ from 'jquery';
 class CommentElement extends Component {
   constructor() {
     super();
-    this.state = {};    
+    this.state = {
+      
+    };
   }
 
   componentDidMount() {
+    this.setState({
+      date: new Date(this.props.createdAt)
+    });
+    console.log('date', new Date(this.props.createdAt));
+
     console.log(this.props.content);
     console.log('start ajax', this.props.author);
     $.ajax({
@@ -35,9 +42,9 @@ class CommentElement extends Component {
           <div className="well well-lg">
               <h4 className="media-heading text-uppercase reviews">{this.state.user.username}</h4>
               <ul className="media-date text-uppercase reviews list-inline">
-                <li className="dd">{this.props.date}</li>
-                <li className="mm">{this.props.date}</li>
-                <li className="aaaa">{this.props.date}}</li>
+                <li className="dd">{this.state.date.getDate()}</li>
+                <li className="mm">{this.state.date.getMonth()}</li>
+                <li className="aaaa">{this.state.date.getFullYear()}</li>
               </ul>
               <p className="media-comment">
                 {this.props.content}
