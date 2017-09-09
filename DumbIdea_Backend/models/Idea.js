@@ -9,9 +9,9 @@ let ideaSchema = mongoose.Schema({
     owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true},
     photo: {type: String}, //save the path to photo
     category: String,
-    tags: [],
-    briefDescription: String,
-    description: String,
+    tags: {type: String, default:""},
+    briefDescription: {type: String, default: ""},
+    description: {type: String, default: ""},
     estimatedRating: Number, //owner's rating
     noUsersRated: {type: Number, default: 0},//number of users rated this idea
     ratingSum: {type: Number, default: 0},
@@ -129,7 +129,6 @@ const getAllIdeaRecommendation = (maximumIdea) => {
   return new Promise((resolve, reject) => {
       Idea.find().limit(maximumIdea).sort({ rating: -1}).populate('owner').populate('comments').exec().then(
         ideas => {
-          console.log('ideas: ',ideas);
           resolve(ideas);
         },
         err => {
@@ -146,7 +145,7 @@ const update = (target, ideaInfo) => {
     return new Promise((resolve, reject) => {
         Idea.findOne(target).populate('owner').populate('comments').then(
             doc => {
-                if (doc.owner != ideaInfo.owner) {
+                if (doc.owner._id != ideaInfo.owner) {
                     reject(new Error('Permission denied'));
                 } else {
                     Object.assign(doc, ideaInfo);

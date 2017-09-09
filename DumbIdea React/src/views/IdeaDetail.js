@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link , withRouter } from 'react-router-dom';
 
 import $ from 'jquery';
 import CommentElement from '../components/CommentElement';
@@ -118,9 +119,14 @@ class IdeaDetail extends Component {
             <div className="container">
                 <div className="row overview">
                     <h1 className="idea-name text-center">{this.state.idea.name}</h1>
-                    <div className="col-md-6">
-                        <img className="img-responsive center-block" src={this.state.idea.photo} />
+                    <div className="col-md-6 container-idea-detail">
+                        <img className="img-responsive center-block img-idea-detail" src={this.state.idea.photo} />
                         <br />
+                        <div className="middle-idea-detail">
+                          <Link to={'/editidea/' + this.state.idea._id} className="btn btn-info btn-lg text-idea-detail">
+                            <span className="glyphicon glyphicon-pencil"></span> Edit
+                          </Link>
+                        </div>
                         <div className="center-div">
                             <Rating label="Total rating" static={true} callback={this.doRate} rating={this.state.idea.noUsersRated ? (Math.round(this.state.idea.ratingSum / this.state.idea.noUsersRated)) : -1}/>
                             <Rating label="Your  rating" static={false} callback={this.doRate} rating={this.getRatingFromUser()}/>
@@ -141,7 +147,7 @@ class IdeaDetail extends Component {
                     <h4 className="text-muted">Tags: {this.state.idea.tags} </h4>
                     </div>
                 </div>
-            </div>      
+            </div>
 
                 <div className="container main-content">
                     <ul className="nav nav-tabs">
@@ -174,12 +180,12 @@ class IdeaDetail extends Component {
                         </figure>
                     </div>
 
-                    <div id="comments" className="tab-pane fade">                
+                    <div id="comments" className="tab-pane fade">
                         <ul className="media-list">
                             {this.state.idea.comments.map((cmt,index) =>(
                                 <CommentElement key={index} {...cmt} />
                             ))}
-                        </ul> 
+                        </ul>
                     </div>
 
                     <div id="addcomment" className="tab-pane fade">

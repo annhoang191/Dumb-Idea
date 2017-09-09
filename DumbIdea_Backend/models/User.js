@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+require('mongoose-type-email');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 
 let userSchema = mongoose.Schema({
     username: {
@@ -23,7 +25,9 @@ let userSchema = mongoose.Schema({
     email: {
         type: String,
         require: false,
-        unique: true
+        unique: true,
+        work: { type: mongoose.SchemaTypes.Email, allowBlank: true }, // allows '' as a value
+        home: mongoose.SchemaTypes.Email // throws when the value is ''
     },
     createdIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}],
     followedIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}],
@@ -48,7 +52,7 @@ userSchema.methods.createdIdeasContains = function(ideaId) {
 }
 
 userSchema.methods.followedIdeasContains = function(ideaId) {
-    return this.followedIdeas.includes(mongoose.Schema.Types.ObjectId(ideaId));   
+    return this.followedIdeas.includes(mongoose.Schema.Types.ObjectId(ideaId));
 }
 
 const User = mongoose.model('User', userSchema);
