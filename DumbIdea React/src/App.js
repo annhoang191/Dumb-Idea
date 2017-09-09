@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import Header from './components/Header';
+import Profile from './views/Profile';
 import MainNav from './components/MainNav';
 import Home from './views/Home';
 import Footer from './components/Footer';
@@ -57,6 +58,11 @@ class App extends Component {
         path      : '/register',
         exact     : true,
         component : Register
+      },
+      {
+        path      : '/profile/:id',
+        exact     : true,
+        component : Profile
       },
       {
         path      : '*',

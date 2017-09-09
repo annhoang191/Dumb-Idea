@@ -7,39 +7,6 @@ class Header extends Component {
   render() {
     const menuItems = [
       {
-        name : "Khám phá ý tưởng",
-        subItems : [
-          {
-            name : "Tất cả",
-            path : "/all"
-          },
-          {
-            name : "Công nghệ",
-            path : "/tech"
-          },
-          {
-            name : "Kinh doanh - Thương mại",
-            path : "/eco"
-          },
-          {
-            name : "Nghệ thuật",
-            path : "/art"
-          },
-          {
-            name : "Ứng dụng - Đồ chơi",
-            path : "/product"
-          },
-          {
-            name : "Hoạt động xã hội",
-            path : "/life"
-          },
-          {
-            name : "Nhảm nhí",
-            path : "/other"
-          }
-        ]
-      },
-      {
         name : "Thêm ý tưởng",
         path : "/addnewidea"
       },
