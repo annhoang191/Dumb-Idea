@@ -144,7 +144,7 @@ const update = (target, ideaInfo) => {
     return new Promise((resolve, reject) => {
         Idea.findOne(target).populate('owner').populate('comments').then(
             doc => {
-                if (doc.owner != ideaInfo.owner) {
+                if (doc.owner._id != ideaInfo.owner) {
                     reject(new Error('Permission denied'));
                 } else {
                     Object.assign(doc, ideaInfo);

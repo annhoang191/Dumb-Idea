@@ -126,7 +126,7 @@ Router.post('/', upload.single('image'), (req, res) => {
   console.log('CREATE IDEA...');
   let newIdea = req.body;
   newIdea.owner = req.decoded;
-  newIdea.photo = req.file.path.split('/').slice(1).join('/');
+  if (req.file) newIdea.photo = req.file.path.split('/').slice(1).join('/');
   IdeaModel.create(newIdea).then(idea => {
     res.send({
       message: 'Created idea',
@@ -137,9 +137,10 @@ Router.post('/', upload.single('image'), (req, res) => {
   });
 });
 
-Router.put('/:id', (req, res) => {
+Router.put('/:id', upload.single('image'), (req, res) => {
   let newIdea = req.body;
   newIdea.owner = req.decoded;
+  if (req.file) newIdea.photo = req.file.path.split('/').slice(1).join('/');
   IdeaModel.update({ _id: req.params.id }, newIdea).then(
     idea => {
       res.send({message: 'Update idea'});

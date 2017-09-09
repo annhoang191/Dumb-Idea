@@ -55,7 +55,7 @@ class EditIdea extends Component {
     .then(
       res => {
         console.log(res);
-        // this.props.history.push('/idea/' + res.id);
+        this.props.history.push('/idea/' + this.state.idea._id);
       },
       err => {
         console.log('Cannot AJAX');
@@ -72,7 +72,7 @@ class EditIdea extends Component {
           <p className="add-new-idea-title">Chỉnh sửa ý tưởng</p>
           <hr />
         </div>
-        <form id="theform" ref={(form) => {this.form = form}} method="post">
+        <form id="theform" ref={(form) => {this.form = form}} method="put">
           <div>
             <div>
               <p className="label-add-idea">Tên</p>
@@ -81,24 +81,9 @@ class EditIdea extends Component {
             <hr />
             <div>
               <p className="label-add-idea">Mô tả</p>
-              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?">{this.state.idea.briefDescription}</textarea>
+              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?">{this.state.idea.description}</textarea>
             </div>
             <hr />
-            <div>
-              <p className="label-add-idea">Danh mục</p>
-              <div>
-                <div className="arrow-bottom glyphicon glyphicon-triangle-bottom"></div>
-                <select>
-                  <option value="">Nó là loại ý tưởng gì?</option>
-                  <option value="technology">Công nghệ</option>
-                  <option value="business">Kinh doanh - Thương mại</option>
-                  <option value="art">Nghệ thuật</option>
-                  <option value="application">Ứng dụng - Đồ chơi</option>
-                  <option value="society">Hoạt động xã hội</option>
-                  <option value="bullshit">Nhảm nhí</option>
-                </select>
-              </div>
-            </div>
             <hr />
             <div>
               <p className="label-add-idea">Thêm ảnh</p>
