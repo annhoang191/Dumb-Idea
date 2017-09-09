@@ -8,7 +8,8 @@ class IdeaDetail extends Component {
   constructor() {
       super();
       this.state = {
-        idea: null
+        idea: null,
+        user: null
       };
   }
 
@@ -19,6 +20,18 @@ class IdeaDetail extends Component {
       }).done(data => {
           this.setState({
             idea: data
+          });
+          console.log(data);
+      }).fail(err => {
+          console.error(err);
+      });
+
+      $.ajax({
+          url:'/api/user/' + localStorage.userId,
+          type : 'get'
+      }).done(data => {
+          this.setState({
+            user: data
           });
           console.log(data);
       }).fail(err => {
@@ -57,19 +70,20 @@ class IdeaDetail extends Component {
             token: localStorage.token
         }
     }).done(data => {
-        window.location.reload();
+        
         console.log('success togglefollow');
         console.log(data);
+        window.location.reload();
     }).fail(err => {
         console.log(err);
     });
   }
 
   render() {
-    if (!this.state.idea) return <div>Please wait</div>;
+    if (!this.state.idea || !this.state.user) return <div>Please wait</div>;
 
     let FollowButton = (props) => {
-        if (this.state.idea.owner.followedIdeas.includes(this.state.idea._id)) {
+        if (this.state.user.followedIdeas.includes(this.state.idea._id)) {
             return <button className="btn btn-lg btn-warning" onClick={this.toggleFollow}>Bỏ theo dõi</button>
         } else {
             return <button className="btn btn-lg btn-primary" onClick={this.toggleFollow}>Theo dõi</button>

@@ -26,7 +26,7 @@ class IdeaBoxProfile extends Component {
     }
 
     render() {
-        if(!this.state.idea) return <div>There's nothing here</div>
+        if(!this.state.idea) return null;
         return(
             <div className="container">
               <article className="IdeaBoxProfile post style-3 well">
