@@ -128,7 +128,6 @@ const getAllIdeaRecommendation = (maximumIdea) => {
   return new Promise((resolve, reject) => {
       Idea.find().limit(maximumIdea).sort({ rating: -1}).populate('owner').populate('comments').exec().then(
         ideas => {
-          console.log('ideas: ',ideas);
           resolve(ideas);
         },
         err => {
