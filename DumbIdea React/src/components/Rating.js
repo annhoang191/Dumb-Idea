@@ -5,18 +5,22 @@ var Rating = React.createClass({
       disabled: React.PropTypes.bool
     },
     getInitialState() {
+      console.log("initial", this.props.rating);
       return {
         rating: this.props.rating || null,
         temp_rating: null
       };
     },
     rate(rating) {
+      if (this.props.static) return;
+      this.setState({ rating: this.props.callback(rating)})
       this.setState({
         rating: rating,
         temp_rating: rating
       });
     },
     star_over(rating) {
+      if (this.props.static) return;
       this.state.temp_rating = this.state.rating;
       this.state.rating = rating;
       
@@ -26,6 +30,7 @@ var Rating = React.createClass({
       });
     },
     star_out() {
+      if (this.props.static) return;
       this.state.rating = this.state.temp_rating;
       
       this.setState({ rating: this.state.rating });
@@ -33,7 +38,7 @@ var Rating = React.createClass({
     render() {
       var stars = [];
       
-      for(var i = 0; i < 10; i++) {
+      for(var i = 1; i <= 10; i++) {
         var klass = 'star-rating__star';
         
         if (this.state.rating >= i && this.state.rating != null) {
@@ -53,6 +58,7 @@ var Rating = React.createClass({
       
       return (
         <div className="star-rating">
+          <span>{this.props.label}</span>
           {stars}
         </div>
       );

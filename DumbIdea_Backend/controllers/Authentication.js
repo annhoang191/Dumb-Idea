@@ -1,14 +1,14 @@
 const jwt = require('jsonwebtoken');
 
 const verify = (req, res, next) => {
-  console.log('verify', req.headers);
-  console.log('verify', req.body);
+  //console.log('verify', req.headers);
+  //console.log('verify', req.body);
   if (req.headers && req.headers.token) {
     jwt.verify(req.headers.token, 'SECRET', (err, decoded) => {
       if (err) {
         res.status(401).send({error: 'Invalid token'});
       } else {
-        console.log('decoded', decoded);
+        //console.log('decoded', decoded);
         req.decoded = decoded.id;
         next();
       }

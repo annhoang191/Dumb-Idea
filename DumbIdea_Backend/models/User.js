@@ -27,7 +27,7 @@ let userSchema = mongoose.Schema({
     },
     createdIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}],
     followedIdeas: [{type: mongoose.Schema.Types.ObjectId, ref: 'Idea'}],
-    ratedIdeas: [{type: mongoose.Schema.Types.Mixed, default: {}}],
+    ratedIdeas: [{}],
     status: {
         type: String,
         require: true,
@@ -315,9 +315,12 @@ const rateIdea = (target, ideaId, newRating) => {
                 } else {
                     count = 0;
                     value = newRating - user.ratedIdeas[index].rating;
+                    console.log("BEFORE", user.ratedIdeas[index].rating);
+                    console.log("VALUE", value);
+                    console.log("AFTER", newRating);
                     user.ratedIdeas[index].rating = newRating;
                 }
-
+                user.markModified('ratedIdeas');
                 return user.save();
             },
             err => {
@@ -328,6 +331,7 @@ const rateIdea = (target, ideaId, newRating) => {
         .then(
             user => {
                 console.log(`SUCCESS user saved`);
+                console.log(user);
                 resolve({count, value});
             },
             err => {

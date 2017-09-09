@@ -79,6 +79,29 @@ class IdeaDetail extends Component {
     });
   }
 
+  doRate = (newRating) => {
+    $.ajax({
+        url: '/api/idea/rateidea/' + this.state.idea._id + '?rating=' + (newRating),
+        type: 'put',
+        headers: {
+            token: localStorage.token
+        }
+    }).done(data => {
+        window.location.reload();
+    }).fail(err => {
+        console.log(err);
+    });
+  }
+
+  getRatingFromUser = () => {
+    for (let i = 0; i < this.state.user.ratedIdeas.length; ++i) {
+        if (this.state.user.ratedIdeas[i].ideaId == this.state.idea._id) {
+            return this.state.user.ratedIdeas[i].rating;
+        }
+    }
+    return 0;
+  }
+
   render() {
     if (!this.state.idea || !this.state.user) return <div>Please wait</div>;
 
@@ -97,6 +120,11 @@ class IdeaDetail extends Component {
                     <h1 className="idea-name text-center">{this.state.idea.name}</h1>
                     <div className="col-md-6">
                         <img className="img-responsive center-block" src={this.state.idea.photo} />
+                        <br />
+                        <div className="center-div">
+                            <Rating label="Total rating" static={true} callback={this.doRate} rating={this.state.idea.noUsersRated ? (Math.round(this.state.idea.ratingSum / this.state.idea.noUsersRated)) : -1}/>
+                            <Rating label="Your  rating" static={false} callback={this.doRate} rating={this.getRatingFromUser()}/>
+                        </div>
                     </div>
                     <div className="col-md-6">
                         <div className="row">
@@ -108,10 +136,7 @@ class IdeaDetail extends Component {
                             </div>
                     </div>
                     <h3>Lĩnh vực: </h3> <span>{this.state.idea.category}</span>
-                    <h3>Brief description:</h3>
-                        <p>{this.state.idea.briefDescription}</p>
                     <h3>Độ khả thi: </h3> <span>{this.state.idea.estimatedRating}</span>
-                    <h3>Công khai: </h3> <span>{this.state.idea.status} </span>
                     <h3>Ngày đăng</h3>
                     <h4 className="text-muted">Tags: {this.state.idea.tags} </h4>
                     </div>
@@ -165,11 +190,6 @@ class IdeaDetail extends Component {
                             <label htmlFor="comment">Comment:</label>
                             <textarea className="form-control" rows="9" onChange={(e) => {this.commentText = e.target.value;}}></textarea>
                         </div>
-                        </div>
-                        <div className="col-md-5"><label>Rating:</label>
-                            <br />
-                            <Rating />
-
                         </div>
                     </div>
                     <button className="btn btn-lg btn-primary" onClick={this.submitComment}><i className="fa fa-paper-plane"></i> Submit</button>
