@@ -45,7 +45,7 @@ class IdeaBoxProfile extends Component {
                               <div className="rating"><i className="fa fa-star-o"></i> Độ khả thi (tính trung bình): {this.state.rating} </div>
                               <button className="btn btn-sm btn-default btn-detail">Chi tiết</button>
                           </div>
-                      </div>
+                      </div> 
                   </div>
               </article>    
               <hr /> 
