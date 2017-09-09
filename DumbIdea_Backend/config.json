@@ -5,6 +5,6 @@
     },
     "development": {
         "dbpath": "localhost:27017/dumpideas",
-        "port": "6969"
+        "port": "8888"
     }
 }
