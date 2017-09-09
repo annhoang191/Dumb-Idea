@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import MostPopularIdea from '../components/MostPopularIdea';
+// import MostPopularIdea from '../components/MostPopularIdea';
 import FilterBox from '../components/FilterBox';
 import ListBox from '../components/ListBox';
 class TopIdea extends Component {
@@ -16,13 +16,12 @@ class TopIdea extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8">
-              <MostPopularIdea />
+              <ListBox />
             </div>
             <div className="col-md-4">
               <FilterBox />
             </div>
           </div>
-          <ListBox />
         </div>
 
       </div>
