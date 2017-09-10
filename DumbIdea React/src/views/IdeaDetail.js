@@ -27,22 +27,27 @@ class IdeaDetail extends Component {
           console.error(err);
       });
 
-      $.ajax({
-          url:'/api/user/' + localStorage.userId,
-          type : 'get'
-      }).done(data => {
-          this.setState({
-            user: data
+      if (localStorage.userId && localStorage.userId != null) {
+          $.ajax({
+              url:'/api/user/' + localStorage.userId,
+              type : 'get'
+          }).done(data => {
+              this.setState({
+                user: data
+              });
+              console.log(data);
+          }).fail(err => {
+              console.error(err);
           });
-          console.log(data);
-      }).fail(err => {
-          console.error(err);
-      });
+      }
   }
 
   submitComment = (e) => {
     e.preventDefault();
-    console.log('commentText = ', this.commentText);
+    if (!this.state.user) {
+        alert('Please login to post comments');
+        return;
+    }    console.log('commentText = ', this.commentText);
     if (this.commentText && this.commentText.length > 0) {
         $.ajax({
             url: '/api/comment/',
@@ -81,6 +86,10 @@ class IdeaDetail extends Component {
   }
 
   doRate = (newRating) => {
+    if (!this.state.user) {
+        alert('Please login to rate');
+        return;
+    }
     $.ajax({
         url: '/api/idea/rateidea/' + this.state.idea._id + '?rating=' + (newRating),
         type: 'put',
@@ -95,6 +104,7 @@ class IdeaDetail extends Component {
   }
 
   getRatingFromUser = () => {
+    if (!this.state.user) return 0;
     for (let i = 0; i < this.state.user.ratedIdeas.length; ++i) {
         if (this.state.user.ratedIdeas[i].ideaId == this.state.idea._id) {
             return this.state.user.ratedIdeas[i].rating;
@@ -104,9 +114,10 @@ class IdeaDetail extends Component {
   }
 
   render() {
-    if (!this.state.idea || !this.state.user) return <div>Please wait</div>;
+    if (!this.state.idea) return <div>Please wait</div>;
 
     let FollowButton = (props) => {
+        if (!this.state.user) return null;
         if (this.state.user.followedIdeas.includes(this.state.idea._id)) {
             return <button className="btn btn-lg btn-warning" onClick={this.toggleFollow}>Bỏ theo dõi</button>
         } else {

@@ -1,6 +1,6 @@
 {
     "production": {
-        "dbpath": "mongodb://admin:admin@ds149613.mlab.com:49613/dumbidea",
+        "dbpath": "mongodb://admin:admin@ds035533.mlab.com:35533/dumpideas",
         "port": "8888"
     },
     "development": {
