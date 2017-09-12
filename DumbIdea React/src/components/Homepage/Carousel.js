@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, withRouter} from 'react-router-dom';
 
 
 class Carousel extends Component {
@@ -13,7 +14,7 @@ class Carousel extends Component {
                <div className="carousel-caption">
                  <h1>We are still working hard to make this site look cool</h1>
                  <p>We will be here soon guys. Please visit us later</p>
-                 <p><a className="btn btn-lg btn-primary" href="#" role="button">Tìm hiểu thêm</a></p>
+                 <Link to="/topIdea"><button className="btn btn-lg btn-primary">Tìm hiểu thêm</button></Link>
                </div>
              </div>
            </div>
@@ -24,4 +25,4 @@ class Carousel extends Component {
   }
 }
 
-export default Carousel;
+export default withRouter(Carousel);

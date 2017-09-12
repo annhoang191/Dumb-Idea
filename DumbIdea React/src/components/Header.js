@@ -52,7 +52,7 @@ class Header extends Component {
         path : "/addnewidea"
       },
       {
-        name : "Top ý tưởng trong tuần",
+        name : "Tất cả ý tưởng",
         path : "/topidea"
       },
       {
