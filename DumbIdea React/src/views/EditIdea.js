@@ -106,6 +106,17 @@ class EditIdea extends Component {
               <textarea form="theform" name="description" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?" defaultValue={this.state.idea.description}></textarea>
               <hr />
             </div>
+            <div>
+              <p className="label-add-idea">Thể loại</p>
+              <select form="theform" name="category" className="form-control select-category">
+                <option value="technology">Công nghệ</option>
+                <option value="business">Kinh doanh</option>
+                <option value="art">Nghệ thuật</option>
+                <option value="application">Ứng dụng</option>
+                <option value="social">Xã hội</option>
+                <option value="other">Nhảm nhí đột phá</option>
+              </select>
+            </div>
             <div className="add-idea">
               <p>Thêm thẻ</p>
               <textarea form="theform" name="tags" className="form-control" rows="2" maxLength="200" placeholder="Điền tags tại đây" onChange={this.tagChange} defaultValue={this.state.idea.tags}></textarea>

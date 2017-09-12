@@ -119,6 +119,16 @@ Router.get('/getAll/:id', (req, res) => {
     }
   );
 });
+Router.get('/getAllFull/:id', (req, res) => {
+  IdeaModel.getAllIdeaWithPageFull(req.params.id, numberIdeaPerPage, req.query.categories, req.query.searchText, req.query.sortByDate || -1).then(
+    ideas => {
+      res.send(ideas);
+    },
+    err => {
+      res.send({error: 'Error get all idea with page full!!!'});
+    }
+  );
+});
 
 Router.use(authentication.verify);
 

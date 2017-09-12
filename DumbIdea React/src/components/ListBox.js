@@ -4,56 +4,8 @@ import Box from './TopIdea/Box';
 import $ from 'jquery';
 
 class ListBox extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      ideasDisplay : [],
-      pageNo       : 1,
-      isLoading    : false
-    }
-  }
-
-  componentDidMount() {
-    this.requestNextPage();
-    $(window).on('scroll', this.checkScroll.bind(this));
-  }
-
-  checkScroll() {
-      if ($(window).scrollTop() + $(window).height() > $(document).height() - 300) {
-        if(!this.state.isLoading) this.requestNextPage();
-      }
-    }
-
-  requestNextPage() {
-    // Set Is loading true
-    this.setState({
-      isLoading : true
-    })
-    // Query
-    $.ajax({
-      url  : '/api/idea/getAll/' + this.state.pageNo,
-      type : 'get'
-    }).done( data => {
-      console.log('Data in list box: ' + data);
-      // Update list idea and page number
-      this.setState({
-        ideasDisplay  : this.state.ideasDisplay.concat(data),
-        pageNo        : this.state.pageNo + 1
-      })
-    }).fail( err => {
-      // Error
-      console.log('ERROR in ajax List Box: ' + err);
-    }).always( () => {
-      // Set Is loading true
-      this.setState({
-        isLoading : false
-      })
-    })
-  }
-
   render() {
-    var childElements = this.state.ideasDisplay.map(function(idea) {
+    var childElements = this.props.ideasDisplay.map(function(idea) {
       return (
         <Box {...idea} />
       );

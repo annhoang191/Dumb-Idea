@@ -112,6 +112,28 @@ const getAllIdeaWithPage = (page, maximumIdea) => {
   });
 }
 
+const getAllIdeaWithPageFull = (page, maximumIdea, categories, searchText="", sortByDate=-1) => {
+    return new Promise((resolve, reject) => {
+        console.log("categories", categories);
+        let target = {
+            $or: categories.map((e) => { return {"category": e }})
+        };
+        if (searchText && searchText != "") {
+            Object.assign(target, {$text: {$search: searchText}});
+        }
+        console.log("target", target);
+        Idea.find(target).limit(maximumIdea).sort({updatedAt: sortByDate}).skip((page-1) * maximumIdea).populate('owner').populate('comments').exec().then(
+            ideas => {
+                console.log("ideas", ideas);
+                resolve(ideas);
+            },
+            err => {
+                reject(err);
+            }
+        );
+    });
+}
+
 const getAllIdeaOldest = (maximumIdea) => {
     return new Promise((resolve, reject) => {
         Idea.find().limit(maximumIdea).sort({ createdAt: 1}).populate('owner').populate('comments').exec().then(
@@ -255,8 +277,8 @@ const searchText = (text, limit = 20) => {
         Idea.find({
             $text: {
                 $search: text
-            },
-            status: 'public'
+            }//,
+            //status: 'public'
         })
         .limit(limit)
         .populate('owner').populate('comments')
@@ -306,6 +328,7 @@ module.exports = {
     create,
     get,
     getAllIdea,
+    getAllIdeaWithPageFull,
     getAllIdeaRecommendation,
     getAllIdeaWithPage,
     getAllIdeaOldest,

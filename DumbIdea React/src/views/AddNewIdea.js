@@ -66,6 +66,17 @@ class AddNewIdea extends Component {
               <hr />
             </div>
             <div>
+              <p className="label-add-idea">Thể loại</p>
+              <select form="theform" name="category" className="form-control select-category">
+                <option value="technology">Công nghệ</option>
+                <option value="business">Kinh doanh</option>
+                <option value="art">Nghệ thuật</option>
+                <option value="application">Ứng dụng</option>
+                <option value="social">Xã hội</option>
+                <option value="other">Nhảm nhí đột phá</option>
+              </select>
+            </div>
+            <div>
               <p className="label-add-idea">Thêm ảnh</p>
               <img id="img-idea" alt="A close up of an idea" />
               <input form="theform" name='image' type="file" className="select-img-idea" onChange={this.onImageChange} />
