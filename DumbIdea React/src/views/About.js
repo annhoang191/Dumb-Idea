@@ -11,8 +11,7 @@ class About extends Component {
         {/* intro about website. */}
           <div className="container">
             <div className="about-intro">
-              <p>Dumb Idea là nơi bạn có thể đăng tải những ý tưởng thú vị nhưng lại không thể thực hiện của bản thân. Dumb Idea cũng giúp bạn tìm nguồn cảm hứng từ những ý tưởng hay ho của cộng đồng.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor nunc eu semper malesuada. Vestibulum ut sodales erat. Praesent a metus non eros faucibus dapibus. Maecenas fringilla eget metus ac euismod. Suspendisse malesuada consequat viverra. Duis eros tellus, iaculis quis sapien eget, tristique elementum magna. Aliquam a ante ut ligula rhoncus consequat. Integer pharetra blandit felis, id cursus ex ullamcorper id. Proin pharetra nulla vel venenatis dapibus. Suspendisse potenti. Quisque aliquam fringilla feugiat. Nunc blandit ipsum eget elit sagittis vulputate at facilisis erat. Vivamus tellus dui, sodales ac neque id, finibus semper ligula. Donec sit amet rutrum urna, ut pulvinar odio. Proin condimentum posuere nibh et fermentum.</p>
+              <p>Dumb Ideas là một website giúp bạn có thể tìm kiếm nguồn cảm hứng cho ý tưởng của mình từ cộng đồng. Tại đây bạn có thể theo dõi, lưu lại những ý tưởng phi lợi nhuận mà mọi người đăng tải. Từ những ý tưởng có khả năng thay đổi cuộc sống cho tới những ý tưởng nho nhỏ, bạn đều có thể đăng tải và tìm kiếm tại đây. Những ý tưởng có thể đến từ bất kì đâu, trong mọi lĩnh vực. Dumb Ideas sẽ giúp bạn lưu trữ, tìm người phát triển ý tưởng thành sản phẩm cùng bạn</p>
             </div>
           </div>
 
@@ -22,13 +21,15 @@ class About extends Component {
               <div className="col">
                 <div className ="col-md-6">
                   <h3>Mục tiêu của chúng tôi</h3>
-                  <img className="img-responsive center-block" src="img/dump3.jpg" />
+                  <img className="img-responsive center-block" src="img/dump5.jpg" />
                 </div>
                 <div className="col-md-6">
                   <br></br>
                   <br></br>
                   <br></br>
-                  <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor nunc eu semper malesuada. Vestibulum ut sodales erat. Praesent a metus non eros faucibus dapibus. Maecenas fringilla eget metus ac euismod. Suspendisse malesuada consequat viverra. Duis eros tellus, iaculis quis sapien eget, tristique elementum magna. Aliquam a ante ut ligula rhoncus consequat. Integer pharetra blandit felis, id cursus ex ullamcorper id. Proin pharetra nulla vel venenatis dapibus. Suspendisse potenti. Quisque aliquam fringilla feugiat. Nunc blandit ipsum eget elit sagittis vulputate at facilisis erat. Vivamus tellus dui, sodales ac neque id, finibus semper ligula. Donec sit amet rutrum urna, ut pulvinar odio. Proin condimentum posuere nibh et fermentum.</p>
+                  <br></br>             
+                  <h5>Dumb Ideas sẽ giúp bạn đưa những ý tưởng, dù có nhỏ bé đến đâu, đến với cộng đồng. Đây cũng là nơi bạn có thể tìm kiếm nguồn cảm hứng cho những ý tưởng mới mẻ của mình, tham gia phát triển những ý tưởng thú vị khác và mở rộng các mối quan hệ.</h5>
+                  <h5>Tất cả những ý tưởng được đăng tải trên Dumb Ideas đều mang tính chia sẻ cộng đồng, phi lợi nhuận cho đến khi ý tưởng được phát triển theo hướng của tác giả.</h5>
                 </div>
               </div>
             </div>
@@ -40,18 +41,18 @@ class About extends Component {
               <div className="col">
                 <div className="col-md-6">
                   <h3>Tính năng</h3>
-                  <img className="img-responsive center-block" src="img/dump2.jpg" />
+                  <img className="img-responsive center-block" src="img/dump4.jpg" />
                 </div>
                 <div className="col-md-6">
                   <br></br>
                   <br></br>
                   <br></br>
                   <h4>Theo dõi ý tưởng</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur ad.</p>
+                  <p>Hứng thú với một ý tưởng? Hãy lưu lại ý tưởng đó bằng cách tạo tài khoản trên Dumb Ideas.</p>
                   <h4>Đăng tải ý tưởng</h4>
-                  <p> Lorem ipsum dolor sit amet, consectetur ad.</p>
+                  <p>Bạn có ý tưởng nhưng không thể thực hiện một mình? Bạn muốn chia sẻ một ý tưởng nhỏ nhỏ với cộng đồng? Hãy đăng tải chúng trên Dumb Ideas</p>
                   <h4>Mở rộng network</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur ad.</p>
+                  <p>Bạn có thể liên hệ với tác giả của những ý tưởng thú vị để tham gia đóng góp phát triển.</p>
                 </div>
               </div>
             </div>
@@ -60,7 +61,7 @@ class About extends Component {
           {/* about our team. */}
           <div className="container">
             <div className="about-team">
-              <h4>Chúng tôi là gì gì đó Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor nunc eu semper malesuada. Vestibulum ut sodales erat. Praesent a metus non eros faucibus dapibus. Maecenas fringilla eget metus ac euismod. Suspendisse malesuada consequat viverra. Duis eros tellus, iaculis quis sapien eget, tristique elementum magna. Aliquam a ante ut ligula rhoncus consequat. Integer pharetra blandit felis, id cursus ex ullamcorper id. Proin pharetra nulla vel venenatis dapibus. Suspendisse potenti.</h4>
+              <h4>Team gồm 4 thành viên là sinh viên đến từ các trường khác nhau nhưng cùng tham gia phát triển Dumb Ideas trong thời gian học tại Techkids</h4>
             </div>
           </div>
           {/* team members*/}
@@ -68,7 +69,7 @@ class About extends Component {
             <div className="row">
                  <div className="heading-title text-center">
                      <h2 className="text-uppercase">Meet the team!</h2>
-                     <p>Giới thiệu gì đó team rất siêu đại loại vậy</p>
+                     <p>Các thành viên trong team</p>
                  </div>
 
                  <div className="col-md-3 col-sm-3">
@@ -78,8 +79,8 @@ class About extends Component {
                          </div>
                          <div className="team-hover">
                              <div className="desk">
-                                 <h4>Angsty weeaboo</h4>
-                                 <p>Giới thiệu gì đó</p>
+                                 <h4>Hoàng Quỳnh Anh</h4>
+                                 <p>Code lâu bâu</p>
                              </div>
                              <div className="s-link">
                                  <a href="https://www.facebook.com/annhoang191" target="_blank"><i className="fa fa-facebook"></i></a>
@@ -89,8 +90,8 @@ class About extends Component {
                          </div>
                      </div>
                      <div className="team-title">
-                         <h5>Tên</h5>
-                         <span>Làm cái gì đó cho project</span>
+                         <h5>Hoàng Quỳnh Anh</h5>
+                         <span>Front-End Dev - Lâu bâu</span>
                      </div>
                  </div>
                  <div className="col-md-3 col-sm-3">
@@ -101,7 +102,7 @@ class About extends Component {
                          <div className="team-hover">
                              <div className="desk">
                                  <h4>LAD</h4>
-                                 <p>Giới thiệu gì đó.</p>
+                                 <p>Code gánh team</p>
                              </div>
                              <div className="s-link">
                                  <a href="https://www.facebook.com/ladpro98" target="_blank"><i className="fa fa-facebook"></i></a>
@@ -111,8 +112,8 @@ class About extends Component {
                          </div>
                      </div>
                      <div className="team-title">
-                         <h5>Tên</h5>
-                         <span>Làm gì đó cho project</span>
+                         <h5>Lê Anh Đức</h5>
+                         <span>Backend - Frontend</span>
                      </div>
                  </div>
                  <div className="col-md-3 col-sm-3">
@@ -122,8 +123,8 @@ class About extends Component {
                          </div>
                          <div className="team-hover">
                              <div className="desk">
-                                 <h4>Vinh Nguyễn</h4>
-                                 <p>Giới thiệu gì đó</p>
+                                 <h4>Nguyễn Đình Vinh</h4>
+                                 <p>Code gánh team 2</p>
                              </div>
                              <div className="s-link">
                                  <a href="https://www.facebook.com/vinhxxu" target="_blank"><i className="fa fa-facebook"></i></a>
@@ -133,8 +134,8 @@ class About extends Component {
                          </div>
                      </div>
                      <div className="team-title">
-                         <h5>Tên</h5>
-                         <span>Làm gì đó cho Project</span>
+                         <h5>Nguyễn Đình Vinh</h5>
+                         <span>Backend Dev</span>
                      </div>
                  </div>
                  <div className="col-md-3 col-sm-3">
@@ -145,7 +146,7 @@ class About extends Component {
                          <div className="team-hover">
                              <div className="desk">
                                  <h4>Nguyễn Thái Dương</h4>
-                                 <p>Giới thiệu gì đó</p>
+                                 <p>Code gì đó</p>
                              </div>
                              <div className="s-link">
                                  <a href="https://www.facebook.com/Maruusha" target="_blank"><i className="fa fa-facebook"></i></a>
@@ -155,8 +156,8 @@ class About extends Component {
                          </div>
                      </div>
                      <div className="team-title">
-                         <h5>Tên</h5>
-                         <span>Làm gì đó cho Project</span>
+                         <h5>Nguyễn Thái Dương</h5>
+                         <span>Cổ vũ team</span>
                      </div>
                  </div>
              </div>
@@ -164,26 +165,9 @@ class About extends Component {
           { /*Ending */}
           <div className="container">
             <div className="ending">
-              <p>Chúng tôi ủng hộ tất cả những ý tưởng thú vị nhất đến từ mọi chủ đề, kể cả những ý tưởng tưởng chừng bé nhỏ nhất bạn cũng có thể lưu lại và chia sẻ với mọi người.
-              Truyền cảm hứng cho cộng đồng blahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblahblah</p>
+              <h2>Hãy chia sẻ ý tưởng của bạn với chúng tôi</h2>
             </div>
-            <div className="notice">
-              <h3 className="text-center">Ủng hộ cộng đồng ý tưởng</h3>
-            </div>
-            <div className="row center">
-              <div className="col-md-3 col-sm-3 box-content">
-                <h3 className="text-center">Chúng tôi đánh giá cao những ý tưởng sáng tạo trong mọi lĩnh vực</h3>
-                 <button className="btn btn-lg btn-primary center">Xem tất cả ý tưởng</button>
-              </div>
-              <div className="col-md-3 col-sm-3 box-content">
-                <h3 className="text-center">Đăng tải và theo dõi những ý tưởng thú vị</h3>
-                 <button className="btn btn-lg btn-primary center">Đăng tải ý tưởng</button>
-              </div>
-              <div className="col-md-3 col-sm-3 box-content">
-                <h3 className="text-center">Hợp tác liên hệ với cộng đồng sáng tạo ý tưởng</h3>
-                 <button className="btn btn-lg btn-primary center">Tham gia cộng đồng</button>
-              </div>
-            </div>
+
           </div>
 
       </div>
