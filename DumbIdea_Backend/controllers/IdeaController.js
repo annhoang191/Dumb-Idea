@@ -120,6 +120,7 @@ Router.get('/getAll/:id', (req, res) => {
   );
 });
 Router.get('/getAllFull/:id', (req, res) => {
+  console.log("HERE");
   IdeaModel.getAllIdeaWithPageFull(req.params.id, numberIdeaPerPage, req.query.categories, req.query.searchText, req.query.sortByDate || -1).then(
     ideas => {
       res.send(ideas);
