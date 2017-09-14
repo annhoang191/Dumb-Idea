@@ -40,8 +40,11 @@ body{
 .logo {
   max-width: 200px;
 }
-
-@media only screen and (min-width: 600px) {
+.otherbtn {
+  margin: 0;
+  display:block;
+}
+@media only screen and (min-width: 700px) {
   .otherbtn {
     line-height: 20px;
     margin: 10px;
@@ -417,8 +420,7 @@ body{
   margin-top: 70px;
 }
 .img-thumbnail-profile {
-  max-width:250px;
-  border-radius: 50%;
+  max-width:200px;
 }
 .contact {
   list-style: none;
