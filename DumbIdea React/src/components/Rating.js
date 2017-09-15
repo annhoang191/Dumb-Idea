@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 var Rating = React.createClass({
-    propTypes: {
-      disabled: React.PropTypes.bool
-    },
     getInitialState() {
       console.log("initial", this.props.rating);
       return {
@@ -46,7 +43,7 @@ var Rating = React.createClass({
         }
   
         stars.push(
-          <label
+          <label key={i}
             className={klass}
             onClick={this.rate.bind(this, i)}
             onMouseOver={this.star_over.bind(this, i)}

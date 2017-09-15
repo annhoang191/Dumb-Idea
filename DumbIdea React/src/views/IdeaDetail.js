@@ -10,7 +10,8 @@ class IdeaDetail extends Component {
       super();
       this.state = {
         idea: null,
-        user: null
+        user: null,
+        userRating: null
       };
   }
 
@@ -21,25 +22,28 @@ class IdeaDetail extends Component {
       }).done(data => {
           this.setState({
             idea: data
+          }, () => {
+            if (localStorage.userId && localStorage.userId != null) {
+              $.ajax({
+                  url:'/api/user/' + localStorage.userId,
+                  type : 'get'
+              }).done(data => {
+                  this.setState({
+                    user: data
+                  }, () => {
+                    //console.log("Got rating", this.getRatingFromUser());
+                    this.setState({userRating: this.getRatingFromUser()});
+                  });
+                  console.log(data);
+              }).fail(err => {
+                  console.error(err);
+              });
+            }
           });
           console.log(data);
       }).fail(err => {
           console.error(err);
       });
-
-      if (localStorage.userId && localStorage.userId != null) {
-          $.ajax({
-              url:'/api/user/' + localStorage.userId,
-              type : 'get'
-          }).done(data => {
-              this.setState({
-                user: data
-              });
-              console.log(data);
-          }).fail(err => {
-              console.error(err);
-          });
-      }
   }
 
   submitComment = (e) => {
@@ -103,8 +107,24 @@ class IdeaDetail extends Component {
     });
   }
 
+  doErase = (e) => {
+    if (!this.state.user) return;
+    $.ajax({
+      url: 'api/idea/' + this.state.idea._id,
+      type: 'delete',
+      headers: {
+        token: localStorage.token
+      }
+    }).done(data => {
+      this.props.history.push('/profile/' + this.state.user._id);
+    }).fail(err => {
+      console.log(err);
+    });
+  }
+
   getRatingFromUser = () => {
     if (!this.state.user) return 0;
+    console.log("here", this.state.user.ratedIdeas);
     for (let i = 0; i < this.state.user.ratedIdeas.length; ++i) {
         if (this.state.user.ratedIdeas[i].ideaId == this.state.idea._id) {
             return this.state.user.ratedIdeas[i].rating;
@@ -114,7 +134,7 @@ class IdeaDetail extends Component {
   }
 
   render() {
-    if (!this.state.idea) return <div>Please wait</div>;
+    if (!this.state.idea || (localStorage.userId && this.state.userRating == null)) return <div>Please wait</div>;
 
     let FollowButton = (props) => {
         if (!this.state.user) return null;
@@ -123,6 +143,15 @@ class IdeaDetail extends Component {
         } else {
             return <button className="btn btn-lg btn-primary" onClick={this.toggleFollow}>Theo dõi</button>
         }
+    }
+
+    let DeleteButton = (props) => {
+      if (!this.state.user) return null;
+      if (this.state.user.createdIdeas.includes(this.state.idea._id)) {
+          return <button className="btn btn-lg btn-danger" onClick={this.doErase}>Xóa ý tưởng</button>
+      } else {
+          return null;
+      } 
     }
 
     return (
@@ -140,7 +169,7 @@ class IdeaDetail extends Component {
                         </div>
                         <div className="center-div">
                             <Rating label="Total rating" static={true} callback={this.doRate} rating={this.state.idea.noUsersRated ? (Math.round(this.state.idea.ratingSum / this.state.idea.noUsersRated)) : -1}/>
-                            <Rating label="Your  rating" static={false} callback={this.doRate} rating={this.getRatingFromUser()}/>
+                            <Rating label="Your  rating" static={false} callback={this.doRate} rating={this.state.userRating} />
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -148,8 +177,9 @@ class IdeaDetail extends Component {
                             <div className="col-md-8">
                                 <h3>{this.state.idea.owner.username}</h3>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-4 center-div">
                                 <FollowButton />
+                                <DeleteButton />
                             </div>
                     </div>
                     <h3>Lĩnh vực: </h3> <span>{this.state.idea.category}</span>

@@ -192,6 +192,21 @@ const removeIdea = (target, ideaId) => {
                 if (index != -1) {
                     user.createdIdeas.splice(index, 1);
                 }
+                index = user.followedIdeas.indexOf(ideaId);
+                if (index != -1) {
+                    user.followedIdeas.splice(index, 1);
+                }
+                index = -1;
+                for (let i = 0; i < user.ratedIdeas.length; ++i) {
+                    if (user.ratedIdeas[i].ideaId == ideaId) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index != -1) {
+                    user.ratedIdeas.splice(index, 1);
+                }
+                
                 return user.save();
             },
             err => {

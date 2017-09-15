@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link , withRouter } from 'react-router-dom';
+
 import $ from 'jquery';
 
 import IdeaBoxProfile from '../components/IdeaBoxProfile';
@@ -97,4 +99,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default withRouter(Profile);

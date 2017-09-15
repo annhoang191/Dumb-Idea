@@ -194,12 +194,14 @@ const update = (target, ideaInfo) => {
 
 const erase = (target, ownerId) => {
     return new Promise((resolve, reject) => {
+        let toBeRemoved = null;
         Idea.findOne(target).then(
             doc => {
                 if (doc.owner != ownerId) {
                     reject(new Error('Permission denied'));
                 } else {
-                    return doc.remove();
+                    toBeRemoved = doc;
+                    return UserModel.removeIdea({_id: doc.owner}, doc._id);
                 }
             },
             err => {
@@ -210,6 +212,13 @@ const erase = (target, ownerId) => {
         .then(
             doc => {
                 console.log(`SUCCESS erase Idea ${target}`);
+                return toBeRemoved.remove();
+            },
+            err => {
+                reject(err);
+            }
+        ).then(
+            doc => {
                 resolve();
             },
             err => {
