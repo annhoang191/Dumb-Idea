@@ -62,7 +62,7 @@ class AddNewIdea extends Component {
             </div>
             <div>
               <p className="label-add-idea">Mô tả</p>
-              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4" maxLength="200" placeholder="Nội dung của bạn là gì?"></textarea>
+              <textarea form="theform" name="description" id="nameIdea" className="form-control" rows="4"  placeholder="Nội dung của bạn là gì?"></textarea>
               <hr />
             </div>
             <div>
