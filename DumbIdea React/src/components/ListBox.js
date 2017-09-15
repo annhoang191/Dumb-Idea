@@ -18,17 +18,7 @@ class ListBox extends Component {
               <div className="list-post waiting-list">
                   <header className="clearfix">
                       <h4 className="pull-left">Tất cả ý tưởng</h4>
-                      <div className="pull-right">
-                          <ul className="list-inline">
-                              <li><span>Sắp xếp theo</span></li>
-                              <li>
-                                  <select id="orderby" className="form-control font-size-12 border-radius-3">
-                                      <option value="2">Thời gian đăng gần nhất</option>
-                                      <option value="3">Thời gian đăng xa nhất</option>
-                                  </select>
-                              </li>
-                          </ul>
-                      </div>
+
                   </header>
                   <hr />
                   { childElements }
