@@ -158,6 +158,7 @@ class IdeaDetail extends Component {
 
     let EditButton = (props) => {
       if (!this.state.user) return null;
+      if (this.state.user._id != this.state.idea.owner._id) return null;
       return (
         <div className="middle-idea-detail">
           <Link to={'/editidea/' + this.state.idea._id} className="btn btn-info btn-lg text-idea-detail">

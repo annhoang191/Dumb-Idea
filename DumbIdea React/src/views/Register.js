@@ -43,11 +43,12 @@ class Login extends Component {
       if (data.message) {
         this.props.history.push('/');
       } else {
-
+        alert('Cannot register');
       }
     })
     .catch(
       err => {
+        alert('Cannot register');
         console.log(err);
       }
     );
