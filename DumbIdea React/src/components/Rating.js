@@ -8,9 +8,19 @@ var Rating = React.createClass({
         temp_rating: null
       };
     },
+    componentWillReceiveProps(nextProps) {
+      console.log("update", nextProps.rating);
+      {
+        
+        this.setState({
+          rating: nextProps.rating,
+          temp_rating: null
+        });
+      }
+    },
     rate(rating) {
       if (this.props.static) return;
-      this.setState({ rating: this.props.callback(rating)})
+      this.props.callback(rating);
       this.setState({
         rating: rating,
         temp_rating: rating
@@ -33,6 +43,7 @@ var Rating = React.createClass({
       this.setState({ rating: this.state.rating });
     },
     render() {
+      console.log("render", this.state.rating);
       var stars = [];
       
       for(var i = 1; i <= 10; i++) {

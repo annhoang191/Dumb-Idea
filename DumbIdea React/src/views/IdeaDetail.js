@@ -31,12 +31,14 @@ class IdeaDetail extends Component {
                   this.setState({
                     user: data
                   }, () => {
-                    //console.log("Got rating", this.getRatingFromUser());
+                    console.log("Got rating", this.getRatingFromUser());
                     this.setState({userRating: this.getRatingFromUser()});
                   });
                   console.log(data);
               }).fail(err => {
                   console.error(err);
+                  //localStorage.token = null;
+                  //localStorage.userId = null;
               });
             }
           });
@@ -134,7 +136,7 @@ class IdeaDetail extends Component {
   }
 
   render() {
-    if (!this.state.idea || (localStorage.userId && this.state.userRating == null)) return <div>Please wait</div>;
+    if (!this.state.idea) return <div>Please wait</div>;
 
     let FollowButton = (props) => {
         if (!this.state.user) return null;
@@ -154,6 +156,17 @@ class IdeaDetail extends Component {
       } 
     }
 
+    let EditButton = (props) => {
+      if (!this.state.user) return null;
+      return (
+        <div className="middle-idea-detail">
+          <Link to={'/editidea/' + this.state.idea._id} className="btn btn-info btn-lg text-idea-detail">
+            <span className="glyphicon glyphicon-pencil"></span> Edit
+          </Link>
+        </div>
+      );
+    }
+
     return (
         <div className="IdeaDetail">
             <div className="container">
@@ -162,13 +175,9 @@ class IdeaDetail extends Component {
                     <div className="col-md-6 container-idea-detail">
                         <img className="img-responsive center-block img-idea-detail" src={this.state.idea.photo} />
                         <br />
-                        <div className="middle-idea-detail">
-                          <Link to={'/editidea/' + this.state.idea._id} className="btn btn-info btn-lg text-idea-detail">
-                            <span className="glyphicon glyphicon-pencil"></span> Edit
-                          </Link>
-                        </div>
+                        <EditButton />
                         <div className="center-div">
-                            <Rating label="Total rating" static={true} callback={this.doRate} rating={this.state.idea.noUsersRated ? (Math.round(this.state.idea.ratingSum / this.state.idea.noUsersRated)) : -1}/>
+                            <Rating label="Total rating" static={true} callback={this.doRate} rating={this.state.idea.noUsersRated ? (Math.round(this.state.idea.ratingSum / this.state.idea.noUsersRated)) : -1} />
                             <Rating label="Your  rating" static={false} callback={this.doRate} rating={this.state.userRating} />
                         </div>
                     </div>

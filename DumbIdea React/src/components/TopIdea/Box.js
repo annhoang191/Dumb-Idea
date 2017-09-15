@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
+import Rating from '../Rating';
 
 class Box extends Component {
   render() {
@@ -19,8 +20,7 @@ class Box extends Component {
                   </div>
                   <p>{ this.props.description }</p>
                   <div className="idea-footer">
-                    <div className="rating"><i className="fa fa-star"></i> Độ khả thi (người dùng tự đánh giá): {this.props.estimatedRating}</div>
-                      <div className="rating"><i className="fa fa-star-o"></i> Độ khả thi (tính trung bình): {this.props.rating}</div>
+                      <div className="rating"><Rating rating={this.props.noUsersRated ? (Math.round(this.props.ratingSum / this.props.noUsersRated)) : 0} /> </div>
                   </div>
               </div>
             </div>

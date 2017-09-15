@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import $ from 'jquery';
+import Rating from '../Rating';
 
 class PanelBody extends Component {
   
@@ -15,7 +16,9 @@ class PanelBody extends Component {
               <p>{this.props.briefDescription}</p>
               <button type="button" className="btn btn-default"> <Link to={"/idea/" + this.props._id}> Chi tiết </Link></button>
               <br></br>
-              <br></br>
+              <div className="idea-footer">
+                <div className="rating"><Rating rating={this.props.noUsersRated ? (Math.round(this.props.ratingSum / this.props.noUsersRated)) : 0} /> </div>
+              </div>
               <p><span className="glyphicon glyphicon-user"></span> Tác giả: {this.props.owner.username}</p>
               <p><span className="glyphicon glyphicon-envelope"></span> Liên hệ: {this.props.owner.email}</p>
         </div>

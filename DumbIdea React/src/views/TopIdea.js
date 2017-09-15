@@ -74,7 +74,7 @@ class TopIdea extends Component {
         searchText: this.state.searchText
       }
     }).done( data => {
-      console.log('Data in list box: ' + data);
+      console.log('Data in list box: ', data);
       // Update list idea and page number
       this.setState({
         ideasDisplay  : this.state.ideasDisplay.concat(data),
