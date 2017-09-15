@@ -163,7 +163,6 @@ class IdeaDetail extends Component {
                 <div className="container main-content">
                     <ul className="nav nav-tabs">
                         <li className="active"><a data-toggle="tab" href="#descript"><i className="fa fa-align-left"></i> Mô tả chi tiết</a></li>
-                        <li><a data-toggle="tab" href="#rating"><i className="fa fa-thumbs-o-up"></i> Đánh giá</a></li>
                         <li><a data-toggle="tab" href="#comments"><i className="fa fa-comment-o"></i> Nhận xét</a></li>
                         <li><a data-toggle="tab" href="#multimedia"><i className="fa fa-eye"></i> Hình ảnh - video </a></li>
                         <li><a data-toggle="tab" href="#addcomment"><i className="fa fa-comment-o"></i> Gửi đánh giá - nhận xét</a></li>
@@ -174,14 +173,6 @@ class IdeaDetail extends Component {
                     <div id="descript" className="tab-pane fade in active">
                         <h3 className="text-center">Chi tiết ý tưởng</h3>
                         <p>{this.state.idea.description}</p>
-                    </div>
-
-                    <div id="rating" className="tab-pane fade">
-                        <h3 className="text-center">Đánh giá</h3>
-                        <h4>Tác giả tự đánh giá độ khả thi của ý tưởng: </h4>
-                            <span>{this.state.idea.estimatedRating}</span>
-                        <h4>Đánh giá của các thành viên khác: </h4>
-                            <span>{this.state.idea.rating}</span>
                     </div>
 
                     <div id="multimedia" className="tab-pane fade">
