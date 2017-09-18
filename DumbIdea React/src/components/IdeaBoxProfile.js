@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import $ from 'jquery';
-
+import Rating from './Rating'
 
 class IdeaBoxProfile extends Component {
     constructor() {
@@ -32,7 +32,7 @@ class IdeaBoxProfile extends Component {
               <article className="IdeaBoxProfile post style-3 well">
                   <div className="media">
                       <div className="media-left pull-left visible-lg visible-md">
-                        <img className="img-responsive media-object" src={this.state.idea.photo} />
+                        <img className="img-responsive box-media-object" src={this.state.idea.photo} alt="Idea image"/>
                       </div>
                       <div className="media-body">
                           <h6 className="entry-title"><Link to={"/idea/" + this.state.idea._id}>{this.state.idea.name}</Link></h6>
@@ -41,9 +41,7 @@ class IdeaBoxProfile extends Component {
                           </div>
                           <p>{this.state.idea.briefDescription}</p>
                           <div className="idea-footer">
-                              <div className="rating"><i className="fa fa-star"></i> Độ khả thi (người dùng tự đánh giá): {this.state.idea.estimatedRating} </div>
-                              <div className="rating"><i className="fa fa-star-o"></i> Độ khả thi (tính trung bình): {this.state.rating} </div>
-                              <button className="btn btn-sm btn-default btn-detail">Chi tiết</button>
+                              <div className="rating"><Rating static={true} rating={this.state.idea.noUsersRated ? (Math.round(this.state.idea.ratingSum / this.state.idea.noUsersRated)) : 0} /> </div>
                           </div>
                       </div> 
                   </div>

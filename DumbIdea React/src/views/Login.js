@@ -41,12 +41,12 @@ class Login extends Component {
       } else {
         localStorage.token = null;
         localStorage.userId = null;
-        alert('Cannot login');
+        alert(data.err || "Cannot login");
       }
     }, err => {
       localStorage.token = null;
       localStorage.userId = null;
-      alert('Cannot login');
+      alert(err.responseJSON.error);
     });
   }
 

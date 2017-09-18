@@ -35,7 +35,7 @@ class CommentElement extends Component {
     if (!this.state.user) return null;
     return (
       <li className="media">
-        <Link className="pull-left" to={"/user/" + this.props.author}>
+        <Link className="pull-left" to={"/profile/" + this.props.author}>
           <img className="media-object img-circle" src={this.state.user.avatar} alt="profile"></img>
         </Link>
         <div className="media-body">

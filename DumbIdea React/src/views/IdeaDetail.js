@@ -8,10 +8,19 @@ import Rating from '../components/Rating';
 class IdeaDetail extends Component {
   constructor() {
       super();
+      this.tiengViet = {
+        technology: 'Công nghệ',
+        business: 'Kinh doanh',
+        art: 'Nghệ thuật',
+        application: 'Ứng dụng',
+        social: 'Xã hội',
+        other: 'Nhảm nhí đột phá'
+      }
       this.state = {
         idea: null,
         user: null,
-        userRating: null
+        userRating: null,
+        date: new Date()
       };
   }
 
@@ -185,16 +194,15 @@ class IdeaDetail extends Component {
                     <div className="col-md-6">
                         <div className="row">
                             <div className="col-md-8">
-                                <h3>{this.state.idea.owner.username}</h3>
+                                <Link to={'/profile/' + this.state.idea.owner._id}><h3>{this.state.idea.owner.username}</h3></Link>
                             </div>
                             <div className="col-md-4 center-div">
                                 <FollowButton />
                                 <DeleteButton />
                             </div>
                     </div>
-                    <h3>Lĩnh vực: </h3> <span>{this.state.idea.category}</span>
-                    <h3>Độ khả thi: </h3> <span>{this.state.idea.estimatedRating}</span>
-                    <h3>Ngày đăng</h3>
+                    <h4>Lĩnh vực: </h4> <span>{this.tiengViet[this.state.idea.category]}</span>
+                    <h4>Ngày đăng</h4> <span>{this.state.date.getDate()}/{this.state.date.getMonth()}/{this.state.date.getFullYear()}</span>
                     <h4 className="text-muted">Tags: {this.state.idea.tags} </h4>
                     </div>
                 </div>

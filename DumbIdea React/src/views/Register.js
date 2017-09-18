@@ -41,14 +41,15 @@ class Login extends Component {
     Authentication.register(this.state.username, this.state.password, this.state.email).then(data => {
       console.log('Data', data);
       if (data.message) {
+        alert(data.message);
         this.props.history.push('/');
       } else {
-        alert('Cannot register');
+        alert(data.error);
       }
     })
     .catch(
       err => {
-        alert('Cannot register');
+        alert(err.responseJSON.error);
         console.log(err);
       }
     );

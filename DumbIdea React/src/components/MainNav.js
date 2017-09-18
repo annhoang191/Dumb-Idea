@@ -12,35 +12,25 @@ class MainNav extends Component {
 
   render() {
     const menuItems = this.props.items.map((item) => {
-      if(item.subItems) {
-        const subItems = item.subItems.map((subItem) => {
-          return (
-            <li key={subItem.name}>
-              <Link to = {`${subItem.path}`}>{subItem.name}</Link>
-            </li>
-          )
-        });
-
-        return (
-          <li className="dropdown" key={item.name}>
-            <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{item.name} <span className="caret"></span></a>
-            <ul className="dropdown-menu">
-              {subItems}
-            </ul>
-          </li>
-        );
-      }  else {
-        return (
-          <li key={item.name} className={`${this.props.location.pathname === item.path ? "active" : ''}`}>
-            <Link to = {`${item.path}`}>{item.name}</Link>
-          </li>
-        )
-      }
+      return (
+        <li key={item.name} className={"fill-left " + (this.props.location.pathname === item.path ? "active" : '')}>
+          <Link to = {`${item.path}`}>{item.name}</Link>
+        </li>
+      )
     });
 
+    let OtherButton = (props) => {
+      if (this.props.logedIn) {
+        return <button className="btn btn-danger otherbtn" onClick={(e) => {localStorage.token = null; localStorage.userId=null; window.location.href='/';}}>Sign out</button>
+      } else {
+        return <button className="btn btn-primary otherbtn" onClick={(e) => {this.props.history.push('/register');}}>Register</button>
+      }
+    }
+
     return (
-      <ul className="nav navbar-nav">
+      <ul className="nav navbar-nav fill-right">
         {menuItems}
+        <li><OtherButton /></li>
       </ul>
     );
   }

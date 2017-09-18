@@ -49,7 +49,7 @@ class Profile extends Component {
       <div className="Profile row">
         <div className="clearfix well profile-header">
           <div className="col-md-2">
-            <img  className="img-thumbnail-profile" src={this.state.user.avatar}/>
+            <img  className="img-thumbnail-profile" src={this.state.user.avatar} />
           </div>
 
         <div className="col-md-8">

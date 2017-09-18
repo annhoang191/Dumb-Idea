@@ -38,9 +38,11 @@ class AddNewIdea extends Component {
     .then(
       res => {
         console.log(res);
+        alert('Idea created');
         this.props.history.push('/idea/' + res.id);
       },
       err => {
+        alert('Something went wrong');
         console.log('Cannot AJAX');
       }
     );

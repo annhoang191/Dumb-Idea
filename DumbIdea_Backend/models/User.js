@@ -59,18 +59,52 @@ const User = mongoose.model('User', userSchema);
 
 const create = (userInfo) => {
     return new Promise((resolve, reject) => {
-        console.log('userInfo', userInfo);
-        userInfo.password = bcrypt.hashSync(userInfo.password, 10);
-        User.create(userInfo).then(
-            doc => {
-                console.log(`SUCCESS User ${doc.username} created`);
-                resolve(doc);
-            },
-            err => {
-                console.log('FAILED create user', err);
-                reject(err);
-            }
-        );
+        console.log('Create new user', userInfo);
+
+        let checkUsername = new Promise((resolve, reject) => {
+            User.findOne({username: userInfo.username}).then(
+                user => {
+                    if (!user)
+                        resolve();
+                    else
+                        reject('Username taken');
+                },
+                err => {
+                    resolve();
+                }
+            );
+        });
+        let checkEmail = new Promise((resolve, reject) => {
+            User.findOne({email: userInfo.email}).then(
+                user => {
+                    if (!user)
+                        resolve();
+                    else
+                        reject('Email taken');
+                },
+                err => {
+                    resolve();
+                }
+            );
+        });
+
+        Promise.all([checkUsername, checkEmail])
+        .then(() => {
+            userInfo.password = bcrypt.hashSync(userInfo.password, 10);
+            User.create(userInfo).then(
+                doc => {
+                    console.log(`SUCCESS User ${doc.username} created`);
+                    resolve(doc);
+                },
+                err => {
+                    console.log('FAILED create user', err);
+                    reject('Database error');
+                }
+            );
+        })
+        .catch(err => {
+            reject(err);
+        });
     });
 };
 
@@ -81,11 +115,11 @@ const login = (userInfo) => {
         })
         .then(user => {
             if (!user) {
-                reject(new Error('User not found'));
+                reject('User not found');
             } else {
                 console.log('user', user);
                 if (!user.comparePassword(userInfo.password)) {
-                    reject(new Error('Wrong password'));
+                    reject('Wrong password');
                 } else {
                     resolve({
                         token: jwt.sign({id: user._id}, 'SECRET'),
@@ -95,7 +129,7 @@ const login = (userInfo) => {
             }
         })
         .catch(err => {
-            reject(err);
+            reject('Database error');
         });
     });
 };

@@ -55,9 +55,11 @@ class EditIdea extends Component {
     .then(
       res => {
         console.log(res);
+        alert('Idea updated');
         this.props.history.push('/idea/' + this.state.idea._id);
       },
       err => {
+        alert('Something went wrong');
         console.log('Cannot AJAX');
       }
     );

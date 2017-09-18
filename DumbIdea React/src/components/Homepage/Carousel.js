@@ -13,8 +13,6 @@ class Carousel extends Component {
              <div className="container">
                <div className="carousel-caption">
                  <h1>We are still working hard to make this site look cool</h1>
-                 <p>We will be here soon guys. Please visit us later</p>
-                 <Link to="/topIdea"><button className="btn btn-lg btn-primary">Tìm hiểu thêm</button></Link>
                </div>
              </div>
            </div>

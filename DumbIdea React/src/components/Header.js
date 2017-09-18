@@ -73,14 +73,6 @@ class Header extends Component {
       })
     }
 
-    let OtherButton = (props) => {
-      if (this.state.logedIn) {
-        return <button className="btn btn-danger otherbtn" onClick={(e) => {localStorage.token = null; localStorage.userId=null; window.location.href='/';}}>Sign out</button>
-      } else {
-        return <Link to="/register" className="registerbtn"><button className="btn btn-primary otherbtn">Register</button></Link>
-      }
-    }
-
     return (
       <header className="navbar navbar-default navbar-fixed-top">
         <div className="container">
@@ -95,8 +87,7 @@ class Header extends Component {
             <Link className="navbar-brand" to="/">Dumb Ideas</Link>
           </div>
           <nav className="collapse navbar-collapse" id="MainNav_nav">
-            <MainNav items={menuItems}/>
-            <OtherButton />
+            <MainNav logedIn={this.state.logedIn} items={menuItems}/>
           </nav>
         </div>
       </header>

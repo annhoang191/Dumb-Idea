@@ -30,11 +30,11 @@ Router.post('/', (req, res) => {
   UserModel.create(req.body).then(
     user => {
       console.log(`SUCCESS user created`);
-      res.send({message: 'Created user'});
+      res.send({message: 'Your account has been created, please sign in'});
     },
     err => {
       console.log(err);
-      res.send({error : 'cannot create user'});
+      res.send({error : err});
     }
   );
 });
@@ -45,8 +45,11 @@ Router.post('/login', (req, res) => {
     res.status(200).send(doc);
   })
   .catch(err => {
-    console.log(err);
-    res.status(401).send({token: null});
+    console.log("HEREERERER", err);
+    res.status(401).send({
+      token: null,
+      error: err
+    });
   });
 });
 

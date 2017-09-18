@@ -41,14 +41,23 @@ body{
   max-width: 200px;
 }
 .otherbtn {
-  margin: 0;
-  display:block;
+
 }
+
+.fill-right {
+  float: right;
+}
+
+.fill-left {
+  display: inline-block;
+  float: left;
+}
+
 @media only screen and (min-width: 700px) {
   .otherbtn {
     line-height: 20px;
-    margin: 10px;
-    margin-left: 400px;
+    margin-top: 15px;
+    margin-right: 0;
   }
 }
 /*FIRST CAROUSEL*/
@@ -87,7 +96,8 @@ body{
   margin-bottom : 10px;
 }
 .img-showcase {
-  max-height: 350px;
+  height: 250px;
+  max-width: 500px;
 }
 /*ABOUT PAGE */
 .about-intro {
@@ -262,8 +272,9 @@ body{
   border-radius : 5px;
   box-shadow : 0 2px 6px 0px rgba(22,22,22,0.45);
 }
-.media-object  {
-  max-width : 500px;
+.box-media-object  {
+  width : 200px;
+  max-height: 500px;
 }
 /*EXPLORE ALL Idea PAGE*/
 .sidebar {
@@ -382,7 +393,7 @@ body{
     margin: 10px auto 20px;
 }
 .media .media-object { max-width: 120px; }
-.media-body { position: relative; }
+.media-body { position: relative; padding-left: 50px;}
 .media-date {
     position: absolute;
     right: 25px;
